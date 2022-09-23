@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MyManagerScene.unity
+    guid: 81a1ee8879376cb41bcb06b13582df82
+  - enabled: 1
+    path: Assets/Scenes/MyLightingScene.unity
+    guid: 08e69eb73b522264e8c10bca6a90a913
+  - enabled: 1
+    path: Assets/Scenes/SettingScene.unity
+    guid: df476e54b9d48a843a55bc1fd0d06956
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: a404a6a40a3c7d244aca18d98bae8ebd
+  - enabled: 1
+    path: Assets/Scenes/TutorialFirstPart.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/TutorialSecondPart.unity
+    guid: 8849becdeee9ae5418fab47372496fdf
+  - enabled: 1
+    path: Assets/Scenes/ActivitySceneConstant.unity
+    guid: 343e5085f4229c741873e85888542006
+  - enabled: 1
+    path: Assets/Scenes/ActivitySceneNatural.unity
+    guid: 611e4dcec050a89418c04f45d27903d3
+  - enabled: 1
+    path: Assets/Scenes/ActivitySceneFigureEight.unity
+    guid: 1ea00e9727434e14181d88492b80e38d
+  - enabled: 1
+    path: Assets/Scenes/ActivitySceneHarmonic.unity
+    guid: 5cce244973e009f4491459d7a63cb8c1
+  - enabled: 1
+    path: Assets/Scenes/TransitionScene.unity
+    guid: c296eed003a66a94b8cc5523cb72d013
+  m_configObjects:
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: d646b4b163f5d8548a899d093905910c, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a92da08454088a41baba062203213bb, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 578f1f1803877e94d905de21204bda70, type: 2}
