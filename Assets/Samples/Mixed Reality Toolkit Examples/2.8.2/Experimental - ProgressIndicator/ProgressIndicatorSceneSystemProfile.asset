@@ -16,7 +16,7 @@ MonoBehaviour:
   useManagerScene: 0
   managerScene:
     Name: DefaultManagerScene
-    Path: Assets/MRTK/Services/SceneSystem/SceneSystemResources/DefaultManagerScene.unity
+    Path: Assets/Samples/Mixed Reality Toolkit Foundation/2.7.2/Scene System Resources/DefaultManagerScene.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
@@ -26,7 +26,7 @@ MonoBehaviour:
   lightingScenes: []
   contentScenes:
   - Name: ProgressIndicatorExamplesAdditiveLoad
-    Path: Assets/MRTK/Examples/Demos/UX/ProgressIndicator/Scenes/ProgressIndicatorExamplesAdditiveLoad.unity
+    Path: Assets/Samples/Mixed Reality Toolkit Examples/2.8.2/Demos - UX/ProgressIndicator/Scenes/ProgressIndicatorExamplesAdditiveLoad.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged

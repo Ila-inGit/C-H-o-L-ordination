@@ -10,7 +10,6 @@ public class PointsCounter : MonoBehaviour
     public TMP_Text pointCenterNumber;
     public TMP_Text pointRightNumber;
     private int totalPoints = 13;
-    private bool active = false;
 
     private string totalPointsString;
 
@@ -30,17 +29,17 @@ public class PointsCounter : MonoBehaviour
     {
         divideInDigits();
         displayPointsRand(pointLeftNumber, totalPointsString[0]);
-        await Task.Delay(10);
+        await Task.Delay(100);
         displayPointsRand(pointCenterNumber, totalPointsString[1]);
-        await Task.Delay(10);
+        await Task.Delay(100);
         displayPointsRand(pointRightNumber, totalPointsString[2]);
     }
 
     public async void displayPointsRand(TMP_Text pointsText, char digit)
     {
-        for (int i = 0; i < 10; i++) //Number of rolls before showing final
+        for (int i = 0; i < 30; i++) //Number of rolls before showing final
         {
-            await Task.Delay(100);
+            await Task.Delay(100 + i * 10);
             pointsText.text = "";
             pointsText.text = Random.Range(0, 9).ToString();
         }
