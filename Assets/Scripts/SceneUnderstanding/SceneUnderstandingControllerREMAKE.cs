@@ -22,7 +22,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         [SerializeField]
         private string SavedSceneNamePrefix = "PROVA";
         [SerializeField]
-        private bool InstantiatePrefabs = false;
+        public bool CanInstantiatePrefab = false;
         [SerializeField]
         private GameObject InstantiatedPrefab = null;
         [SerializeField]
@@ -117,7 +117,25 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
             }
 
-            if (InstantiatePrefabs && eventData.SpatialObject.Quads.Count > 0)
+            if (CanInstantiatePrefab && eventData.SpatialObject.Quads.Count > 0 && eventData.SpatialObject.SurfaceType == SpatialAwarenessSurfaceTypes.Floor)
+            {
+                InstantiateMarkerOnFloor(eventData);
+            }
+            else
+            {
+                foreach (var quad in eventData.SpatialObject.Quads)
+                {
+                    quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
+                }
+            }
+
+
+
+        }
+
+        public void InstantiateMarkerOnFloor(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
+        {
+            if (CanInstantiatePrefab && eventData.SpatialObject.Quads.Count > 0)
             {
                 var prefab = Instantiate(InstantiatedPrefab);
                 prefab.transform.SetPositionAndRotation(eventData.SpatialObject.Position, eventData.SpatialObject.Rotation);
@@ -129,16 +147,48 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                     prefab.transform.SetParent(InstantiatedParent);
                 }
                 instantiatedPrefabs.Add(prefab);
-            }
-            else
-            {
-                foreach (var quad in eventData.SpatialObject.Quads)
-                {
-                    quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
-                }
-
+                CanInstantiatePrefab = false;
             }
         }
+
+        // public void OnObservationAdded(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
+        // {
+        //     // This method called everytime a SceneObject created by the SU observer
+        //     // The eventData contains everything you need do something useful
+
+        //     AddToData(eventData.Id);
+
+        //     if (observedSceneObjects.TryGetValue(eventData.SpatialObject.SurfaceType, out Dictionary<int, SpatialAwarenessSceneObject> sceneObjectDict))
+        //     {
+        //         sceneObjectDict.Add(eventData.Id, eventData.SpatialObject);
+        //     }
+        //     else
+        //     {
+        //         observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
+        //     }
+
+        //     if (InstantiatePrefabs && eventData.SpatialObject.Quads.Count > 0)
+        //     {
+        //         var prefab = Instantiate(InstantiatedPrefab);
+        //         prefab.transform.SetPositionAndRotation(eventData.SpatialObject.Position, eventData.SpatialObject.Rotation);
+        //         float sx = eventData.SpatialObject.Quads[0].Extents.x;
+        //         float sy = eventData.SpatialObject.Quads[0].Extents.y;
+        //         prefab.transform.localScale = new Vector3(sx, sy, .1f);
+        //         if (InstantiatedParent)
+        //         {
+        //             prefab.transform.SetParent(InstantiatedParent);
+        //         }
+        //         instantiatedPrefabs.Add(prefab);
+        //     }
+        //     else
+        //     {
+        //         foreach (var quad in eventData.SpatialObject.Quads)
+        //         {
+        //             quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
+        //         }
+
+        //     }
+        // }
 
         /// <inheritdoc />
         public void OnObservationUpdated(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
@@ -393,7 +443,15 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
             worldToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.World);
             completelyInferred.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Inferred);
             backgroundToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Background);
+
+            // init toggle only floor mesh and auto-update
+            TogglePlatforms();
+            ToggleWalls();
+            ToggleFloors();
+            ToggleCeilings();
+            ToggleBackground();
         }
+
 
         /// <summary>
         /// Gets the color of the given surface type
