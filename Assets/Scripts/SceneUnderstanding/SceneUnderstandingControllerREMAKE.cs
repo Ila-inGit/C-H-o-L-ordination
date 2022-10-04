@@ -117,39 +117,13 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
             }
 
-            if (CanInstantiatePrefab && eventData.SpatialObject.Quads.Count > 0 && eventData.SpatialObject.SurfaceType == SpatialAwarenessSurfaceTypes.Floor)
+
+            foreach (var quad in eventData.SpatialObject.Quads)
             {
-                InstantiateMarkerOnFloor(eventData);
-            }
-            else
-            {
-                foreach (var quad in eventData.SpatialObject.Quads)
-                {
-                    quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
-                }
-            }
-
-
-
-        }
-
-        public void InstantiateMarkerOnFloor(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
-        {
-            if (CanInstantiatePrefab && eventData.SpatialObject.Quads.Count > 0)
-            {
-                var prefab = Instantiate(InstantiatedPrefab);
-                prefab.transform.SetPositionAndRotation(eventData.SpatialObject.Position, eventData.SpatialObject.Rotation);
-                float sx = eventData.SpatialObject.Quads[0].Extents.x;
-                float sy = eventData.SpatialObject.Quads[0].Extents.y;
-                prefab.transform.localScale = new Vector3(sx, sy, .1f);
-                if (InstantiatedParent)
-                {
-                    prefab.transform.SetParent(InstantiatedParent);
-                }
-                instantiatedPrefabs.Add(prefab);
-                CanInstantiatePrefab = false;
+                quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
             }
         }
+
 
         // public void OnObservationAdded(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
         // {
@@ -219,6 +193,49 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         #endregion IMixedRealitySpatialAwarenessObservationHandler Implementations
 
         #region Public Functions
+
+        public void InstantiateMarkerOnFloor()
+        {
+            IReadOnlyDictionary<int, SpatialAwarenessSceneObject> floors = GetSceneObjectsOfType(SpatialAwarenessSurfaceTypes.Floor);
+            float maxArea = 0;
+            SpatialAwarenessSceneObject maxFloor = floors[0];
+            // Find the the floor with the biggest area
+            foreach (var floor in floors)
+            {
+                float currArea = 0;
+                // Get the quad
+                var quads = floor.Value.Quads;
+                foreach (var quad in quads)
+                {
+                    currArea = currArea + (quad.Extents.x * quad.Extents.y);
+                }
+                if (currArea > maxArea)
+                {
+                    maxArea = currArea;
+                    maxFloor = floor.Value;
+                }
+            }
+
+            if (CanInstantiatePrefab && maxFloor.Quads.Count > 0)
+            {
+                var prefab = Instantiate(InstantiatedPrefab);
+                prefab.transform.SetPositionAndRotation(maxFloor.Position, maxFloor.Rotation);
+                float sx = maxFloor.Quads[0].Extents.x;
+                float sy = maxFloor.Quads[0].Extents.y;
+                prefab.transform.localScale = new Vector3(sx, sy, .1f);
+                if (InstantiatedParent)
+                {
+                    prefab.transform.SetParent(InstantiatedParent);
+                }
+                instantiatedPrefabs.Add(prefab);
+                CanInstantiatePrefab = false;
+            }
+        }
+
+
+
+
+
 
         /// <summary>
         /// Get all currently observed SceneObjects of a certain type.
@@ -443,13 +460,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
             worldToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.World);
             completelyInferred.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Inferred);
             backgroundToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Background);
-
-            // init toggle only floor mesh and auto-update
-            TogglePlatforms();
-            ToggleWalls();
-            ToggleFloors();
-            ToggleCeilings();
-            ToggleBackground();
         }
 
 
