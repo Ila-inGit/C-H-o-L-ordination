@@ -5,6 +5,7 @@ using Microsoft.MixedReality.Toolkit.Examples.Demos;
 using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -198,8 +199,9 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         {
             IReadOnlyDictionary<int, SpatialAwarenessSceneObject> floors = GetSceneObjectsOfType(SpatialAwarenessSurfaceTypes.Floor);
             float maxArea = 0;
-            SpatialAwarenessSceneObject maxFloor = floors[0];
-            // Find the the floor with the biggest area
+            var keys = floors.Keys;
+            SpatialAwarenessSceneObject maxFloor;
+            floors.TryGetValue(keys.MaxOrDefault(), out maxFloor);
             foreach (var floor in floors)
             {
                 float currArea = 0;
