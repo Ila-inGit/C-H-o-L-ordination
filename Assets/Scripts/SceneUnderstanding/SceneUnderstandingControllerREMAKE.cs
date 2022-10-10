@@ -23,7 +23,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         [SerializeField]
         private string SavedSceneNamePrefix = "PROVA";
         [SerializeField]
-        public bool CanInstantiatePrefab = false;
+        public bool CanInstantiatePrefab = true;
         [SerializeField]
         private GameObject InstantiatedPrefab = null;
         [SerializeField]
@@ -119,51 +119,11 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
             }
 
 
-            foreach (var quad in eventData.SpatialObject.Quads)
-            {
-                quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
-            }
+            // foreach (var quad in eventData.SpatialObject.Quads)
+            // {
+            //     quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
+            // }
         }
-
-
-        // public void OnObservationAdded(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
-        // {
-        //     // This method called everytime a SceneObject created by the SU observer
-        //     // The eventData contains everything you need do something useful
-
-        //     AddToData(eventData.Id);
-
-        //     if (observedSceneObjects.TryGetValue(eventData.SpatialObject.SurfaceType, out Dictionary<int, SpatialAwarenessSceneObject> sceneObjectDict))
-        //     {
-        //         sceneObjectDict.Add(eventData.Id, eventData.SpatialObject);
-        //     }
-        //     else
-        //     {
-        //         observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
-        //     }
-
-        //     if (InstantiatePrefabs && eventData.SpatialObject.Quads.Count > 0)
-        //     {
-        //         var prefab = Instantiate(InstantiatedPrefab);
-        //         prefab.transform.SetPositionAndRotation(eventData.SpatialObject.Position, eventData.SpatialObject.Rotation);
-        //         float sx = eventData.SpatialObject.Quads[0].Extents.x;
-        //         float sy = eventData.SpatialObject.Quads[0].Extents.y;
-        //         prefab.transform.localScale = new Vector3(sx, sy, .1f);
-        //         if (InstantiatedParent)
-        //         {
-        //             prefab.transform.SetParent(InstantiatedParent);
-        //         }
-        //         instantiatedPrefabs.Add(prefab);
-        //     }
-        //     else
-        //     {
-        //         foreach (var quad in eventData.SpatialObject.Quads)
-        //         {
-        //             quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
-        //         }
-
-        //     }
-        // }
 
         /// <inheritdoc />
         public void OnObservationUpdated(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
@@ -224,6 +184,9 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 prefab.transform.SetPositionAndRotation(maxFloor.Position, maxFloor.Rotation);
                 float sx = maxFloor.Quads[0].Extents.x;
                 float sy = maxFloor.Quads[0].Extents.y;
+                Debug.Log("quanto è largo il pavimento: " + sx + " " + sy);
+                // forse basta 
+                //prefab.transform.localScale = new Vector3(.1f, .1f, .1f);
                 prefab.transform.localScale = new Vector3(sx, sy, .1f);
                 if (InstantiatedParent)
                 {

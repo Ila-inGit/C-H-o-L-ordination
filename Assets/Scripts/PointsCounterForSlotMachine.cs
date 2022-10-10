@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using TMPro;
 using System.Threading.Tasks;
 
 public class PointsCounterForSlotMachine : MonoBehaviour
@@ -10,26 +9,17 @@ public class PointsCounterForSlotMachine : MonoBehaviour
     public MeshRenderer pointCenterSprite;
     public MeshRenderer pointRightSprite;
     public List<Material> materials;
-    private int totalPoints = 90;
-
-    private string totalPointsString;
 
     private void Awake()
     {
         pointLeftSprite.material = materials[0];
         pointRightSprite.material = materials[1];
         pointCenterSprite.material = materials[2];
-
-    }
-
-    public void UpdatePoints(int pointsToAdd)
-    {
-        totalPoints += pointsToAdd;
     }
 
     public async void Animate()
     {
-        List<bool> stars = getStars();
+        List<bool> stars = PointsManager.Instance.GetStars();
         int finalMatIndex = Random.Range(0, materials.Count - 1);
 
         displayMaterialRand(pointLeftSprite, stars[0], finalMatIndex);
@@ -37,6 +27,8 @@ public class PointsCounterForSlotMachine : MonoBehaviour
         displayMaterialRand(pointCenterSprite, stars[2], finalMatIndex);
         await Task.Delay(100);
         displayMaterialRand(pointRightSprite, stars[1], finalMatIndex);
+
+        PointsManager.Instance.ResetPoints();
     }
 
     public async void displayMaterialRand(MeshRenderer renderer, bool isStar, int finalIndex)
@@ -52,23 +44,5 @@ public class PointsCounterForSlotMachine : MonoBehaviour
             renderer.material = materials[finalIndex];
         }
     }
-
-    public List<bool> getStars()
-    {
-        if (totalPoints < 50)
-        {
-            return new List<bool> { false, false, true };
-        }
-        if (totalPoints >= 50 && totalPoints < 100)
-        {
-            return new List<bool> { false, true, true };
-        }
-        else
-        {
-            return new List<bool> { true, true, true };
-        }
-
-    }
-
 
 }
