@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 #if WINDOWS_UWP
 using Windows.Perception.Spatial;
+using Windows.Perception.Spatial.SpatialLocator;
 #endif
 using Microsoft.MixedReality.Toolkit.Utilities;
 
@@ -72,8 +73,11 @@ namespace QRTracking
                     Quaternion rotation = Quaternion.identity;
                     Vector3 translation = new Vector3(0.0f, 0.0f, 0.0f);
                     
-                    System.IntPtr rootCoordnateSystemPtr = UnityEngine.XR.WindowsMR.WindowsMREnvironment.OriginSpatialCoordinateSystem;
-                    SpatialCoordinateSystem rootSpatialCoordinateSystem = (SpatialCoordinateSystem)System.Runtime.InteropServices.Marshal.GetObjectForIUnknown(rootCoordnateSystemPtr);
+                    //TODO modified
+                    //System.IntPtr rootCoordnateSystemPtr = UnityEngine.XR.WindowsMR.WindowsMREnvironment.OriginSpatialCoordinateSystem;
+                    //SpatialCoordinateSystem rootSpatialCoordinateSystem = (SpatialCoordinateSystem)System.Runtime.InteropServices.Marshal.GetObjectForIUnknown(rootCoordnateSystemPtr);
+                    SpatialCoordinateSystem rootSpatialCoordinateSystem = (SpatialCoordinateSystem)System.Runtime.
+                    InteropServices.Marshal.GetObjectForIUnknown(SpatialLocator.GetDefault().CreateStationaryFrameOfReferenceAtCurrentLocation().CoordinateSystem);
 
                     // Get the relative transform from the unity origin
                     System.Numerics.Matrix4x4? relativePose = CoordinateSystem.TryGetTransformTo(rootSpatialCoordinateSystem);
