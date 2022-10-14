@@ -1,3 +1,6 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 using Microsoft.MixedReality.Toolkit.Examples.Demos;
 using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
@@ -10,16 +13,16 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
     /// <summary>
     /// Demo class to show different ways of visualizing the space using scene understanding.
     /// </summary>
-    public class SceneUnderstandingController : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
+    public class SceneUnderstandingControllerREMAKE : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
     {
         #region Private Fields
 
         #region Serialized Fields
 
         [SerializeField]
-        private string SavedSceneNamePrefix = "DemoSceneUnderstanding";
+        private string SavedSceneNamePrefix = "PROVA";
         [SerializeField]
-        private bool InstantiatePrefabs = false;
+        public bool CanInstantiatePrefab = true;
         [SerializeField]
         private GameObject InstantiatedPrefab = null;
         [SerializeField]
@@ -114,27 +117,11 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
             }
 
-            if (InstantiatePrefabs && eventData.SpatialObject.Quads.Count > 0)
-            {
-                var prefab = Instantiate(InstantiatedPrefab);
-                prefab.transform.SetPositionAndRotation(eventData.SpatialObject.Position, eventData.SpatialObject.Rotation);
-                float sx = eventData.SpatialObject.Quads[0].Extents.x;
-                float sy = eventData.SpatialObject.Quads[0].Extents.y;
-                prefab.transform.localScale = new Vector3(sx, sy, .1f);
-                if (InstantiatedParent)
-                {
-                    prefab.transform.SetParent(InstantiatedParent);
-                }
-                instantiatedPrefabs.Add(prefab);
-            }
-            else
-            {
-                foreach (var quad in eventData.SpatialObject.Quads)
-                {
-                    quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
-                }
 
-            }
+            // foreach (var quad in eventData.SpatialObject.Quads)
+            // {
+            //     quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
+            // }
         }
 
         /// <inheritdoc />
@@ -167,6 +154,51 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
 
         #region Public Functions
 
+        public void InstantiateMarkerOnFloor()
+        {
+            IReadOnlyDictionary<int, SpatialAwarenessSceneObject> floors = GetSceneObjectsOfType(SpatialAwarenessSurfaceTypes.Floor);
+            float maxArea = 0;
+            var keys = floors.Keys;
+            SpatialAwarenessSceneObject maxFloor;
+            floors.TryGetValue(keys.MaxOrDefault(), out maxFloor);
+            foreach (var floor in floors)
+            {
+                float currArea = 0;
+                // Get the quad
+                var quads = floor.Value.Quads;
+                foreach (var quad in quads)
+                {
+                    currArea = currArea + (quad.Extents.x * quad.Extents.y);
+                }
+                if (currArea > maxArea)
+                {
+                    maxArea = currArea;
+                    maxFloor = floor.Value;
+                }
+            }
+
+            if (CanInstantiatePrefab && maxFloor.Quads.Count > 0)
+            {
+                var adjustAngle = new Quaternion(-90.0f + maxFloor.Rotation.x, maxFloor.Rotation.y, maxFloor.Rotation.z, maxFloor.Rotation.w);
+                var prefab = Instantiate(InstantiatedPrefab);
+                prefab.transform.SetPositionAndRotation(maxFloor.Position, adjustAngle);
+                float sx = maxFloor.Quads[0].Extents.x;
+                float sy = maxFloor.Quads[0].Extents.y;
+                // forse basta 
+                prefab.transform.localScale = new Vector3(.25f, .25f, .25f);
+                //prefab.transform.localScale = new Vector3(sx, sy, .1f);
+                float rotationXFloor = maxFloor.Rotation.x;
+                float rotationXprefab = prefab.transform.eulerAngles.x;
+
+                if (InstantiatedParent)
+                {
+                    prefab.transform.SetParent(InstantiatedParent);
+                }
+                instantiatedPrefabs.Add(prefab);
+                CanInstantiatePrefab = false;
+            }
+        }
+
         /// <summary>
         /// Get all currently observed SceneObjects of a certain type.
         /// </summary>
@@ -176,7 +208,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         /// <returns>A dictionary with the scene objects of the requested type being the values and their ids being the keys.</returns>
         public IReadOnlyDictionary<int, SpatialAwarenessSceneObject> GetSceneObjectsOfType(SpatialAwarenessSurfaceTypes type)
         {
-            if (!observer.SurfaceTypes.HasFlag(type))
+            if (!observer.SurfaceTypes.IsMaskSet(type))
             {
                 Debug.LogErrorFormat("The Scene Objects of type {0} are not being observed. You should add {0} to the SurfaceTypes property of the observer in advance.", type);
             }
@@ -338,7 +370,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         {
             ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes.World);
 
-            if (observer.SurfaceTypes.HasFlag(SpatialAwarenessSurfaceTypes.World))
+            if (observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.World))
             {
                 // Ensure we requesting meshes
                 observer.RequestMeshData = true;
@@ -383,14 +415,15 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
             inferRegionsToggle.IsToggled = observer.InferRegions;
 
             // Filter display
-            platformToggle.IsToggled = observer.SurfaceTypes.HasFlag(SpatialAwarenessSurfaceTypes.Platform);
-            wallToggle.IsToggled = observer.SurfaceTypes.HasFlag(SpatialAwarenessSurfaceTypes.Wall);
-            floorToggle.IsToggled = observer.SurfaceTypes.HasFlag(SpatialAwarenessSurfaceTypes.Floor);
-            ceilingToggle.IsToggled = observer.SurfaceTypes.HasFlag(SpatialAwarenessSurfaceTypes.Ceiling);
-            worldToggle.IsToggled = observer.SurfaceTypes.HasFlag(SpatialAwarenessSurfaceTypes.World);
-            completelyInferred.IsToggled = observer.SurfaceTypes.HasFlag(SpatialAwarenessSurfaceTypes.Inferred);
-            backgroundToggle.IsToggled = observer.SurfaceTypes.HasFlag(SpatialAwarenessSurfaceTypes.Background);
+            platformToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Platform);
+            wallToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Wall);
+            floorToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Floor);
+            ceilingToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Ceiling);
+            worldToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.World);
+            completelyInferred.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Inferred);
+            backgroundToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Background);
         }
+
 
         /// <summary>
         /// Gets the color of the given surface type
@@ -432,7 +465,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
 
         private void ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes surfaceType)
         {
-            if (observer.SurfaceTypes.HasFlag(surfaceType))
+            if (observer.SurfaceTypes.IsMaskSet(surfaceType))
             {
                 observer.SurfaceTypes &= ~surfaceType;
             }
