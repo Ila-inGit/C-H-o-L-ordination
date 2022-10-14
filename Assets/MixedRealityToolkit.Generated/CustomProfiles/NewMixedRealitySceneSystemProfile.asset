@@ -17,8 +17,8 @@ MonoBehaviour:
   managerScene:
     Name: MyManagerScene
     Path: Assets/Scenes/MyManagerScene.unity
-    Included: 1
-    BuildIndex: 0
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 81a1ee8879376cb41bcb06b13582df82, type: 3}
   useLightingScene: 0
@@ -26,57 +26,57 @@ MonoBehaviour:
   lightingScenes:
   - Name: MyLightingScene
     Path: Assets/Scenes/MyLightingScene.unity
-    Included: 1
-    BuildIndex: 1
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 08e69eb73b522264e8c10bca6a90a913, type: 3}
   contentScenes:
   - Name: SettingScene
     Path: Assets/Scenes/SettingScene.unity
-    Included: 1
-    BuildIndex: 2
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: df476e54b9d48a843a55bc1fd0d06956, type: 3}
   - Name: StartScene
     Path: Assets/Scenes/StartScene.unity
-    Included: 1
-    BuildIndex: 3
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: a404a6a40a3c7d244aca18d98bae8ebd, type: 3}
   - Name: TutorialFirstPart
     Path: Assets/Scenes/TutorialFirstPart.unity
-    Included: 1
-    BuildIndex: 4
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
   - Name: TutorialSecondPart
     Path: Assets/Scenes/TutorialSecondPart.unity
-    Included: 1
-    BuildIndex: 5
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 8849becdeee9ae5418fab47372496fdf, type: 3}
   - Name: ActivitySceneConstant
     Path: Assets/Scenes/ActivitySceneConstant.unity
-    Included: 1
-    BuildIndex: 6
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 343e5085f4229c741873e85888542006, type: 3}
   - Name: ActivitySceneNatural
     Path: Assets/Scenes/ActivitySceneNatural.unity
-    Included: 1
-    BuildIndex: 7
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 611e4dcec050a89418c04f45d27903d3, type: 3}
   - Name: ActivitySceneFigureEight
     Path: Assets/Scenes/ActivitySceneFigureEight.unity
-    Included: 1
-    BuildIndex: 8
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 1ea00e9727434e14181d88492b80e38d, type: 3}
   - Name: ActivitySceneHarmonic
     Path: Assets/Scenes/ActivitySceneHarmonic.unity
-    Included: 1
-    BuildIndex: 9
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 5cce244973e009f4491459d7a63cb8c1, type: 3}
   permittedLightingSceneComponentTypes:
