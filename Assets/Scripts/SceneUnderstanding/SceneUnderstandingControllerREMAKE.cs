@@ -5,7 +5,6 @@ using Microsoft.MixedReality.Toolkit.Examples.Demos;
 using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.UI;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -180,14 +179,17 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
 
             if (CanInstantiatePrefab && maxFloor.Quads.Count > 0)
             {
+                var adjustAngle = new Quaternion(-90.0f + maxFloor.Rotation.x, maxFloor.Rotation.y, maxFloor.Rotation.z, maxFloor.Rotation.w);
                 var prefab = Instantiate(InstantiatedPrefab);
-                prefab.transform.SetPositionAndRotation(maxFloor.Position, maxFloor.Rotation);
+                prefab.transform.SetPositionAndRotation(maxFloor.Position, adjustAngle);
                 float sx = maxFloor.Quads[0].Extents.x;
                 float sy = maxFloor.Quads[0].Extents.y;
-                Debug.Log("quanto è largo il pavimento: " + sx + " " + sy);
                 // forse basta 
-                //prefab.transform.localScale = new Vector3(.1f, .1f, .1f);
-                prefab.transform.localScale = new Vector3(sx, sy, .1f);
+                prefab.transform.localScale = new Vector3(.25f, .25f, .25f);
+                //prefab.transform.localScale = new Vector3(sx, sy, .1f);
+                float rotationXFloor = maxFloor.Rotation.x;
+                float rotationXprefab = prefab.transform.eulerAngles.x;
+
                 if (InstantiatedParent)
                 {
                     prefab.transform.SetParent(InstantiatedParent);
@@ -196,11 +198,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 CanInstantiatePrefab = false;
             }
         }
-
-
-
-
-
 
         /// <summary>
         /// Get all currently observed SceneObjects of a certain type.
