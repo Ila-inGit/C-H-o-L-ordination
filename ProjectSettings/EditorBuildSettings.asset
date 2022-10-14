@@ -14,7 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SettingScene.unity
     guid: df476e54b9d48a843a55bc1fd0d06956
+  - enabled: 0
+    path: Assets/Scenes/PROVA_SCENE_UND.unity
+    guid: 76455fe390546c54c9f228acef294a44
   - enabled: 1
+    path: Assets/Scenes/ILARIA-SCENE.unity
+    guid: 92a9337748365b14fba5eeb3dea238c2
+  - enabled: 0
     path: Assets/Scenes/StartScene.unity
     guid: a404a6a40a3c7d244aca18d98bae8ebd
   - enabled: 1

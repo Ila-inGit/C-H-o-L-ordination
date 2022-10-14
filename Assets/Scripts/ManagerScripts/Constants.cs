@@ -2,6 +2,8 @@ using System.Collections.Generic;
 class Constants
 {
     Dictionary<int, string> indexToNames = new Dictionary<int, string>();
+
+    public const string MAIN_CAMERA_TAG = "MainCamera";
     public const string MY_MANAGER_SCENE = "MyManagerScene";
     public const string SETTING_SCENE = "SettingScene";
     public const string START_SCENE = "StartScene";
@@ -25,7 +27,7 @@ class Constants
     public const string PLANET = "Planet";
     public const string CONTINUE_BUTTON = "ContinueButton";
     public const string POINTS_COUNTER = "PointsCounter";
-    
+
 
     public void init()
     {

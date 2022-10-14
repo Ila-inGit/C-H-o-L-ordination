@@ -792,6 +792,7 @@ GameObject:
   - component: {fileID: 963194230}
   - component: {fileID: 963194232}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194233}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -832,7 +833,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 60
+  field of view: 26.991467
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -937,11 +938,24 @@ MonoBehaviour:
   contentScene:
     Name: SettingScene
     Path: Assets/Scenes/SettingScene.unity
-    Included: 1
-    BuildIndex: 2
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: df476e54b9d48a843a55bc1fd0d06956, type: 3}
   loadOnStartup: 1
+--- !u!65 &963194233
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1406964183
 PrefabInstance:
   m_ObjectHideFlags: 0
