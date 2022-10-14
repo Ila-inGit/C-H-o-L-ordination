@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1107079408145258371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5293815981249299498}
+  - component: {fileID: 226801143338091060}
+  m_Layer: 0
+  m_Name: PointsControllerSlotMachine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5293815981249299498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107079408145258371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &226801143338091060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107079408145258371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30989147cbd87684f8b376075f52813f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointLeftSprite: {fileID: 0}
+  pointCenterSprite: {fileID: 0}
+  pointRightSprite: {fileID: 0}
+  materials:
+  - {fileID: 2100000, guid: 9a21f2c9f90fce347936defa5e9c3f48, type: 2}
+  - {fileID: 2100000, guid: e98cd3976a9b90840860de75fcf34947, type: 2}
+  - {fileID: 2100000, guid: 716f3e4b6672158438c04baf04e14c8d, type: 2}
+  - {fileID: 2100000, guid: 6ae4e854e8b969e4995579897a366c4b, type: 2}
+  - {fileID: 2100000, guid: 0f77c5adabc29ab4e97ca487e6723574, type: 2}
+  - {fileID: 2100000, guid: 1f5e420667d9a544c8d26111399e427b, type: 2}
+  - {fileID: 2100000, guid: 8d0496538b961da4a87ed2108320fce1, type: 2}
+  - {fileID: 2100000, guid: 738ae71fe73097a429f979da61fb2739, type: 2}
