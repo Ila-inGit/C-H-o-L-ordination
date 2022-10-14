@@ -16,6 +16,8 @@ namespace QRTracking
         public Microsoft.MixedReality.QR.QRCode qrCode;
         private GameObject qrCodeCube;
 
+        private string DATATORETRIVE = "CONFIGURATIONDATA" /*+ ".csv"*/;
+
         public float PhysicalSize { get; private set; }
         public string CodeText { get; private set; }
 
@@ -96,7 +98,12 @@ namespace QRTracking
             if (launch)
             {
                 launch = false;
+                //TODO save json file to application.persistentDataPath 
+                Debug.Log(qrCode.Data);
+                //string strFilePath = string.Format("{0}/{1}.csv", Application.persistentDataPath, DATATORETRIVE);
                 LaunchUri();
+                
+
             }
         }
 

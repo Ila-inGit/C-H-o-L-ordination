@@ -404,7 +404,7 @@ Transform:
   m_Children:
   - {fileID: 1120255683}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -986,7 +986,7 @@ PrefabInstance:
     - target: {fileID: 581584749722448832, guid: 11543b70c8c4b9e4e91341cd1ea15fda, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2105703556}
+      objectReference: {fileID: 0}
     - target: {fileID: 581584749722448832, guid: 11543b70c8c4b9e4e91341cd1ea15fda, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Navigate
@@ -1042,7 +1042,7 @@ PrefabInstance:
     - target: {fileID: 6101418392785561498, guid: 11543b70c8c4b9e4e91341cd1ea15fda, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2105703556}
+      objectReference: {fileID: 0}
     - target: {fileID: 6101418392785561498, guid: 11543b70c8c4b9e4e91341cd1ea15fda, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Navigate
@@ -1507,10 +1507,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105703555}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
