@@ -28,7 +28,6 @@ class Constants
     public const string CONTINUE_BUTTON = "ContinueButton";
     public const string POINTS_COUNTER = "PointsCounter";
 
-
     public void init()
     {
         indexToNames.Add(0, MY_MANAGER_SCENE);
@@ -50,3 +49,5 @@ class Constants
 
 
 }
+
+public enum Difficulty { easy, difficult };

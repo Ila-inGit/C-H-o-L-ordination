@@ -11,18 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MyLightingScene.unity
     guid: 08e69eb73b522264e8c10bca6a90a913
-  - enabled: 1
-    path: Assets/Scenes/SettingScene.unity
-    guid: df476e54b9d48a843a55bc1fd0d06956
   - enabled: 0
-    path: Assets/Scenes/PROVA_SCENE_UND.unity
+    path: Assets/Scenes/MarkerSetUpScene.unity
     guid: 76455fe390546c54c9f228acef294a44
   - enabled: 1
     path: Assets/Scenes/ILARIA-SCENE.unity
     guid: 92a9337748365b14fba5eeb3dea238c2
-  - enabled: 0
-    path: Assets/Scenes/StartScene.unity
-    guid: a404a6a40a3c7d244aca18d98bae8ebd
   - enabled: 1
     path: Assets/Scenes/TutorialFirstPart.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
@@ -44,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TransitionScene.unity
     guid: c296eed003a66a94b8cc5523cb72d013
+  - enabled: 0
+    path: Assets/Scenes/StartScene.unity
+    guid: a404a6a40a3c7d244aca18d98bae8ebd
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: d646b4b163f5d8548a899d093905910c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a92da08454088a41baba062203213bb, type: 2}

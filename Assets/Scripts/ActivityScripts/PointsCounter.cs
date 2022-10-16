@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using System.Threading.Tasks;
 
+// Need to Be deleted if we use the slot machine with the images
 public class PointsCounter : MonoBehaviour
 {
 

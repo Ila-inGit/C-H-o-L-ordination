@@ -1,18 +1,11 @@
-﻿// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-
-using Microsoft.MixedReality.Toolkit.Examples.Demos;
+﻿using Microsoft.MixedReality.Toolkit.Examples.Demos;
 using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
 {
-    /// <summary>
-    /// Demo class to show different ways of visualizing the space using scene understanding.
-    /// </summary>
     public class SceneUnderstandingControllerREMAKE : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
     {
         #region Private Fields

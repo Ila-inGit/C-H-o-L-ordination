@@ -16,6 +16,8 @@ public class DisplayStartButton : MonoBehaviour
         {
             startButton.SetActive(true);
             instantiated = true;
+            // initialize the camera position when it is inside the marker
+            DataCollector.Instance.addToFileCamera(Camera.main.transform.position);
         }
     }
 
@@ -34,7 +36,7 @@ public class DisplayStartButton : MonoBehaviour
     {
         if (!instantiated)
         {
-            if (other.gameObject == Camera.main) { isInside = false; }
+            if (other.gameObject.tag == Constants.MAIN_CAMERA_TAG) { isInside = false; }
         }
     }
 }
