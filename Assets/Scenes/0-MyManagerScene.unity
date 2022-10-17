@@ -818,7 +818,7 @@ MonoBehaviour:
     Included: 0
     BuildIndex: -1
     Tag: Untagged
-    Asset: {fileID: 102900000, guid: df476e54b9d48a843a55bc1fd0d06956, type: 3}
+    Asset: {fileID: 102900000, guid: 76455fe390546c54c9f228acef294a44, type: 3}
   loadOnStartup: 1
 --- !u!65 &963194233
 BoxCollider:

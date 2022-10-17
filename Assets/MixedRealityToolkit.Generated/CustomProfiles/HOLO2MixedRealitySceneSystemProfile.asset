@@ -15,8 +15,8 @@ MonoBehaviour:
   isCustomProfile: 1
   useManagerScene: 1
   managerScene:
-    Name: MyManagerScene
-    Path: Assets/Scenes/MyManagerScene.unity
+    Name: 0-MyManagerScene
+    Path: Assets/Scenes/0-MyManagerScene.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
@@ -24,25 +24,31 @@ MonoBehaviour:
   useLightingScene: 0
   defaultLightingSceneIndex: 0
   lightingScenes:
-  - Name: MyLightingScene
-    Path: Assets/Scenes/MyLightingScene.unity
+  - Name: 1-MyLightingScene
+    Path: Assets/Scenes/1-MyLightingScene.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 08e69eb73b522264e8c10bca6a90a913, type: 3}
   contentScenes:
-  - Name: ActivitySceneConstant
-    Path: Assets/Scenes/ActivitySceneConstant.unity
+  - Name: SettingScene
+    Path: Assets/Scenes/SettingScene.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
-    Asset: {fileID: 102900000, guid: 343e5085f4229c741873e85888542006, type: 3}
-  - Name: TutorialFirstPart
-    Path: Assets/Scenes/TutorialFirstPart.unity
+    Asset: {fileID: 102900000, guid: 76455fe390546c54c9f228acef294a44, type: 3}
+  - Name: 3-TutorialFirstPart
+    Path: Assets/Scenes/3-TutorialFirstPart.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+  - Name: 4-TutorialSecondPart
+    Path: Assets/Scenes/4-TutorialSecondPart.unity
+    Included: 0
+    BuildIndex: -1
+    Tag: Untagged
+    Asset: {fileID: 102900000, guid: 8849becdeee9ae5418fab47372496fdf, type: 3}
   permittedLightingSceneComponentTypes:
   - reference: UnityEngine.Transform, UnityEngine.CoreModule
   - reference: UnityEngine.GameObject, UnityEngine.CoreModule
@@ -88,8 +94,8 @@ MonoBehaviour:
       XRotation: 50
       YRotation: 330
       ZRotation: 0
-  editorManageBuildSettings: 1
-  editorEnforceSceneOrder: 1
-  editorManageLoadedScenes: 1
-  editorEnforceLightingSceneTypes: 1
+  editorManageBuildSettings: 0
+  editorEnforceSceneOrder: 0
+  editorManageLoadedScenes: 0
+  editorEnforceLightingSceneTypes: 0
   editorLightingCacheOutOfDate: 1

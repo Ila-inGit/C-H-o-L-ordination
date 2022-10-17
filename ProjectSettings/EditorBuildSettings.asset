@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MyManagerScene.unity
+    path: Assets/Scenes/0-MyManagerScene.unity
     guid: 81a1ee8879376cb41bcb06b13582df82
   - enabled: 1
-    path: Assets/Scenes/MARKERSETUPSCENE.unity
+    path: Assets/Scenes/SettingScene.unity
     guid: 76455fe390546c54c9f228acef294a44
   - enabled: 1
-    path: Assets/Scenes/TutorialFirstPart.unity
+    path: Assets/Scenes/3-TutorialFirstPart.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/4-TutorialSecondPart.unity
+    guid: 8849becdeee9ae5418fab47372496fdf
   - enabled: 1
     path: Assets/Scenes/ActivitySceneConstant.unity
     guid: 343e5085f4229c741873e85888542006

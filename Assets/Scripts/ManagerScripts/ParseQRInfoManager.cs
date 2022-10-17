@@ -4,6 +4,8 @@ public class ParseQRInfoManager : MonoBehaviour
 {
     private static ParseQRInfoManager instance;
 
+    public SetUpInformationFromJson infoFromJson { get; private set; }
+
     public static ParseQRInfoManager Instance
     {
         get
@@ -12,4 +14,10 @@ public class ParseQRInfoManager : MonoBehaviour
             return instance;
         }
     }
+
+    public void ParseJSON(string jsonString)
+    {
+        infoFromJson = SetUpInformationFromJson.CreateFromJSON(jsonString);
+    }
+
 }
