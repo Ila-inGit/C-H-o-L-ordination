@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
 {
-    public class SceneUnderstandingControllerREMAKE : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
+    public class SceneUnderstandingController : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
     {
         #region Private Fields
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b81dae1d46879b444aa9847f7961649f, type: 3}
-  m_Name: NewMixedRealitySceneSystemProfile
+  m_Name: HOLO2MixedRealitySceneSystemProfile
   m_EditorClassIdentifier: 
   isCustomProfile: 1
   useManagerScene: 1
@@ -31,54 +31,18 @@ MonoBehaviour:
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 08e69eb73b522264e8c10bca6a90a913, type: 3}
   contentScenes:
-  - Name: SettingScene
-    Path: Assets/Scenes/SettingScene.unity
-    Included: 0
-    BuildIndex: -1
-    Tag: Untagged
-    Asset: {fileID: 102900000, guid: df476e54b9d48a843a55bc1fd0d06956, type: 3}
-  - Name: ILARIA-SCENE
-    Path: Assets/Scenes/ILARIA-SCENE.unity
-    Included: 0
-    BuildIndex: -1
-    Tag: Untagged
-    Asset: {fileID: 102900000, guid: 92a9337748365b14fba5eeb3dea238c2, type: 3}
-  - Name: TutorialFirstPart
-    Path: Assets/Scenes/TutorialFirstPart.unity
-    Included: 0
-    BuildIndex: -1
-    Tag: Untagged
-    Asset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
-  - Name: TutorialSecondPart
-    Path: Assets/Scenes/TutorialSecondPart.unity
-    Included: 0
-    BuildIndex: -1
-    Tag: Untagged
-    Asset: {fileID: 102900000, guid: 8849becdeee9ae5418fab47372496fdf, type: 3}
   - Name: ActivitySceneConstant
     Path: Assets/Scenes/ActivitySceneConstant.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 343e5085f4229c741873e85888542006, type: 3}
-  - Name: ActivitySceneNatural
-    Path: Assets/Scenes/ActivitySceneNatural.unity
+  - Name: TutorialFirstPart
+    Path: Assets/Scenes/TutorialFirstPart.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
-    Asset: {fileID: 102900000, guid: 611e4dcec050a89418c04f45d27903d3, type: 3}
-  - Name: ActivitySceneFigureEight
-    Path: Assets/Scenes/ActivitySceneFigureEight.unity
-    Included: 0
-    BuildIndex: -1
-    Tag: Untagged
-    Asset: {fileID: 102900000, guid: 1ea00e9727434e14181d88492b80e38d, type: 3}
-  - Name: ActivitySceneHarmonic
-    Path: Assets/Scenes/ActivitySceneHarmonic.unity
-    Included: 0
-    BuildIndex: -1
-    Tag: Untagged
-    Asset: {fileID: 102900000, guid: 5cce244973e009f4491459d7a63cb8c1, type: 3}
+    Asset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
   permittedLightingSceneComponentTypes:
   - reference: UnityEngine.Transform, UnityEngine.CoreModule
   - reference: UnityEngine.GameObject, UnityEngine.CoreModule
