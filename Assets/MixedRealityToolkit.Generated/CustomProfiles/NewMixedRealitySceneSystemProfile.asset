@@ -37,8 +37,8 @@ MonoBehaviour:
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: df476e54b9d48a843a55bc1fd0d06956, type: 3}
-  - Name: StartScene
-    Path: Assets/Scenes/StartScene.unity
+  - Name: ILARIA-SCENE
+    Path: Assets/Scenes/ILARIA-SCENE.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
