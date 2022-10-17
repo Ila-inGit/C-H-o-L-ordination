@@ -37,12 +37,12 @@ MonoBehaviour:
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: df476e54b9d48a843a55bc1fd0d06956, type: 3}
-  - Name: ILARIA-SCENE
-    Path: Assets/Scenes/ILARIA-SCENE.unity
+  - Name: QRCodesSampleJSON
+    Path: Assets/Scenes/QRCodesSampleJSON.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
-    Asset: {fileID: 102900000, guid: 92a9337748365b14fba5eeb3dea238c2, type: 3}
+    Asset: {fileID: 102900000, guid: 8d1dc6f4d99bafa4896435989a3483a6, type: 3}
   - Name: TutorialFirstPart
     Path: Assets/Scenes/TutorialFirstPart.unity
     Included: 0
