@@ -5198,6 +5198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartButtonPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4123326723892257084, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6296070330497543544, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_RootOrder
       value: 3
