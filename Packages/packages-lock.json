@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.microsoft.mixedreality.input": {
-      "version": "file:MixedReality/com.microsoft.mixedreality.input-0.9.2006.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {}
-    },
     "com.microsoft.mixedreality.movingplatform": {
       "version": "file:MixedReality/com.microsoft.mixedreality.movingplatform-0.0.3.tgz",
       "depth": 0,

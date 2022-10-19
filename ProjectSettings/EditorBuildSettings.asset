@@ -15,17 +15,20 @@ EditorBuildSettings:
     path: Assets/Scenes/SettingScene.unity
     guid: df476e54b9d48a843a55bc1fd0d06956
   - enabled: 1
+    path: Assets/Scenes/QRCodesSample.unity
+    guid: c3a1857f53d69a14fb73bdc7e1b966e1
+  - enabled: 0
+    path: Assets/Scenes/StartScene.unity
+    guid: a404a6a40a3c7d244aca18d98bae8ebd
+  - enabled: 0
     path: Assets/Scenes/QRCodesSampleJSON.unity
     guid: 8d1dc6f4d99bafa4896435989a3483a6
   - enabled: 0
     path: Assets/Scenes/PROVA_SCENE_UND.unity
     guid: 76455fe390546c54c9f228acef294a44
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ILARIA-SCENE.unity
     guid: 92a9337748365b14fba5eeb3dea238c2
-  - enabled: 0
-    path: Assets/Scenes/StartScene.unity
-    guid: a404a6a40a3c7d244aca18d98bae8ebd
   - enabled: 1
     path: Assets/Scenes/TutorialFirstPart.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab

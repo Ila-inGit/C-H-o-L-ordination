@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4436408278160384}
   - component: {fileID: 2843840147431304996}
   - component: {fileID: 3257798637992854866}
+  - component: {fileID: 4557924431411943940}
   m_Layer: 0
   m_Name: QRCode
   m_TagString: Untagged
@@ -136,7 +137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200717071578424}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4742cb174d54b8640a4b5ec46fcdf1f7, type: 3}
   m_Name: 
@@ -151,6 +152,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f2dff91ef0a5c04c8bcd19495fb2fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4557924431411943940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200717071578424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d7545d69a4ca441a44296b4a0deb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1220979032041326
