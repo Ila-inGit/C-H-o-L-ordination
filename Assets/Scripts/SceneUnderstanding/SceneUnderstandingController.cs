@@ -13,7 +13,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         #region Serialized Fields
 
         [SerializeField]
-        private string SavedSceneNamePrefix = "PROVA";
+        private string SavedSceneNamePrefix = "SceneMapping";
         [SerializeField]
         public bool CanInstantiatePrefab = true;
         [SerializeField]
@@ -172,7 +172,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
 
             if (CanInstantiatePrefab && maxFloor.Quads.Count > 0)
             {
-                var adjustAngle = new Quaternion(-90.0f + maxFloor.Rotation.x, maxFloor.Rotation.y, maxFloor.Rotation.z, maxFloor.Rotation.w);
+                var adjustAngle = new Quaternion(maxFloor.Rotation.x, maxFloor.Rotation.y, maxFloor.Rotation.z, 90.0f + maxFloor.Rotation.w);
                 var prefab = Instantiate(InstantiatedPrefab);
                 prefab.transform.SetPositionAndRotation(maxFloor.Position, adjustAngle);
                 float sx = maxFloor.Quads[0].Extents.x;

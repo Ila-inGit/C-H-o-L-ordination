@@ -10,14 +10,22 @@ public class DisplayStartButton : MonoBehaviour
 
     public async void startCountdown()
     {
-        await Task.Delay(600);
+        await Task.Delay(1000);
         // set active the prefabof the start button after a certain time
         if (isInside)
         {
+            Vector3 cameraPos = Camera.main.transform.position;
+            // initialize the camera position when it is inside the marker
+            DataCollector.Instance.addToFileCamera(cameraPos);
+
+            startButton.transform.position = new Vector3(
+            startButton.transform.position.x + cameraPos.x,
+            startButton.transform.position.y + cameraPos.y,
+            startButton.transform.position.z + cameraPos.z);
+
             startButton.SetActive(true);
             instantiated = true;
-            // initialize the camera position when it is inside the marker
-            DataCollector.Instance.addToFileCamera(Camera.main.transform.position);
+
         }
     }
 
