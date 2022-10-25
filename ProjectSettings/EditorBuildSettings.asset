@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/4-TutorialSecondPart.unity
     guid: 8849becdeee9ae5418fab47372496fdf
   - enabled: 1
-    path: Assets/Scenes/ActivitySceneConstant.unity
+    path: Assets/Scenes/5-ActivitySceneConstant.unity
     guid: 343e5085f4229c741873e85888542006
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: d646b4b163f5d8548a899d093905910c, type: 2}
