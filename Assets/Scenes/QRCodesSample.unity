@@ -201,11 +201,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qrCodePrefab: {fileID: 1200717071578424, guid: da6e3efef83eea84f82ccef388b094e4, type: 3}
   LatestQRCodeDetails: {fileID: 1595282566}
---- !u!114 &280281958
+--- !u!114 &280281958 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7958612128567381126, guid: c43594ebdf7f6764a88f50d01e8917e6, type: 3}
+  m_PrefabInstance: {fileID: 280281955}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280281956}
   m_Enabled: 1
@@ -213,7 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6874e00e5cd814991ad044bfbd2c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoStartQRTracking: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +751,9 @@ PrefabInstance:
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MyQRCodeManager, Assembly-CSharp
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4946922686224136071, guid: 2d94f60a0bb8c2543af3d8246781f03e, type: 3}
+    - {fileID: 1026172737124064637, guid: 2d94f60a0bb8c2543af3d8246781f03e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2d94f60a0bb8c2543af3d8246781f03e, type: 3}
 --- !u!114 &1595282565 stripped
 MonoBehaviour:
