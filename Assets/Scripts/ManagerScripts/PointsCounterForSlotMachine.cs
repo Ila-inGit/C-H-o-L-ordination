@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+// Put this on the slot machine object prefab 
 public class PointsCounterForSlotMachine : MonoBehaviour
 {
 

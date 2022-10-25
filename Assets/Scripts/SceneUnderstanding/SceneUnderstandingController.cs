@@ -1,181 +1,473 @@
+﻿using Microsoft.MixedReality.Toolkit.Examples.Demos;
+using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
+using Microsoft.MixedReality.Toolkit.SpatialAwareness;
+using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using Microsoft.MixedReality.Toolkit;
-using Microsoft.Windows.Perception.Spatial.Preview;
-namespace Microsoft.MixedReality.SceneUnderstanding
+namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
 {
-    public class SceneUnderstandingController : MonoBehaviour
+    public class SceneUnderstandingController : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
     {
-        public GameObject parentObject;
-        public GameObject markerPrefab;
-        public Material quadMaterial;
+        #region Private Fields
 
-        Scene lastScene;
+        #region Serialized Fields
 
-        List<GameObject> markers;
-        List<GameObject> quads;
-        bool initialised;
-        static readonly float searchRadius = 5.0f;
+        [SerializeField]
+        private string SavedSceneNamePrefix = "SceneMapping";
+        [SerializeField]
+        public bool CanInstantiatePrefab = true;
+        [SerializeField]
+        private GameObject InstantiatedPrefab = null;
+        [SerializeField]
+        private Transform InstantiatedParent = null;
 
-        public SceneUnderstandingController()
+        [Header("UI")]
+        [SerializeField]
+        private Interactable autoUpdateToggle = null;
+        [SerializeField]
+        private Interactable quadsToggle = null;
+        [SerializeField]
+        private Interactable inferRegionsToggle = null;
+        [SerializeField]
+        private Interactable meshesToggle = null;
+        [SerializeField]
+        private Interactable maskToggle = null;
+        [SerializeField]
+        private Interactable platformToggle = null;
+        [SerializeField]
+        private Interactable wallToggle = null;
+        [SerializeField]
+        private Interactable floorToggle = null;
+        [SerializeField]
+        private Interactable ceilingToggle = null;
+        [SerializeField]
+        private Interactable worldToggle = null;
+        [SerializeField]
+        private Interactable completelyInferred = null;
+        [SerializeField]
+        private Interactable backgroundToggle = null;
+
+        #endregion Serialized Fields
+
+        private IMixedRealitySceneUnderstandingObserver observer;
+
+        private List<GameObject> instantiatedPrefabs;
+
+        private Dictionary<SpatialAwarenessSurfaceTypes, Dictionary<int, SpatialAwarenessSceneObject>> observedSceneObjects;
+
+        #endregion Private Fields
+
+        #region MonoBehaviour Functions
+
+        protected override void Start()
         {
-            this.markers = new List<GameObject>();
-            this.quads = new List<GameObject>();
-            this.initialised = false;
+            observer = CoreServices.GetSpatialAwarenessSystemDataProvider<IMixedRealitySceneUnderstandingObserver>();
+
+            if (observer == null)
+            {
+                Debug.LogError("Couldn't access Scene Understanding Observer! Please make sure the current build target is set to Universal Windows Platform. "
+                    + "Visit https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/features/spatial-awareness/scene-understanding for more information.");
+                return;
+            }
+            InitToggleButtonState();
+            instantiatedPrefabs = new List<GameObject>();
+            observedSceneObjects = new Dictionary<SpatialAwarenessSurfaceTypes, Dictionary<int, SpatialAwarenessSceneObject>>();
         }
 
-
-        void Update()
+        protected override void OnEnable()
         {
+            RegisterEventHandlers<IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>, SpatialAwarenessSceneObject>();
+        }
 
-            if (this.lastScene != null)
+        protected override void OnDisable()
+        {
+            UnregisterEventHandlers<IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>, SpatialAwarenessSceneObject>();
+        }
+
+        protected override void OnDestroy()
+        {
+            UnregisterEventHandlers<IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>, SpatialAwarenessSceneObject>();
+        }
+
+        #endregion MonoBehaviour Functions
+
+        #region IMixedRealitySpatialAwarenessObservationHandler Implementations
+
+        /// <inheritdoc />
+        public void OnObservationAdded(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
+        {
+            // This method called everytime a SceneObject created by the SU observer
+            // The eventData contains everything you need do something useful
+
+            AddToData(eventData.Id);
+
+            if (observedSceneObjects.TryGetValue(eventData.SpatialObject.SurfaceType, out Dictionary<int, SpatialAwarenessSceneObject> sceneObjectDict))
             {
-                var node = this.lastScene.OriginSpatialGraphNodeId;
+                sceneObjectDict.Add(eventData.Id, eventData.SpatialObject);
+            }
+            else
+            {
+                observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
+            }
 
-                var sceneCoordSystem = SpatialGraphInteropPreview.CreateCoordinateSystemForNode(node);
 
-                var unityCoordinateSystem = Microsoft.Windows.Perception.Spatial
-                        .SpatialCoordinateSystem
-                        .FromNativePtr(UnityEngine.XR.WindowsMR.WindowsMREnvironment.OriginSpatialCoordinateSystem);
+            // foreach (var quad in eventData.SpatialObject.Quads)
+            // {
+            //     quad.GameObject.GetComponent<Renderer>().material.color = ColorForSurfaceType(eventData.SpatialObject.SurfaceType);
+            // }
+        }
 
-                var transform = sceneCoordSystem.TryGetTransformTo(unityCoordinateSystem);
+        /// <inheritdoc />
+        public void OnObservationUpdated(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
+        {
+            UpdateData(eventData.Id);
 
-                if (transform.HasValue)
+            if (observedSceneObjects.TryGetValue(eventData.SpatialObject.SurfaceType, out Dictionary<int, SpatialAwarenessSceneObject> sceneObjectDict))
+            {
+                observedSceneObjects[eventData.SpatialObject.SurfaceType][eventData.Id] = eventData.SpatialObject;
+            }
+            else
+            {
+                observedSceneObjects.Add(eventData.SpatialObject.SurfaceType, new Dictionary<int, SpatialAwarenessSceneObject> { { eventData.Id, eventData.SpatialObject } });
+            }
+        }
+
+        /// <inheritdoc />
+        public void OnObservationRemoved(MixedRealitySpatialAwarenessEventData<SpatialAwarenessSceneObject> eventData)
+        {
+            RemoveFromData(eventData.Id);
+
+            foreach (var sceneObjectDict in observedSceneObjects.Values)
+            {
+                sceneObjectDict?.Remove(eventData.Id);
+            }
+        }
+
+        #endregion IMixedRealitySpatialAwarenessObservationHandler Implementations
+
+        #region Public Functions
+
+        public void InstantiateMarkerOnFloor()
+        {
+            IReadOnlyDictionary<int, SpatialAwarenessSceneObject> floors = GetSceneObjectsOfType(SpatialAwarenessSurfaceTypes.Floor);
+            float maxArea = 0;
+            var keys = floors.Keys;
+            SpatialAwarenessSceneObject maxFloor;
+            floors.TryGetValue(keys.MaxOrDefault(), out maxFloor);
+            foreach (var floor in floors)
+            {
+                float currArea = 0;
+                // Get the quad
+                var quads = floor.Value.Quads;
+                foreach (var quad in quads)
                 {
-                    var sceneToWorldUnity = transform.Value.ToUnity();
-
-                    this.parentObject.transform.SetPositionAndRotation(
-                        sceneToWorldUnity.GetColumn(3), sceneToWorldUnity.rotation);
+                    currArea = currArea + (quad.Extents.x * quad.Extents.y);
+                }
+                if (currArea > maxArea)
+                {
+                    maxArea = currArea;
+                    maxFloor = floor.Value;
                 }
             }
 
-        }
-
-        // These 4 methods are wired to call by the user (start button in theory)
-        public async void OnWalls()
-        {
-            await this.ComputeAsync(SceneObjectKind.Wall);
-        }
-        public async void OnFloor()
-        {
-            await this.ComputeAsync(SceneObjectKind.Floor);
-        }
-        public async void OnCeiling()
-        {
-            await this.ComputeAsync(SceneObjectKind.Ceiling);
-        }
-        public async void OnPlatform()
-        {
-            await this.ComputeAsync(SceneObjectKind.Platform);
-        }
-
-        void ClearChildren()
-        {
-            foreach (var child in this.markers)
+            if (CanInstantiatePrefab && maxFloor.Quads.Count > 0)
             {
-                Destroy(child);
-            }
-            foreach (var child in this.quads)
-            {
-                Destroy(child);
-            }
-            this.markers.Clear();
-            this.quads.Clear();
-        }
+                var adjustAngle = new Quaternion(maxFloor.Rotation.x, maxFloor.Rotation.y, maxFloor.Rotation.z, 90.0f + maxFloor.Rotation.w);
+                var prefab = Instantiate(InstantiatedPrefab);
+                prefab.transform.SetPositionAndRotation(maxFloor.Position, adjustAngle);
+                float sx = maxFloor.Quads[0].Extents.x;
+                float sy = maxFloor.Quads[0].Extents.y;
+                // forse basta 
+                prefab.transform.localScale = new Vector3(.25f, .25f, .25f);
+                //prefab.transform.localScale = new Vector3(sx, sy, .1f);
+                float rotationXFloor = maxFloor.Rotation.x;
+                float rotationXprefab = prefab.transform.eulerAngles.x;
 
-
-        // called by ComputeAsync
-        async Task InitialiseAsync()
-        {
-            if (!this.initialised)
-            {
-                if (SceneObserver.IsSupported())
+                if (InstantiatedParent)
                 {
-                    var access = await SceneObserver.RequestAccessAsync();
+                    prefab.transform.SetParent(InstantiatedParent);
+                }
+                instantiatedPrefabs.Add(prefab);
+                CanInstantiatePrefab = false;
+            }
+        }
 
-                    if (access == SceneObserverAccessStatus.Allowed)
-                    {
-                        this.initialised = true;
-                    }
+        /// <summary>
+        /// Get all currently observed SceneObjects of a certain type.
+        /// </summary>
+        /// <remarks>
+        /// Before calling this function, the observer should be configured to observe the specified type by including that type in the SurfaceTypes property.
+        /// </remarks>
+        /// <returns>A dictionary with the scene objects of the requested type being the values and their ids being the keys.</returns>
+        public IReadOnlyDictionary<int, SpatialAwarenessSceneObject> GetSceneObjectsOfType(SpatialAwarenessSurfaceTypes type)
+        {
+            if (!observer.SurfaceTypes.IsMaskSet(type))
+            {
+                Debug.LogErrorFormat("The Scene Objects of type {0} are not being observed. You should add {0} to the SurfaceTypes property of the observer in advance.", type);
+            }
+
+            if (observedSceneObjects.TryGetValue(type, out Dictionary<int, SpatialAwarenessSceneObject> sceneObjects))
+            {
+                return sceneObjects;
+            }
+            else
+            {
+                observedSceneObjects.Add(type, new Dictionary<int, SpatialAwarenessSceneObject>());
+                return observedSceneObjects[type];
+            }
+        }
+
+        #region UI Functions
+
+        /// <summary>
+        /// Request the observer to update the scene
+        /// </summary>
+        public void UpdateScene()
+        {
+            observer.UpdateOnDemand();
+        }
+
+        /// <summary>
+        /// Request the observer to save the scene
+        /// </summary>
+        public void SaveScene()
+        {
+            observer.SaveScene(SavedSceneNamePrefix);
+        }
+
+        /// <summary>
+        /// Request the observer to clear the observations in the scene
+        /// </summary>
+        public void ClearScene()
+        {
+            foreach (GameObject gameObject in instantiatedPrefabs)
+            {
+                Destroy(gameObject);
+            }
+            instantiatedPrefabs.Clear();
+            observer.ClearObservations();
+        }
+
+        /// <summary>
+        /// Change the auto update state of the observer
+        /// </summary>
+        public void ToggleAutoUpdate()
+        {
+            observer.AutoUpdate = !observer.AutoUpdate;
+        }
+
+        /// <summary>
+        /// Change whether to request occlusion mask from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleOcclusionMask()
+        {
+            var observerMask = observer.RequestOcclusionMask;
+            observer.RequestOcclusionMask = !observerMask;
+            if (observer.RequestOcclusionMask)
+            {
+                if (!(observer.RequestPlaneData || observer.RequestMeshData))
+                {
+                    observer.RequestPlaneData = true;
+                    quadsToggle.IsToggled = true;
                 }
             }
+            ClearAndUpdateObserver();
         }
 
-        // called by one of the 4 methods before to retrive the scenObject
-        async Task ComputeAsync(SceneObjectKind sceneObjectKind)
+        /// <summary>
+        /// Change whether to request plane data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleGeneratePlanes()
         {
-            this.ClearChildren();
-
-            await this.InitialiseAsync();
-
-            if (this.initialised)
+            observer.RequestPlaneData = !observer.RequestPlaneData;
+            if (observer.RequestPlaneData)
             {
-                var querySettings = new SceneQuerySettings()
-                {
-                    EnableWorldMesh = false,
-                    EnableSceneObjectQuads = true,
-                    EnableSceneObjectMeshes = false,
-                    EnableOnlyObservedSceneObjects = false
-                };
-                this.lastScene = await SceneObserver.ComputeAsync(querySettings, searchRadius);
+                observer.RequestMeshData = false;
+                meshesToggle.IsToggled = false;
+            }
+            ClearAndUpdateObserver();
+        }
 
-                if (this.lastScene != null)
-                {
-                    foreach (var sceneObject in this.lastScene.SceneObjects)
-                    {
-                        if (sceneObject.Kind == sceneObjectKind)
-                        {
+        /// <summary>
+        /// Change whether to request mesh data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleGenerateMeshes()
+        {
+            observer.RequestMeshData = !observer.RequestMeshData;
+            if (observer.RequestMeshData)
+            {
+                observer.RequestPlaneData = false;
+                quadsToggle.IsToggled = false;
+            }
+            ClearAndUpdateObserver();
+        }
 
-                            // Get the quad
-                            var quads = sceneObject.Quads;
-                            if (quads.Count > 0 && this.markerPrefab)
-                            {
-                                // Find a good location for a 1mx1m object  
-                                System.Numerics.Vector2 location;
-                                if (quads[0].FindCentermostPlacement(new System.Numerics.Vector2(1.0f, 1.0f), out location))
-                                {
-                                    var prefab = Instantiate(this.markerPrefab);
+        /// <summary>
+        /// Change whether to request floor data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleFloors()
+        {
+            ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes.Floor);
+            ClearAndUpdateObserver();
+        }
 
-                                    prefab.transform.SetPositionAndRotation(sceneObject.Position.ToUnityVector3(), sceneObject.Orientation.ToUnityQuaternion());
-                                    float sx = sceneObject.Quads[0].Extents.X;
-                                    float sy = sceneObject.Quads[0].Extents.Y;
-                                    prefab.transform.localScale = new Vector3(sx, sy, .1f);
-                                    if (parentObject)
-                                    {
-                                        prefab.transform.SetParent(this.parentObject.transform);
-                                    }
-                                    this.markers.Add(prefab);
-                                }
-                            }
+        /// <summary>
+        /// Change whether to request wall data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleWalls()
+        {
+            ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes.Wall);
+            ClearAndUpdateObserver();
+        }
 
-                            // var marker = GameObject.Instantiate(this.markerPrefab);
+        /// <summary>
+        /// Change whether to request ceiling data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleCeilings()
+        {
+            ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes.Ceiling);
+            ClearAndUpdateObserver();
+        }
 
-                            // marker.transform.SetParent(this.parentObject.transform);
+        /// <summary>
+        /// Change whether to request platform data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void TogglePlatforms()
+        {
+            ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes.Platform);
+            ClearAndUpdateObserver();
+        }
 
-                            // marker.transform.localPosition = sceneObject.Position.ToUnity();
-                            // marker.transform.localRotation = sceneObject.Orientation.ToUnity();
+        /// <summary>
+        /// Change whether to request inferred region data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleInferRegions()
+        {
+            observer.InferRegions = !observer.InferRegions;
+            ClearAndUpdateObserver();
+        }
 
-                            // this.markers.Add(marker);
+        /// <summary>
+        /// Change whether to request world mesh data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleWorld()
+        {
+            ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes.World);
 
-                            // foreach (var sceneQuad in sceneObject.Quads)
-                            // {
-                            //     var quad = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            if (observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.World))
+            {
+                // Ensure we requesting meshes
+                observer.RequestMeshData = true;
+                meshesToggle.GetComponent<Interactable>().IsToggled = true;
+            }
+            ClearAndUpdateObserver();
+        }
 
-                            //     quad.transform.SetParent(marker.transform, false);
+        /// <summary>
+        /// Change whether to request background data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleBackground()
+        {
+            ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes.Background);
+            ClearAndUpdateObserver();
+        }
 
-                            //     quad.transform.localScale = new Vector3(
-                            //         sceneQuad.Extents.X, sceneQuad.Extents.Y, 0.025f);
+        /// <summary>
+        /// Change whether to request completely inferred data from the observer followed by
+        /// clearing existing observations and requesting an update
+        /// </summary>
+        public void ToggleCompletelyInferred()
+        {
+            ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes.Inferred);
+            ClearAndUpdateObserver();
+        }
 
-                            //     quad.GetComponent<Renderer>().material = this.quadMaterial;
-                            // }
-                        }
-                    }
-                }
+        #endregion UI Functions
+
+        #endregion Public Functions
+
+        #region Helper Functions
+
+        private void InitToggleButtonState()
+        {
+            // Configure observer
+            autoUpdateToggle.IsToggled = observer.AutoUpdate;
+            quadsToggle.IsToggled = observer.RequestPlaneData;
+            meshesToggle.IsToggled = observer.RequestMeshData;
+            maskToggle.IsToggled = observer.RequestOcclusionMask;
+            inferRegionsToggle.IsToggled = observer.InferRegions;
+
+            // Filter display
+            platformToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Platform);
+            wallToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Wall);
+            floorToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Floor);
+            ceilingToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Ceiling);
+            worldToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.World);
+            completelyInferred.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Inferred);
+            backgroundToggle.IsToggled = observer.SurfaceTypes.IsMaskSet(SpatialAwarenessSurfaceTypes.Background);
+        }
+
+
+        /// <summary>
+        /// Gets the color of the given surface type
+        /// </summary>
+        /// <param name="surfaceType">The surface type to get color for</param>
+        /// <returns>The color of the type</returns>
+        private Color ColorForSurfaceType(SpatialAwarenessSurfaceTypes surfaceType)
+        {
+            // shout-out to solarized!
+
+            switch (surfaceType)
+            {
+                case SpatialAwarenessSurfaceTypes.Unknown:
+                    return new Color32(220, 50, 47, 255); // red
+                case SpatialAwarenessSurfaceTypes.Floor:
+                    return new Color32(38, 139, 210, 255); // blue
+                case SpatialAwarenessSurfaceTypes.Ceiling:
+                    return new Color32(108, 113, 196, 255); // violet
+                case SpatialAwarenessSurfaceTypes.Wall:
+                    return new Color32(181, 137, 0, 255); // yellow
+                case SpatialAwarenessSurfaceTypes.Platform:
+                    return new Color32(133, 153, 0, 255); // green
+                case SpatialAwarenessSurfaceTypes.Background:
+                    return new Color32(203, 75, 22, 255); // orange
+                case SpatialAwarenessSurfaceTypes.World:
+                    return new Color32(211, 54, 130, 255); // magenta
+                case SpatialAwarenessSurfaceTypes.Inferred:
+                    return new Color32(42, 161, 152, 255); // cyan
+                default:
+                    return new Color32(220, 50, 47, 255); // red
             }
         }
 
+        private void ClearAndUpdateObserver()
+        {
+            ClearScene();
+            observer.UpdateOnDemand();
+        }
 
+        private void ToggleObservedSurfaceType(SpatialAwarenessSurfaceTypes surfaceType)
+        {
+            if (observer.SurfaceTypes.IsMaskSet(surfaceType))
+            {
+                observer.SurfaceTypes &= ~surfaceType;
+            }
+            else
+            {
+                observer.SurfaceTypes |= surfaceType;
+            }
+        }
+
+        #endregion Helper Functions
     }
 }
-

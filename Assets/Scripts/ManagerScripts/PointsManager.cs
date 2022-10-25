@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+// Put this on the manager scene (take count of the points and can be retrived by different scenes)
 public class PointsManager : MonoBehaviour
 {
     private static PointsManager instance;

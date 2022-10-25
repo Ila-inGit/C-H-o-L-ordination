@@ -3,16 +3,20 @@ using UnityEngine.SceneManagement;
 
 namespace ActivityScripts
 {
-    public class FindNextSceneToLoad: MonoBehaviour
-    { 
-        private int nextSceneBuildIndex;
+    public class FindNextSceneToLoad : MonoBehaviour
+    {
+        private int nextSceneIntEnum;
+        private Constants nameOfScenes = new Constants();
 
         public void findNextSceneToLoad()
         {
-            nextSceneBuildIndex = PlayerPrefs.GetInt("nextSceneBuildIndex");
-            SceneManager.UnloadSceneAsync("TransitionScene");
-            SceneManager.LoadScene(nextSceneBuildIndex, LoadSceneMode.Additive);
+            nameOfScenes.init();
+            nextSceneIntEnum = PlayerPrefs.GetInt("nextSceneEnum");
+            SceneNames nextSceneNameEnum = (SceneNames)nextSceneIntEnum;
+            string nextSceneName = nameOfScenes.getCurrentName(nextSceneNameEnum);
+            SceneManager.UnloadSceneAsync(Constants.TRANSITION_SCENE);
+            SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
         }
-    
+
     }
 }
