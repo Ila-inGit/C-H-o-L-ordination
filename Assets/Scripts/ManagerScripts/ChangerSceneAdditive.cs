@@ -6,14 +6,16 @@ using UnityEngine;
 
 public class ChangerSceneAdditive : MonoBehaviour
 {
-    public int currentIndex;
+    [SerializeField]
+    public SceneNames sceneName;
     private Constants nameOfScenes = new Constants();
 
     public void myChangeScene()
     {
-        SceneManager.UnloadSceneAsync(currentIndex);
         nameOfScenes.init();
-        string nextSceneName = nameOfScenes.getName(currentIndex + 1);
+        string currentName = nameOfScenes.getCurrentName(sceneName);
+        string nextSceneName = nameOfScenes.getNextName(sceneName);
+        SceneManager.UnloadSceneAsync(currentName);
         SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
     }
 }

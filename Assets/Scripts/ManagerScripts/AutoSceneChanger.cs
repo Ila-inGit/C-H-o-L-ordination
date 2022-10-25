@@ -4,38 +4,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 public class AutoSceneChanger : MonoBehaviour
 {
+    [SerializeField]
+    public SceneNames sceneName;
+    private Constants nameOfScenes = new Constants();
+
     private float timerBeforeChange = 0.0f;
-    private int index = 0;
     private int totalTouches = 0;
-    private Scene currentScene;
     private TouchesCounter touchesCounter;
     private static Dictionary<string, int> parameters;
 
     private void Start()
     {
-        if (SceneManager.GetSceneByName(Constants.ACTIVITY_SCENE_CONSTANT).isLoaded)
-        {
-            currentScene = SceneManager.GetSceneByName(Constants.ACTIVITY_SCENE_CONSTANT);
-
-        }
-        else if (SceneManager.GetSceneByName(Constants.ACTIVITY_SCENE_NATURAL).isLoaded)
-        {
-            currentScene = SceneManager.GetSceneByName(Constants.ACTIVITY_SCENE_NATURAL);
-
-        }
-        else if (SceneManager.GetSceneByName(Constants.ACTIVITY_SCENE_FIGURE_EIGHT).isLoaded)
-        {
-            currentScene = SceneManager.GetSceneByName(Constants.ACTIVITY_SCENE_FIGURE_EIGHT);
-
-        }
-        else if (SceneManager.GetSceneByName(Constants.ACTIVITY_SCENE_HARMONIC).isLoaded)
-        {
-            currentScene = SceneManager.GetSceneByName(Constants.ACTIVITY_SCENE_HARMONIC);
-        }
-
-        index = currentScene.buildIndex;
+        nameOfScenes.init();
     }
-
 
     private void FixedUpdate()
     {
@@ -63,12 +44,21 @@ public class AutoSceneChanger : MonoBehaviour
 
     private void NeedToChange()
     {
-        if (currentScene.name == Constants.ACTIVITY_SCENE_HARMONIC)
-            PlayerPrefs.SetInt("nextSceneBuildIndex", 3);
-        else
-            PlayerPrefs.SetInt("nextSceneBuildIndex", index + 1); //saving the index of the next scene to load
+        string currentName = nameOfScenes.getCurrentName(sceneName);
+        string nextSceneName = nameOfScenes.getNextName(sceneName);
 
-        SceneManager.UnloadSceneAsync(index);
+        if (sceneName == SceneNames.ACTIVITY_SCENE_HARMONIC)
+        {
+            int enumCorrespondingInt = (int)SceneNames.SETTING_SCENE;
+            PlayerPrefs.SetInt("nextSceneEnum", enumCorrespondingInt);
+        }
+        else
+        {
+            int enumCorrespondingInt = (int)sceneName;
+            PlayerPrefs.SetInt("nextSceneEnum", enumCorrespondingInt); //saving the index of the next scene to load
+        }
+
+        SceneManager.UnloadSceneAsync(currentName);
         SceneManager.LoadScene(Constants.TRANSITION_SCENE, LoadSceneMode.Additive);
 
     }

@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 class Constants
 {
-    Dictionary<int, string> indexToNames = new Dictionary<int, string>();
+    Dictionary<SceneNames, string> enumToCurrentScene = new Dictionary<SceneNames, string>();
+    Dictionary<SceneNames, string> enumToNextScene = new Dictionary<SceneNames, string>();
 
     public const string MAIN_CAMERA_TAG = "MainCamera";
-    public const string MY_MANAGER_SCENE = "MyManagerScene";
+    public const string MY_MANAGER_SCENE = "0-MyManagerScene";
     public const string SETTING_SCENE = "SettingScene";
     public const string START_SCENE = "StartScene";
-    public const string TUTORIAL_FIRST_PART = "TutorialFirstPart";
-    public const string TUTORIAL_SECOND_PART = "TutorialSecondPart";
+    public const string TUTORIAL_FIRST_PART = "3-TutorialFirstPart";
+    public const string TUTORIAL_SECOND_PART = "4-TutorialSecondPart";
     public const string ACTIVITY_SCENE_CONSTANT = "ActivitySceneConstant";
     public const string ACTIVITY_SCENE_NATURAL = "ActivitySceneNatural";
     public const string ACTIVITY_SCENE_FIGURE_EIGHT = "ActivitySceneFigureEight";
@@ -30,24 +31,48 @@ class Constants
 
     public void init()
     {
-        indexToNames.Add(0, MY_MANAGER_SCENE);
-        indexToNames.Add(2, SETTING_SCENE);
-        indexToNames.Add(3, START_SCENE);
-        indexToNames.Add(4, TUTORIAL_FIRST_PART);
-        indexToNames.Add(5, TUTORIAL_SECOND_PART);
-        indexToNames.Add(6, ACTIVITY_SCENE_CONSTANT);
-        indexToNames.Add(7, ACTIVITY_SCENE_NATURAL);
-        indexToNames.Add(8, ACTIVITY_SCENE_FIGURE_EIGHT);
-        indexToNames.Add(9, ACTIVITY_SCENE_HARMONIC);
-        indexToNames.Add(10, TRANSITION_SCENE);
+        enumToCurrentScene.Add(SceneNames.MY_MANAGER_SCENE, MY_MANAGER_SCENE);
+        enumToCurrentScene.Add(SceneNames.SETTING_SCENE, SETTING_SCENE);
+        enumToCurrentScene.Add(SceneNames.TUTORIAL_FIRST_PART, TUTORIAL_FIRST_PART);
+        enumToCurrentScene.Add(SceneNames.TUTORIAL_SECOND_PART, TUTORIAL_SECOND_PART);
+        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_CONSTANT, ACTIVITY_SCENE_CONSTANT);
+        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_NATURAL, ACTIVITY_SCENE_NATURAL);
+        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, ACTIVITY_SCENE_FIGURE_EIGHT);
+        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, ACTIVITY_SCENE_HARMONIC);
+        enumToCurrentScene.Add(SceneNames.TRANSITION_SCENE, TRANSITION_SCENE);
+        enumToNextScene.Add(SceneNames.MY_MANAGER_SCENE, SETTING_SCENE);
+        enumToNextScene.Add(SceneNames.SETTING_SCENE, TUTORIAL_FIRST_PART);
+        enumToNextScene.Add(SceneNames.TUTORIAL_FIRST_PART, TUTORIAL_SECOND_PART);
+        enumToNextScene.Add(SceneNames.TUTORIAL_SECOND_PART, ACTIVITY_SCENE_CONSTANT);
+        enumToNextScene.Add(SceneNames.ACTIVITY_SCENE_CONSTANT, ACTIVITY_SCENE_NATURAL);
+        enumToNextScene.Add(SceneNames.ACTIVITY_SCENE_NATURAL, ACTIVITY_SCENE_FIGURE_EIGHT);
+        enumToNextScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, ACTIVITY_SCENE_HARMONIC);
+        enumToNextScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, TRANSITION_SCENE);
     }
 
-    public string getName(int index)
+    public string getCurrentName(SceneNames name)
     {
-        return indexToNames[index];
+        return enumToCurrentScene[name];
     }
 
+    public string getNextName(SceneNames name)
+    {
+        return enumToNextScene[name];
+    }
 
 }
 
 public enum Difficulty { easy, difficult };
+
+public enum SceneNames
+{
+    MY_MANAGER_SCENE,
+    SETTING_SCENE,
+    TUTORIAL_FIRST_PART,
+    TUTORIAL_SECOND_PART,
+    ACTIVITY_SCENE_CONSTANT,
+    ACTIVITY_SCENE_NATURAL,
+    ACTIVITY_SCENE_FIGURE_EIGHT,
+    ACTIVITY_SCENE_HARMONIC,
+    TRANSITION_SCENE
+}
