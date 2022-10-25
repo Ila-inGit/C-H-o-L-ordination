@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 
 using System.Collections.Generic;
-
+using System.IO;
 using UnityEngine;
 
 using Microsoft.MixedReality.QR;
@@ -13,6 +13,8 @@ namespace QRTracking
     {
         public GameObject qrCodePrefab;
         public TextMeshPro LatestQRCodeDetails;
+
+        private string DATATORETRIVE = "CONFIGURATIONDATA" /*+ ".csv"*/;
 
         private System.Collections.Generic.SortedDictionary<System.Guid, GameObject> qrCodesObjectsList;
         private bool clearExisting = false;
@@ -111,6 +113,11 @@ namespace QRTracking
                         qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
                         LatestQRCodeDetails.text = action.qrCode.Data; //updating to show in our QRCodePanel the data of latest QR code scanned
                         qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject); //QRcode added
+
+                        //TODO ADDED
+                        Debug.Log(action.qrCode.Data);
+                        string strFilePath = string.Format("{0}/{1}.json", Application.persistentDataPath, DATATORETRIVE);
+                        File.WriteAllText(strFilePath, action.qrCode.Data);
                     }
                     else if (action.type == ActionData.Type.Updated)
                     {

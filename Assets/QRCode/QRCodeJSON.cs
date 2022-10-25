@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 #if WINDOWS_UWP
 
@@ -15,6 +16,8 @@ namespace QRTracking
     {
         public Microsoft.MixedReality.QR.QRCode qrCode;
         private GameObject qrCodeCube;
+
+        private string DATATORETRIVE = "CONFIGURATIONDATA" /*+ ".csv"*/;
 
         public float PhysicalSize { get; private set; }
         public string CodeText { get; private set; }
@@ -67,7 +70,7 @@ namespace QRTracking
             QRSize.text = "Size:" + qrCode.PhysicalSideLength.ToString("F04") + "m";
             QRTimeStamp.text = "Time:" + qrCode.LastDetectedTime.ToString("MM/dd/yyyy HH:mm:ss.fff");
             QRTimeStamp.color = Color.yellow;
-            //Debug.Log("Id= " + qrCode.Id + "NodeId= " + qrCode.SpatialGraphNodeId + " PhysicalSize = " + PhysicalSize + " TimeStamp = " + qrCode.SystemRelativeLastDetectedTime.Ticks + " QRVersion = " + qrCode.Version + " QRData = " + CodeText);
+            Debug.Log("Id= " + qrCode.Id + "NodeId= " + qrCode.SpatialGraphNodeId + " PhysicalSize = " + PhysicalSize + " TimeStamp = " + qrCode.SystemRelativeLastDetectedTime.Ticks + " QRVersion = " + qrCode.Version + " QRData = " + CodeText);
         }
 
         void UpdatePropertiesDisplay()
@@ -96,6 +99,11 @@ namespace QRTracking
             if (launch)
             {
                 launch = false;
+                //TODO save json file to application.persistentDataPath 
+                Debug.Log(qrCode.Data);
+                string strFilePath = string.Format("{0}/{1}.csv", Application.persistentDataPath, DATATORETRIVE);
+                File.WriteAllText(strFilePath, qrCode.Data); 
+                File.AppendAllText(strFilePath, qrCode.Data);
                 LaunchUri();
             }
         }
