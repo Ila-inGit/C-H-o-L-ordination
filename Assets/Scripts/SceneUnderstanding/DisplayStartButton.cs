@@ -7,6 +7,8 @@ public class DisplayStartButton : MonoBehaviour
     private bool instantiated = false;
     [SerializeField]
     GameObject startButton;
+    [SerializeField]
+    ParticleSystem particles;
 
     public async void startCountdown()
     {
@@ -25,6 +27,7 @@ public class DisplayStartButton : MonoBehaviour
 
             startButton.SetActive(true);
             instantiated = true;
+            particles.Stop();
 
         }
     }

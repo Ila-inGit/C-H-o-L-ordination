@@ -11,12 +11,15 @@ public class PositionInit : MonoBehaviour
 
     private void Start()
     {
-        cameraPos = DataCollector.Instance.retriveCameraFromFile();
+        if (DataCollector.Instance != null)
+        {
+            cameraPos = DataCollector.Instance.retriveCameraFromFile();
 
-        myTransform.position = new Vector3(
-            myTransform.position.x + cameraPos.x,
-            myTransform.position.y + offsetCamera + cameraPos.y,
-            myTransform.position.z + cameraPos.z);
+            myTransform.position = new Vector3(
+                myTransform.position.x + cameraPos.x,
+                myTransform.position.y + offsetCamera + cameraPos.y,
+                myTransform.position.z + cameraPos.z);
+        }
     }
 
 }
