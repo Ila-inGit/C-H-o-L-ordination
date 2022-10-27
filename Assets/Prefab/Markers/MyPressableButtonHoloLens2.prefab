@@ -552,7 +552,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 0
   CanDeselect: 0
-  VoiceCommand: 
+  voiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 0}
@@ -825,10 +825,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadSceneMode: 0
   contentScene:
-    Name: TutorialFirstPart
-    Path: Assets/Scenes/TutorialFirstPart.unity
-    Included: 1
-    BuildIndex: 4
+    Name: 3-TutorialFirstPart
+    Path: Assets/Scenes/3-TutorialFirstPart.unity
+    Included: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
   loadOnStartup: 0
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cea6023137174245958e6a380d7dea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentIndex: 3
+  sceneName: 0
 --- !u!1 &3722269475187242617
 GameObject:
   m_ObjectHideFlags: 0

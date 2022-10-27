@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 5022945124633106403}
+  particles: {fileID: 8755920402275218742}
 --- !u!54 &1247903191164977671
 Rigidbody:
   m_ObjectHideFlags: 0
