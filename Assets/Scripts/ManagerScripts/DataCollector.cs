@@ -27,7 +27,6 @@ public class DataCollector : MonoBehaviour
 
     // private save counter
     private bool firstSave = true;
-    private bool firstSaveCameraPosition = true;
     private bool firstSaveCameraAngle = true;
 
     //Hashtable declaration
@@ -62,18 +61,11 @@ public class DataCollector : MonoBehaviour
         string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERAPOSITION);
 
         // ----------------------- for windows -----------------------
-        if (firstSaveCameraPosition)
-        {
-            // Create and write the csv file
-            File.WriteAllText(strFilePathCamera, dataToWrite.ToString());
-            firstSaveCameraPosition = false;
-        }
-        else
-        {
-            // To append more lines to the csv file
-            File.AppendAllText(strFilePathCamera, dataToWrite.ToString());
-        }
+        // Create and write the csv file
+        File.WriteAllText(strFilePathCamera, dataToWrite.ToString());
+
     }
+
     public Vector3 retriveCameraPositionFromFile()
     {
 

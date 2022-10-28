@@ -20,6 +20,11 @@ public class DisplayStartButton : MonoBehaviour
         {
             Vector3 cameraPos = DataCollector.Instance.retriveCameraPositionFromFile();
             Quaternion cameraAngle = DataCollector.Instance.retriveCameraAngleFromFile();
+            float cameraHeight = Camera.main.transform.position.y;
+            cameraPos = new Vector3(cameraPos.x, cameraPos.y + cameraHeight, cameraPos.z);
+            DataCollector.Instance.addCameraPositionToFile(cameraPos);
+
+
 
             startButton.transform.SetPositionAndRotation(cameraPos, cameraAngle);
 
