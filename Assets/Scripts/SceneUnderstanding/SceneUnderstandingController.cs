@@ -175,13 +175,12 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 var adjustAngle = new Quaternion(maxFloor.Rotation.x, maxFloor.Rotation.y, maxFloor.Rotation.z, 90.0f + maxFloor.Rotation.w);
                 var prefab = Instantiate(InstantiatedPrefab);
                 prefab.transform.SetPositionAndRotation(maxFloor.Position, adjustAngle);
-                float sx = maxFloor.Quads[0].Extents.x;
-                float sy = maxFloor.Quads[0].Extents.y;
-                // forse basta 
                 prefab.transform.localScale = new Vector3(.25f, .25f, .25f);
-                //prefab.transform.localScale = new Vector3(sx, sy, .1f);
-                float rotationXFloor = maxFloor.Rotation.x;
-                float rotationXprefab = prefab.transform.eulerAngles.x;
+
+                // initialize the camera position (corresponds to marker position)
+                DataCollector.Instance.addCameraPositionToFile(maxFloor.Position);
+                DataCollector.Instance.addCameraAngleToFile(adjustAngle);
+
 
                 if (InstantiatedParent)
                 {

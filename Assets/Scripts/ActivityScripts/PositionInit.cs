@@ -5,7 +5,6 @@ using UnityEngine;
 public class PositionInit : MonoBehaviour
 {
     public Transform myTransform;
-    private Vector3 cameraPos;
     public float offsetCamera;
 
 
@@ -13,12 +12,16 @@ public class PositionInit : MonoBehaviour
     {
         if (DataCollector.Instance != null)
         {
-            cameraPos = DataCollector.Instance.retriveCameraFromFile();
+            Vector3 cameraPos = DataCollector.Instance.retriveCameraPositionFromFile();
+            Quaternion cameraAngle = DataCollector.Instance.retriveCameraAngleFromFile();
+
+            myTransform.SetPositionAndRotation(cameraPos, cameraAngle);
+
 
             myTransform.position = new Vector3(
-                myTransform.position.x + cameraPos.x,
-                myTransform.position.y + offsetCamera + cameraPos.y,
-                myTransform.position.z + cameraPos.z);
+                myTransform.position.x,
+                myTransform.position.y + offsetCamera,
+                myTransform.position.z);
         }
     }
 
