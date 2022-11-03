@@ -58,6 +58,8 @@ public class TouchesCounter : MonoBehaviour
                     }
                     break;
             }
+            // update total points of the current activity
+            PointsManager.Instance.UpdatePoints(10);
         }
         else if (isInsideAngle)
         {
