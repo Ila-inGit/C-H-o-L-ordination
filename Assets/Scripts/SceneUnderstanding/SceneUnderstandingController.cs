@@ -182,7 +182,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 // initialize the camera position (corresponds to marker position)
                 float cameraHeight = Camera.main.transform.position.y;
                 Vector3 cameraPos = new Vector3(maxFloor.Position.x, cameraHeight, maxFloor.Position.z + offset);
-                DataCollector.Instance.addCameraPositionToFile(maxFloor.Position);
+                DataCollector.Instance.addCameraPositionToFile(cameraPos);
                 DataCollector.Instance.addCameraAngleToFile(adjustAngle);
 
                 // finding the parent in the loaded scenes (in the manager scene) => so always loaded
