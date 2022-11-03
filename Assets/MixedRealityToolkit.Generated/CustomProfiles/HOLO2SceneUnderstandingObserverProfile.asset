@@ -20,11 +20,11 @@ MonoBehaviour:
   updateInterval: 5
   updateOnceInitialized: 1
   autoUpdate: 1
-  defaultPhysicsLayer: 31
+  defaultPhysicsLayer: 0
   surfaceTypes: 2
   instantiationBatchRate: 10
-  defaultMaterial: {fileID: 0}
-  defaultWorldMeshMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 2100000, guid: cef57119e4ddd3c49b40211c1bbc9681, type: 2}
+  defaultWorldMeshMaterial: {fileID: 2100000, guid: cef57119e4ddd3c49b40211c1bbc9681, type: 2}
   shouldLoadFromFile: 0
   serializedScene: {fileID: 0}
   createGameObjects: 1

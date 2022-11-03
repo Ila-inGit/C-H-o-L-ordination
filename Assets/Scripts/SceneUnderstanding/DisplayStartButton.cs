@@ -5,7 +5,7 @@ public class DisplayStartButton : MonoBehaviour
 {
     private bool isInside = false;
     private bool instantiated = false;
-    private float offset = 0.5f;
+
     [SerializeField]
     GameObject startButton;
     [SerializeField]
@@ -18,20 +18,18 @@ public class DisplayStartButton : MonoBehaviour
         // set active the prefabof the start button after a certain time
         if (isInside)
         {
+            // magari da spostare sul scene manager controller
             Vector3 cameraPos = DataCollector.Instance.retriveCameraPositionFromFile();
             Quaternion cameraAngle = DataCollector.Instance.retriveCameraAngleFromFile();
-            float cameraHeight = Camera.main.transform.position.y;
-            cameraPos = new Vector3(cameraPos.x, cameraPos.y + cameraHeight, cameraPos.z);
-            DataCollector.Instance.addCameraPositionToFile(cameraPos);
-
-
 
             startButton.transform.SetPositionAndRotation(cameraPos, cameraAngle);
 
+            yield return new WaitForSeconds(2);
+
             startButton.transform.position = new Vector3(
-                startButton.transform.position.x + offset,
+                startButton.transform.position.x,
                 startButton.transform.position.y,
-                startButton.transform.position.z + offset);
+                startButton.transform.position.z);
 
             startButton.SetActive(true);
             instantiated = true;

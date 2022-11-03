@@ -11,10 +11,10 @@ TagManager:
   - RightBox
   - TutorialBox
   - ContinueButton
-  - PointsCounter
   - ActivationTut3
   - ActivationTut1
   - ActivationTut2
+  - Parent
   layers:
   - Default
   - TransparentFX

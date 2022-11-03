@@ -2,6 +2,7 @@
 using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.UI;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
@@ -9,6 +10,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
     public class SceneUnderstandingController : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
     {
         #region Private Fields
+        private float offset = 0.5f;
 
         #region Serialized Fields
 
@@ -178,16 +180,26 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 prefab.transform.localScale = new Vector3(.25f, .25f, .25f);
 
                 // initialize the camera position (corresponds to marker position)
+                float cameraHeight = Camera.main.transform.position.y;
+                Vector3 cameraPos = new Vector3(maxFloor.Position.x, cameraHeight, maxFloor.Position.z + offset);
                 DataCollector.Instance.addCameraPositionToFile(maxFloor.Position);
                 DataCollector.Instance.addCameraAngleToFile(adjustAngle);
 
+                // finding the parent in the loaded scenes (in the manager scene) => so always loaded
+                GameObject parent = GameObject.FindWithTag("Parent");
 
-                if (InstantiatedParent)
+                if (parent)
                 {
-                    prefab.transform.SetParent(InstantiatedParent);
+                    prefab.transform.SetParent(parent.transform);
                 }
+
+                // potremmo staccare la freccia ed istanziarla separatamente
+
                 instantiatedPrefabs.Add(prefab);
                 CanInstantiatePrefab = false;
+                // dovrebbe essere meglio per le performances ma vorrei proprio smettere di fare il scene understanding
+                // da capire se una volta instanziato e tolta la scena lui continua
+                ToggleAutoUpdate();
             }
         }
 

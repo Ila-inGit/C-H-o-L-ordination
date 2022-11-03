@@ -13,7 +13,7 @@ public class InstantiateMarkerPrefab : MonoBehaviour
     IEnumerator WaitBeforeInstantiateCoroutine()
     {
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         gameObject.GetComponent<Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding.SceneUnderstandingController>()
             .InstantiateMarkerOnFloor();
         // TODO(ilaria): forse da trovare un modo per stoppare il mapping
