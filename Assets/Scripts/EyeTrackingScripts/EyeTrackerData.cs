@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 public class MyEyeTrackerData
@@ -113,7 +112,7 @@ public class MyEyeTrackerData
         return new string[]
         {
             //TODO adapted for eyetracking
-            "Subject","Timestamp","Activity type","Box type","Angle type","Head origin","Head direction","Eye origin","Eye direction","Eye hit position"
+            "Subject","Timestamp","Activity type","Head origin","Head direction","Eye origin","Eye direction","Eye hit position"
         };
     }
 

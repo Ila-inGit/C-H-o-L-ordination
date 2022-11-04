@@ -27,13 +27,11 @@ public class EyeTrackerDataCollector : MonoBehaviour
     private static MyEyeTrackerData saveInformation;
 
     // private static string timeStamp = System.DateTime.Now.ToString();
-    private string EYEDATATORETRIVE = "EYEDATATORETRIVE" + ".csv";
-    private string CAMERA = "CAMERA";
+    private string EYEDATATORETRIVE = "EYEDATATORETRIVE" /*+ ".csv"*/;
 
 
     //private save counter
     private static bool firstSave = true;
-    private static bool firstSaveCamera = true;
 
     //Hashtable declaration
     private static Dictionary<string, MyEyeTrackerData> dataCollection = new Dictionary<string, MyEyeTrackerData>();
@@ -60,38 +58,6 @@ public class EyeTrackerDataCollector : MonoBehaviour
             // To append more lines to the csv file
             File.AppendAllText(strFilePath, saveInformation.exportForCSV().ToString());
         }
-    }
-
-    public void addToFileCamera(Vector3 dataToWrite)
-    {
-
-        string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERA);
-
-        // ----------------------- for windows -----------------------
-        if (firstSaveCamera)
-        {
-            // Create and write the csv file
-            File.WriteAllText(strFilePathCamera, dataToWrite.ToString());
-            firstSave = false;
-        }
-        else
-        {
-            // To append more lines to the csv file
-            File.AppendAllText(strFilePathCamera, dataToWrite.ToString());
-        }
-    }
-    public Vector3 retriveCameraFromFile()
-    {
-
-        string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERA);
-
-        // ----------------------- for windows -----------------------
-
-        // Create and write the csv file
-        string cameraInitPos = File.ReadAllText(strFilePathCamera);
-
-        return stringToVector3(cameraInitPos);
-
     }
 
     public static Vector3 stringToVector3(string sVector)

@@ -1,9 +1,6 @@
-using System;
 using UnityEngine;
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Utilities;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class EyeTrackingPlane : MonoBehaviour
 {
@@ -52,7 +49,7 @@ public class EyeTrackingPlane : MonoBehaviour
             // Position (point) at which the gaze manager hit an object -> user is looking at it
             eyeHitPos = CoreServices.InputSystem.EyeGazeProvider.HitPosition;
 
-            EyeTrackerDataCollector.Instance.addToFile(new MyEyeTrackerData("timeReset", ParseQRInfoManager.Instance.infoFromJson.patientID, 
+            EyeTrackerDataCollector.Instance.addToFile(new MyEyeTrackerData("timeReset", 1, 
             "-1", gameObject.scene.name, gazeOrigin, gazeDir, headDir, eyeOrigin, eyeDir, eyeHitPos));
 
         }        
