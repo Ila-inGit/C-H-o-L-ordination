@@ -24,10 +24,10 @@ public class EyeTrackerDataCollector : MonoBehaviour
     private static StringBuilder sbOutput = new StringBuilder();
 
     //private string saved line;
-    private static MyData saveInformation;
+    private static MyEyeTrackerData saveInformation;
 
     // private static string timeStamp = System.DateTime.Now.ToString();
-    private string EYEDATATORETRIVE = "DATATORETRIVE" /*+ ".csv"*/;
+    private string EYEDATATORETRIVE = "EYEDATATORETRIVE" + ".csv";
     private string CAMERA = "CAMERA";
 
 
@@ -36,10 +36,10 @@ public class EyeTrackerDataCollector : MonoBehaviour
     private static bool firstSaveCamera = true;
 
     //Hashtable declaration
-    private static Dictionary<string, MyData> dataCollection = new Dictionary<string, MyData>();
+    private static Dictionary<string, MyEyeTrackerData> dataCollection = new Dictionary<string, MyEyeTrackerData>();
     
 
-    public void addToFile(MyData dataToWrite)
+    public void addToFile(MyEyeTrackerData dataToWrite)
     {
         dataCollection[dataToWrite.identifier] = dataToWrite;
         saveInformation = dataCollection[dataToWrite.identifier];

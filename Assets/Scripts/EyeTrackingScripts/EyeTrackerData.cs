@@ -1,46 +1,41 @@
+
+using System;
+using UnityEngine;
 public class MyEyeTrackerData
 {
-
-    private string constant;
-    private string natural;
-    private string eight;
-    private string harmonical;
-
-    public MyEyeTrackerData(string constant, string natural, string eight, string harmonical)
-    {
-        this.constant = constant;
-        this.natural = natural;
-        this.eight = eight;
-        this.harmonical = harmonical;
-    }
-
-
-
+    private string scene;
     public string identifier;
     private float subject;
     private string activityType;
-    private string boxType;
-    private string angleType;
-    private string hitType;
-    private float hitTime;
-    private float nonHitTime;
-    private string counterType;
-    private float counter;
+    //private string boxType;
+    //private string angleType;
+
+    // Cam / Head tracking
+    private Vector3 gazeOrigin, gazeDir; 
+    private Vector3 headDir;
+
+    // Smoothed eye gaze tracking 
+    private Vector3 eyeOrigin; // (EyeOrigin.x, EyeOrigin.y, EyeOrigin.z)
+    private Vector3 eyeDir; // (EyeDir.x, EyeDir.y, EyeDir.z)   
+    private Vector3 eyeHitPos; // (EyeHitPos.x, EyeHitPos.y, EyeHitPos.z)            
+
     public string timeStamp;
 
-    public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName, string boxName, string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter)
+    //public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName, string? boxName, string angleType, Vector3 headOrigin, Vector3 headDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
+    public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 headDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
     {
         this.identifier = identifier;
         this.subject = subject;
         this.timeStamp = timeStamp;
         this.activityType = getActivityType(activityName);
-        this.boxType = getBoxType(boxName);
-        this.angleType = angleType;
-        this.hitType = hitType;
-        this.hitTime = hitTime;
-        this.nonHitTime = nonHitTime;
-        this.counterType = counterType;
-        this.counter = counter;
+        //this.boxType = getBoxType(boxName);
+        //this.angleType = angleType;
+        this.gazeOrigin = gazeOrigin;
+        this.gazeDir = gazeDir;
+        this.headDir = headDir;
+        this.eyeOrigin = eyeOrigin;
+        this.eyeDir = eyeDir;
+        this.eyeHitPos = eyeHitPos;
     }
 
     public string getBoxType(string name)
@@ -117,8 +112,8 @@ public class MyEyeTrackerData
     {
         return new string[]
         {
-            //TODO adapt it for eyetracking
-            "Subject","Timestamp","Activity type","Box type","Angle type","Hit type","Time hit","Timer non-hit","Counter Type","Counter"
+            //TODO adapted for eyetracking
+            "Subject","Timestamp","Activity type","Box type","Angle type","Head origin","Head direction","Eye origin","Eye direction","Eye hit position"
         };
     }
 
@@ -127,7 +122,11 @@ public class MyEyeTrackerData
         return new string[]
         {
             //TODO adapt it for eyetracking
-            subject.ToString(), timeStamp, activityType.ToString(), boxType.ToString(), angleType.ToString(), hitType.ToString(), hitTime.ToString(),nonHitTime.ToString(),counterType.ToString(), counter.ToString()
+            /*subject.ToString(), timeStamp, activityType.ToString(), boxType.ToString(), angleType.ToString(), headOrigin.ToString(), headDir.ToString(), 
+            eyeOrigin.ToString(), eyeDir.ToString(), eyeHitPos.ToString()*/
+            subject.ToString(), timeStamp, activityType.ToString(), gazeOrigin.ToString(), gazeDir.ToString(), headDir.ToString(), 
+            eyeOrigin.ToString(), eyeDir.ToString(), eyeHitPos.ToString()
+            //ToString("F3") in order to show 3 decimale
         };
     }
 
