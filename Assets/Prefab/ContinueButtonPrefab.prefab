@@ -228,15 +228,13 @@ GameObject:
   - component: {fileID: 1552936823511265267}
   - component: {fileID: 3606596469061977452}
   - component: {fileID: 2263831261060659394}
-  - component: {fileID: 3945942713352572593}
-  - component: {fileID: 6298469423841245687}
   m_Layer: 0
   m_Name: ContinueButtonPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6296070330497543544
 Transform:
   m_ObjectHideFlags: 0
@@ -747,35 +745,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 1
---- !u!114 &3945942713352572593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4123326723892257084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66b287a2b495354a84d169a020ca4e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objsToHide:
-  - {fileID: 0}
-  deactivateSelf: 1
---- !u!114 &6298469423841245687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4123326723892257084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4333fa067c41dad48aa5925fe11d3661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myTransform: {fileID: 6296070330497543544}
-  offsetCamera: 0
 --- !u!1 &6732436845505545998
 GameObject:
   m_ObjectHideFlags: 0
