@@ -45,7 +45,6 @@ public class AutoSceneChanger : MonoBehaviour
     private void NeedToChange()
     {
         string currentName = nameOfScenes.getCurrentName(sceneName);
-        string nextSceneName = nameOfScenes.getNextName(sceneName);
 
         if (sceneName == SceneNames.ACTIVITY_SCENE_HARMONIC)
         {
@@ -54,8 +53,8 @@ public class AutoSceneChanger : MonoBehaviour
         }
         else
         {
-            int enumCorrespondingInt = (int)sceneName;
-            PlayerPrefs.SetInt("nextSceneEnum", enumCorrespondingInt); //saving the index of the next scene to load
+            int enumCorrespondingNextInt = ((int)sceneName) + 1;
+            PlayerPrefs.SetInt("nextSceneEnum", enumCorrespondingNextInt); //saving the index of the next scene to load
         }
 
         SceneManager.UnloadSceneAsync(currentName);
