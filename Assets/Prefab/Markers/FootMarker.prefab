@@ -207,20 +207,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6298469423841245687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5022945124633106403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4333fa067c41dad48aa5925fe11d3661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myTransform: {fileID: 3165406766995266471}
-  offsetCamera: 0
 --- !u!114 &3945942713352572593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +222,20 @@ MonoBehaviour:
   objsToHide:
   - {fileID: 6049242079961982839}
   deactivateSelf: 1
+--- !u!114 &6298469423841245687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022945124633106403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4333fa067c41dad48aa5925fe11d3661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTransform: {fileID: 3165406766995266471}
+  offsetCamera: 0
 --- !u!1 &8807889741267102104
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,7 +5132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6968794248169968291, guid: 7915c254f505c7e4a8e80c820494f599, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6968794248169968291, guid: 7915c254f505c7e4a8e80c820494f599, type: 3}
       propertyPath: m_LocalPosition.z
