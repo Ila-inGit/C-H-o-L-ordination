@@ -20,6 +20,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/5-ActivitySceneConstant.unity
     guid: 343e5085f4229c741873e85888542006
+  - enabled: 1
+    path: Assets/Scenes/6-ActivitySceneNatural.unity
+    guid: 611e4dcec050a89418c04f45d27903d3
+  - enabled: 1
+    path: Assets/Scenes/7-ActivitySceneFigureEight.unity
+    guid: 1ea00e9727434e14181d88492b80e38d
+  - enabled: 1
+    path: Assets/Scenes/8-ActivitySceneHarmonic.unity
+    guid: 5cce244973e009f4491459d7a63cb8c1
+  - enabled: 1
+    path: Assets/Scenes/TransitionScene.unity
+    guid: c296eed003a66a94b8cc5523cb72d013
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: d646b4b163f5d8548a899d093905910c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a92da08454088a41baba062203213bb, type: 2}

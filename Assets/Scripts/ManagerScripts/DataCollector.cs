@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using System.IO;
 using System.Text;
-using System.Runtime.Serialization;
 
 public class DataCollector : MonoBehaviour
 {
@@ -19,44 +17,20 @@ public class DataCollector : MonoBehaviour
         }
     }
 
-    //private static string strFilePath = @"C:\Users\utente\Documents\Data.csv";
-    //private static string strFilePath = @"C:\Users\Ilaria\Desktop\Data.csv"; //da cambiare
-
     private static StringBuilder sbOutput = new StringBuilder();
 
     //private string saved line;
     private static MyData saveInformation;
-
-    // private static string timeStamp = System.DateTime.Now.ToString();
     private string DATATORETRIVE = "DATATORETRIVE" /*+ ".csv"*/;
-    private string CAMERA = "CAMERA";
+    private string CAMERAPOSITION = "CAMERAPOSITION";
+    private string CAMERAANGLE = "CAMERAANGLE";
 
-
-    //private save counter
-    private static bool firstSave = true;
-    private static bool firstSaveCamera = true;
+    // private save counter
+    private bool firstSave = true;
+    private bool firstSaveCameraAngle = true;
 
     //Hashtable declaration
-    private static Dictionary<string, MyData> dataCollection = new Dictionary<string, MyData>();
-
-
-    //static async void WriteData()
-    //{
-    //    if (firstSave){
-    //        //StorageFile sampleFile = await localFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-    //        StorageFile sampleFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-
-    //        await FileIO.AppendTextAsync(sampleFile, saveInformation.exportColumnNameforCSV().ToString() 
-    //                                                  + saveInformation.exportForCSV().ToString());
-
-    //        firstSave = false;
-    //    }
-    //else{
-    //    //StorageFile sampleFile = await localFolder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
-    //    StorageFile sampleFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
-    //    await FileIO.AppendTextAsync(sampleFile, saveInformation.exportForCSV().ToString());
-    //}
-    //}
+    private Dictionary<string, MyData> dataCollection = new Dictionary<string, MyData>();
 
     public void addToFile(MyData dataToWrite)
     {
@@ -81,31 +55,23 @@ public class DataCollector : MonoBehaviour
         }
     }
 
-    public void addToFileCamera(Vector3 dataToWrite)
+    public void addCameraPositionToFile(Vector3 dataToWrite)
     {
 
-        string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERA);
+        string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERAPOSITION);
 
         // ----------------------- for windows -----------------------
-        if (firstSaveCamera)
-        {
-            // Create and write the csv file
-            File.WriteAllText(strFilePathCamera, dataToWrite.ToString());
-            firstSave = false;
-        }
-        else
-        {
-            // To append more lines to the csv file
-            File.AppendAllText(strFilePathCamera, dataToWrite.ToString());
-        }
+        // Create and write the csv file
+        File.WriteAllText(strFilePathCamera, dataToWrite.ToString());
+
     }
-    public Vector3 retriveCameraFromFile()
+
+    public Vector3 retriveCameraPositionFromFile()
     {
 
-        string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERA);
+        string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERAPOSITION);
 
         // ----------------------- for windows -----------------------
-
         // Create and write the csv file
         string cameraInitPos = File.ReadAllText(strFilePathCamera);
 
@@ -113,7 +79,38 @@ public class DataCollector : MonoBehaviour
 
     }
 
-    public static Vector3 stringToVector3(string sVector)
+    public void addCameraAngleToFile(Quaternion dataToWrite)
+    {
+
+        string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERAANGLE);
+
+        // ----------------------- for windows -----------------------
+        if (firstSaveCameraAngle)
+        {
+            // Create and write the csv file
+            File.WriteAllText(strFilePathCamera, dataToWrite.ToString());
+            firstSaveCameraAngle = false;
+        }
+        else
+        {
+            // To append more lines to the csv file
+            File.AppendAllText(strFilePathCamera, dataToWrite.ToString());
+        }
+    }
+    public Quaternion retriveCameraAngleFromFile()
+    {
+
+        string strFilePathCamera = string.Format("{0}/{1}.txt", Application.persistentDataPath, CAMERAANGLE);
+
+        // ----------------------- for windows -----------------------
+        // Create and write the csv file
+        string cameraInitPos = File.ReadAllText(strFilePathCamera);
+
+        return stringToQuaternion(cameraInitPos);
+
+    }
+
+    public Vector3 stringToVector3(string sVector)
     {
         // Remove the parentheses
         if (sVector.StartsWith("(") && sVector.EndsWith(")"))
@@ -130,6 +127,28 @@ public class DataCollector : MonoBehaviour
             float.Parse(sArray[0]) / 10.0f,
             float.Parse(sArray[1]) / 10.0f,
             float.Parse(sArray[2]) / 10.0f);
+        return result;
+    }
+
+    public Quaternion stringToQuaternion(string sVector)
+    {
+        // Remove the parentheses
+        if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+        {
+            sVector = sVector.Substring(1, sVector.Length - 2);
+        }
+
+        // split the items
+        string[] sArray = sVector.Split(',');
+
+        // store as a Vector3
+        // divido per 10 perchè non vede il punto
+        Quaternion result = new Quaternion(
+            float.Parse(sArray[0]) / 10.0f,
+            float.Parse(sArray[1]) / 10.0f,
+            float.Parse(sArray[2]) / 10.0f,
+            float.Parse(sArray[3]) / 10.0f
+            );
         return result;
     }
 

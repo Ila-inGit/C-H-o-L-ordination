@@ -12,7 +12,7 @@ public class EllipseRenderer : MonoBehaviour
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();
-        cameraPos.position = DataCollector.Instance.retriveCameraFromFile();
+        cameraPos.position = DataCollector.Instance.retriveCameraPositionFromFile();
         CalculateEllipse();
     }
 

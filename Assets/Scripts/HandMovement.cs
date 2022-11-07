@@ -15,8 +15,6 @@ public class HandMovement : MonoBehaviour
 
     private void Start()
     {
-
-        cameraPos = DataCollector.Instance.retriveCameraFromFile();
         if (FindObjectOfType<OrbitConstantSpeed>() || FindObjectOfType<OrbitNaturalSpeed>())
             offsetCamera = -0.05f + initYposHand;
 

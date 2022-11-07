@@ -20,16 +20,19 @@ public class PointsCounterForSlotMachine : MonoBehaviour
 
     public async void Animate()
     {
-        List<bool> stars = PointsManager.Instance.GetStars();
-        int finalMatIndex = Random.Range(0, materials.Count - 1);
+        if (PointsManager.Instance != null)
+        {
+            List<bool> stars = PointsManager.Instance.GetStars();
+            int finalMatIndex = Random.Range(0, materials.Count - 1);
 
-        displayMaterialRand(pointLeftSprite, stars[0], finalMatIndex);
-        await Task.Delay(100);
-        displayMaterialRand(pointCenterSprite, stars[2], finalMatIndex);
-        await Task.Delay(100);
-        displayMaterialRand(pointRightSprite, stars[1], finalMatIndex);
+            displayMaterialRand(pointLeftSprite, stars[0], finalMatIndex);
+            await Task.Delay(100);
+            displayMaterialRand(pointCenterSprite, stars[2], finalMatIndex);
+            await Task.Delay(100);
+            displayMaterialRand(pointRightSprite, stars[1], finalMatIndex);
 
-        PointsManager.Instance.ResetPoints();
+            PointsManager.Instance.ResetPoints();
+        }
     }
 
     public async void displayMaterialRand(MeshRenderer renderer, bool isStar, int finalIndex)

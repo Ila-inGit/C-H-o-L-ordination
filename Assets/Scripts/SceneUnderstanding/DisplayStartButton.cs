@@ -1,30 +1,39 @@
 using UnityEngine;
-using System.Threading.Tasks;
+using System.Collections;
 
 public class DisplayStartButton : MonoBehaviour
 {
     private bool isInside = false;
     private bool instantiated = false;
+
     [SerializeField]
     GameObject startButton;
+    [SerializeField]
+    ParticleSystem particles;
 
-    public async void startCountdown()
+    IEnumerator startCountdown()
     {
-        await Task.Delay(1000);
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(10);
         // set active the prefabof the start button after a certain time
         if (isInside)
         {
-            Vector3 cameraPos = Camera.main.transform.position;
-            // initialize the camera position when it is inside the marker
-            DataCollector.Instance.addToFileCamera(cameraPos);
+            // magari da spostare sul scene manager controller
+            Vector3 cameraPos = DataCollector.Instance.retriveCameraPositionFromFile();
+            Quaternion cameraAngle = DataCollector.Instance.retriveCameraAngleFromFile();
+
+            startButton.transform.SetPositionAndRotation(cameraPos, cameraAngle);
+
+            yield return new WaitForSeconds(2);
 
             startButton.transform.position = new Vector3(
-            startButton.transform.position.x + cameraPos.x,
-            startButton.transform.position.y + cameraPos.y,
-            startButton.transform.position.z + cameraPos.z);
+                startButton.transform.position.x,
+                startButton.transform.position.y,
+                startButton.transform.position.z);
 
             startButton.SetActive(true);
             instantiated = true;
+            particles.Stop();
 
         }
     }
@@ -36,7 +45,7 @@ public class DisplayStartButton : MonoBehaviour
             if (other.gameObject.tag == Constants.MAIN_CAMERA_TAG)
             {
                 isInside = true;
-                startCountdown();
+                StartCoroutine(startCountdown());
             }
         }
     }

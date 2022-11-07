@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!95 &5214597253604506481
+--- !u!95 &9185230821921117664
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -10,7 +10,7 @@ Animator:
   m_GameObject: {fileID: 456600108691578571}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bf5d1c7bae2e8ac4dbac794e2052a688, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0558b4d8fa441be45a99dbc2136b5e3f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -332,7 +332,7 @@ Transform:
   m_GameObject: {fileID: 8459944058642585056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 92011215594167541}
   m_Father: {fileID: 0}
@@ -453,7 +453,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1638958521
+--- !u!114 &905782538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8940028835845278534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30989147cbd87684f8b376075f52813f, type: 3}
+  m_Script: {fileID: 11500000, guid: 39bb9e0a8539aeb40aa5133a51e87aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointLeftSprite: {fileID: 5746532997248750108}
@@ -600,6 +600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stylized_jackpot_slot_machine
       objectReference: {fileID: 0}
+    - target: {fileID: 4231723407612917651, guid: f716031c5e85ea7479d6a86284175d1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4818937917599915536, guid: f716031c5e85ea7479d6a86284175d1e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -624,6 +628,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 9185737683893222716, guid: 89a6032aec6bfc5478c731fdd06f377b, type: 3}
+    - target: {fileID: 8611269477466976136, guid: f716031c5e85ea7479d6a86284175d1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8887320929768881105, guid: f716031c5e85ea7479d6a86284175d1e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

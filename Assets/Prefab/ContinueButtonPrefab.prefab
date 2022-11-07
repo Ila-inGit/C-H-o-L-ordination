@@ -424,7 +424,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2263831261060659394}
         m_TargetAssemblyTypeName: ChangerSceneAdditive, Assembly-CSharp
-        m_MethodName: myChangeScene
+        m_MethodName: goToTransitionScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cea6023137174245958e6a380d7dea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentIndex: 1
+  sceneName: 1
 --- !u!1 &6732436845505545998
 GameObject:
   m_ObjectHideFlags: 0
