@@ -10,7 +10,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
     public class SceneUnderstandingController : DemoSpatialMeshHandler, IMixedRealitySpatialAwarenessObservationHandler<SpatialAwarenessSceneObject>
     {
         #region Private Fields
-        private float offset = 0.5f;
+        private float offset = 0.36f;
 
         #region Serialized Fields
 

@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTransform: {fileID: 3165406766995266471}
-  offsetCamera: -0.0125
+  offsetCamera: 0
 --- !u!114 &7328597567186788899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5189,6 +5189,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7526513071917804768}
     m_Modifications:
+    - target: {fileID: 839801328291995947, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 839801328291995947, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 839801328291995947, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7328597567186788899}
+    - target: {fileID: 839801328291995947, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 839801328291995947, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: myChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 839801328291995947, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: HideObjectsAfterPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 839801328291995947, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: HideObjsAfterPressStart, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 839801328291995947, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3945942713352572593, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: objsToHide.Array.data[0]
       value: 
@@ -5196,6 +5228,10 @@ PrefabInstance:
     - target: {fileID: 4123326723892257084, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_Name
       value: StartButtonPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123326723892257084, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6296070330497543544, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_RootOrder
@@ -5211,7 +5247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6296070330497543544, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.43
+      value: 1.74
       objectReference: {fileID: 0}
     - target: {fileID: 6296070330497543544, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_LocalRotation.w

@@ -9,6 +9,11 @@ public class LateSetActive : MonoBehaviour
     [SerializeField]
     float numberOfSeconds;
 
+    private void Start()
+    {
+        StartCoroutine(setObjectActive());
+    }
+
     public IEnumerator setObjectActive()
     {
         objectToActive.SetActive(false);

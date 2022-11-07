@@ -21,7 +21,7 @@ public class ChangerSceneAdditive : MonoBehaviour
 
     public void goToTransitionScene()
     {
-
+        nameOfScenes.init();
         string currentName = nameOfScenes.getCurrentName(sceneName);
 
         if (sceneName == SceneNames.ACTIVITY_SCENE_HARMONIC)
