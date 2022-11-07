@@ -9,12 +9,24 @@ public class HideObjsAfterPressStart : MonoBehaviour
 
     [SerializeField]
     bool deactivateSelf;
+    [SerializeField]
+    bool hideOnStart;
 
+    private void Start()
+    {
+        if (hideOnStart)
+        {
+            HideObjectsAfterPress();
+        }
+    }
     public void HideObjectsAfterPress()
     {
-        foreach (var obj in objsToHide)
+        if (objsToHide != null)
         {
-            obj.SetActive(false);
+            foreach (var obj in objsToHide)
+            {
+                obj.SetActive(false);
+            }
         }
         if (deactivateSelf)
             gameObject.SetActive(false);
