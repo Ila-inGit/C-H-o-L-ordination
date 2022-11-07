@@ -200,6 +200,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 // dovrebbe essere meglio per le performances ma vorrei proprio smettere di fare il scene understanding
                 // da capire se una volta instanziato e tolta la scena lui continua
                 ToggleAutoUpdate();
+                // TODO: DELETE LINE AFTER DEBUG FINISH => TO TRY INIT FROM JSON
+                ParseQRInfoManager.Instance.ParseJSON("");
             }
         }
 

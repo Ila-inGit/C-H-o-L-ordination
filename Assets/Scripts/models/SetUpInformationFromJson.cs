@@ -18,4 +18,13 @@ public class SetUpInformationFromJson
         return JsonUtility.FromJson<SetUpInformationFromJson>(jsonString);
     }
 
+    // fake init if a json is not used (for debug)
+    public SetUpInformationFromJson()
+    {
+        maxTimeForActivity = 4;
+        numberTotalAttempts = 20;
+        numberRightAttempts = 15;
+        doTutorial = true;
+    }
+
 }
