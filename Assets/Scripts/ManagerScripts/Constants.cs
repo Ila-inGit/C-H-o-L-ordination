@@ -4,6 +4,7 @@ class Constants
     Dictionary<SceneNames, string> enumToCurrentScene = new Dictionary<SceneNames, string>();
     Dictionary<SceneNames, string> enumToNextScene = new Dictionary<SceneNames, string>();
 
+    #region Scene Names
     public const string MAIN_CAMERA_TAG = "MainCamera";
     public const string MY_MANAGER_SCENE = "0-MyManagerScene";
     public const string SETTING_SCENE = "SettingScene";
@@ -14,6 +15,9 @@ class Constants
     public const string ACTIVITY_SCENE_FIGURE_EIGHT = "7-ActivitySceneFigureEight";
     public const string ACTIVITY_SCENE_HARMONIC = "8-ActivitySceneHarmonic";
     public const string TRANSITION_SCENE = "TransitionScene";
+    #endregion Scene Names
+
+    #region Tag names
     public const string TOP_BOX = "TopBox";
     public const string BOTTOM_BOX = "BottomBox";
     public const string LEFT_BOX = "LeftBox";
@@ -27,6 +31,9 @@ class Constants
     public const string PLANET = "Planet";
     public const string CONTINUE_BUTTON = "ContinueButton";
     public const string POINTS_COUNTER = "PointsCounter";
+    public const string ACTIVATION_TUTORIAL = "ActivationTutorial";
+
+    #endregion Tag names
 
     public void init()
     {

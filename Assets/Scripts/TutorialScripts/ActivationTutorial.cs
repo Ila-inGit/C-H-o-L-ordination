@@ -19,7 +19,7 @@ public class ActivationTutorial : MonoBehaviour
         {
             if (CoreServices.InputSystem.GazeProvider.GazeTarget)
             {
-                if (CoreServices.InputSystem.GazeProvider.GazeTarget.tag == "ActivationTutorial")
+                if (CoreServices.InputSystem.GazeProvider.GazeTarget.tag == Constants.ACTIVATION_TUTORIAL)
                 {
                     isActive = true;
                     Activate();
