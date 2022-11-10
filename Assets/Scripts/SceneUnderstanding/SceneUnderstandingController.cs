@@ -2,7 +2,6 @@
 using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.UI;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
@@ -20,8 +19,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         public bool CanInstantiatePrefab = true;
         [SerializeField]
         private GameObject InstantiatedPrefab = null;
-        [SerializeField]
-        private Transform InstantiatedParent = null;
 
         [Header("UI")]
         [SerializeField]

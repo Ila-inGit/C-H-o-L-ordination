@@ -1,22 +1,11 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 public class AutoSceneChanger : MonoBehaviour
 {
     [SerializeField]
     public SceneNames sceneName;
-    private Constants nameOfScenes = new Constants();
-
     private float timerBeforeChange = 0.0f;
     private int totalTouches = 0;
     private TouchesCounter touchesCounter;
-    private static Dictionary<string, int> parameters;
-
-    private void Start()
-    {
-        nameOfScenes.init();
-    }
 
     private void FixedUpdate()
     {
@@ -44,22 +33,7 @@ public class AutoSceneChanger : MonoBehaviour
 
     private void NeedToChange()
     {
-        string currentName = nameOfScenes.getCurrentName(sceneName);
-
-        if (sceneName == SceneNames.ACTIVITY_SCENE_HARMONIC)
-        {
-            int enumCorrespondingInt = (int)SceneNames.SETTING_SCENE;
-            PlayerPrefs.SetInt("nextSceneEnum", enumCorrespondingInt);
-        }
-        else
-        {
-            int enumCorrespondingNextInt = ((int)sceneName) + 1;
-            PlayerPrefs.SetInt("nextSceneEnum", enumCorrespondingNextInt); //saving the index of the next scene to load
-        }
-
-        SceneManager.UnloadSceneAsync(currentName);
-        SceneManager.LoadScene(Constants.TRANSITION_SCENE, LoadSceneMode.Additive);
-
+        SceneChangerManager.Instance.goToTransitionScene(sceneName);
     }
 
 }

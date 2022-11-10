@@ -1,9 +1,5 @@
-using System.Collections.Generic;
 class Constants
 {
-    Dictionary<SceneNames, string> enumToCurrentScene = new Dictionary<SceneNames, string>();
-    Dictionary<SceneNames, string> enumToNextScene = new Dictionary<SceneNames, string>();
-
     #region Scene Names
     public const string MAIN_CAMERA_TAG = "MainCamera";
     public const string MY_MANAGER_SCENE = "0-MyManagerScene";
@@ -36,50 +32,9 @@ class Constants
 
     #endregion Tag names
 
-    public void init()
-    {
-        enumToCurrentScene.Add(SceneNames.MY_MANAGER_SCENE, MY_MANAGER_SCENE);
-        enumToCurrentScene.Add(SceneNames.SETTING_SCENE, SETTING_SCENE);
-        enumToCurrentScene.Add(SceneNames.TUTORIAL_FIRST_PART, TUTORIAL_FIRST_PART);
-        enumToCurrentScene.Add(SceneNames.TUTORIAL_SECOND_PART, TUTORIAL_SECOND_PART);
-        enumToCurrentScene.Add(SceneNames.START_ACTIVITIES_SCENE, START_ACTIVITIES_SCENE);
-        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_CONSTANT, ACTIVITY_SCENE_CONSTANT);
-        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_NATURAL, ACTIVITY_SCENE_NATURAL);
-        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, ACTIVITY_SCENE_FIGURE_EIGHT);
-        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, ACTIVITY_SCENE_HARMONIC);
-        enumToCurrentScene.Add(SceneNames.TRANSITION_SCENE, TRANSITION_SCENE);
-        enumToNextScene.Add(SceneNames.MY_MANAGER_SCENE, SETTING_SCENE);
-        //Look if in the configuration from json the tutorial is active, otherwise is skipped
-        if (ParseQRInfoManager.Instance.infoFromJson.doTutorial)
-        {
-            enumToNextScene.Add(SceneNames.SETTING_SCENE, TUTORIAL_FIRST_PART);
-            enumToNextScene.Add(SceneNames.TUTORIAL_FIRST_PART, TUTORIAL_SECOND_PART);
-            enumToNextScene.Add(SceneNames.TUTORIAL_SECOND_PART, START_ACTIVITIES_SCENE);
-        }
-        else
-        {
-            enumToNextScene.Add(SceneNames.SETTING_SCENE, START_ACTIVITIES_SCENE);
-        }
-        enumToNextScene.Add(SceneNames.START_ACTIVITIES_SCENE, ACTIVITY_SCENE_CONSTANT);
-        enumToNextScene.Add(SceneNames.ACTIVITY_SCENE_CONSTANT, ACTIVITY_SCENE_NATURAL);
-        enumToNextScene.Add(SceneNames.ACTIVITY_SCENE_NATURAL, ACTIVITY_SCENE_FIGURE_EIGHT);
-        enumToNextScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, ACTIVITY_SCENE_HARMONIC);
-        enumToNextScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, TRANSITION_SCENE);
-    }
-
-    public string getCurrentName(SceneNames name)
-    {
-        return enumToCurrentScene[name];
-    }
-
-    public string getNextName(SceneNames name)
-    {
-        return enumToNextScene[name];
-    }
-
 }
 
-public enum Difficulty { easy, difficult };
+public enum Difficulty { easy, medium, difficult };
 
 public enum SceneNames
 {
@@ -93,4 +48,10 @@ public enum SceneNames
     ACTIVITY_SCENE_FIGURE_EIGHT,
     ACTIVITY_SCENE_HARMONIC,
     TRANSITION_SCENE
+}
+
+public struct SceneDifficulty
+{
+    public SceneNames name { get; set; }
+    public Difficulty difficulty { get; set; }
 }
