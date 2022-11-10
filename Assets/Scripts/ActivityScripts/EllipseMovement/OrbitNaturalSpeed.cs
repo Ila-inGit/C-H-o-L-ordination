@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Microsoft.MixedReality.Toolkit.UI;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
     public Ellipse orbitPath;
     [Range(0F, 1F)]
     public float orbitProgress = 0f;
-    public float orbitPeriod;
+    private float orbitPeriod;
     public bool orbitActive = true;
     private Vector3 initpos;
 
@@ -29,6 +28,20 @@ public class OrbitNaturalSpeed : MonoBehaviour
             orbitingObject.localPosition.y - 0.5f,
             orbitingObject.localPosition.z
             );
+
+        Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
+        if (difficulty == Difficulty.easy)
+        {
+            orbitPeriod = 9.85f;
+        }
+        else if (difficulty == Difficulty.medium)
+        {
+            orbitPeriod = 7.85f;
+        }
+        else
+        {
+            orbitPeriod = 5.85f;
+        }
 
         SetOrbitingObjectPosition();
         StartCoroutine(AnimateOrbit());

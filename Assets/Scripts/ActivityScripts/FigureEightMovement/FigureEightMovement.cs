@@ -9,7 +9,7 @@ public class FigureEightMovement : MonoBehaviour
     public Transform planetTransform;
     private Vector3 initpos;
 
-    public float speed;
+    private float speed = 0.0f;
 
     private float _x, _y, _deltaSpace, _scale;
 
@@ -23,6 +23,21 @@ public class FigureEightMovement : MonoBehaviour
             planetTransform.localPosition.y,
             planetTransform.localPosition.z
         );
+
+        Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
+        if (difficulty == Difficulty.easy)
+        {
+            speed = 0.4f;
+        }
+        else if (difficulty == Difficulty.medium)
+        {
+            speed = 0.5f;
+        }
+        else
+        {
+            speed = 0.7f;
+        }
+
 
     }
 
