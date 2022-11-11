@@ -2,7 +2,6 @@
 using Microsoft.MixedReality.Toolkit.Experimental.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit.UI;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
@@ -20,8 +19,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
         public bool CanInstantiatePrefab = true;
         [SerializeField]
         private GameObject InstantiatedPrefab = null;
-        [SerializeField]
-        private Transform InstantiatedParent = null;
 
         [Header("UI")]
         [SerializeField]
@@ -200,6 +197,8 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 // dovrebbe essere meglio per le performances ma vorrei proprio smettere di fare il scene understanding
                 // da capire se una volta instanziato e tolta la scena lui continua
                 ToggleAutoUpdate();
+                // TODO: DELETE LINE AFTER DEBUG FINISH => TO TRY INIT FROM JSON
+                ParseQRInfoManager.Instance.ParseJSON("");
             }
         }
 

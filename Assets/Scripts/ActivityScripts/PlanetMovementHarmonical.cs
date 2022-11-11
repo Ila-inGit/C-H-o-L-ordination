@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Microsoft.MixedReality.Toolkit.UI;
 using UnityEngine;
 
@@ -10,7 +7,7 @@ public class PlanetMovementHarmonical : MonoBehaviour
     public Transform planetTransform;
     private Vector3 initpos;
     private float _deltaSpace;
-    public float speed;
+    private float speed;
 
 
     private void Start()
@@ -19,6 +16,20 @@ public class PlanetMovementHarmonical : MonoBehaviour
             planetTransform.localPosition.x - 0.75f,
             planetTransform.localPosition.y,
             planetTransform.localPosition.z);
+
+        Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
+        if (difficulty == Difficulty.easy)
+        {
+            speed = 0.52f;
+        }
+        else if (difficulty == Difficulty.medium)
+        {
+            speed = 0.72f;
+        }
+        else
+        {
+            speed = 0.92f;
+        }
     }
 
     void FixedUpdate()

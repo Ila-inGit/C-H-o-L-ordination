@@ -5,7 +5,7 @@ public class OrbitConstantSpeed : MonoBehaviour
 {
 
     public Transform planetTransform;
-    public float speed;
+    private float speed;
     private const float A = 0.75f;
     private const float B = 0.5f;
     private float _x, _y, _deltaSpace;
@@ -13,9 +13,23 @@ public class OrbitConstantSpeed : MonoBehaviour
     private void Awake()
     {
         initpos = new Vector3(
-            planetTransform.localPosition.x -0.75f,
-            planetTransform.localPosition.y ,
+            planetTransform.localPosition.x - 0.75f,
+            planetTransform.localPosition.y,
             planetTransform.localPosition.z);
+
+        Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
+        if (difficulty == Difficulty.easy)
+        {
+            speed = 0.6f;
+        }
+        else if (difficulty == Difficulty.medium)
+        {
+            speed = 0.8f;
+        }
+        else
+        {
+            speed = 1.0f;
+        }
     }
 
     void FixedUpdate()
