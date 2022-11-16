@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/4-TutorialSecondPart.unity
     guid: 8849becdeee9ae5418fab47372496fdf
   - enabled: 1
+    path: Assets/Scenes/5-StartActivitiesScene.unity
+    guid: 80bac1325ab80474890a4654db88e852
+  - enabled: 1
     path: Assets/Scenes/5-ActivitySceneConstant.unity
     guid: 343e5085f4229c741873e85888542006
   - enabled: 1

@@ -2412,7 +2412,6 @@ MonoBehaviour:
     xAxis: 0.75
     yAxis: 0.5
   orbitProgress: 0
-  orbitPeriod: 7.85
   orbitActive: 1
 --- !u!114 &1758051808
 MonoBehaviour:
@@ -2542,7 +2541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2263831261060659394, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: sceneName
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4123326723892257084, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_Name

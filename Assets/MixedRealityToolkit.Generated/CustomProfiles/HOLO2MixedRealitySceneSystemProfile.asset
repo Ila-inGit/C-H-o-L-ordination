@@ -49,6 +49,12 @@ MonoBehaviour:
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 8849becdeee9ae5418fab47372496fdf, type: 3}
+  - Name: 5-StartActivitiesScene
+    Path: Assets/Scenes/5-StartActivitiesScene.unity
+    Included: 0
+    BuildIndex: -1
+    Tag: Untagged
+    Asset: {fileID: 102900000, guid: 80bac1325ab80474890a4654db88e852, type: 3}
   - Name: 5-ActivitySceneConstant
     Path: Assets/Scenes/5-ActivitySceneConstant.unity
     Included: 0
