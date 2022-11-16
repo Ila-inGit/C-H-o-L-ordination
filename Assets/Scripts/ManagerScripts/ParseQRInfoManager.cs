@@ -15,13 +15,14 @@ public class ParseQRInfoManager : MonoBehaviour
         }
     }
 
-    
+
 
     public void ParseJSON(string jsonString)
     {
         //infoFromJson = SetUpInformationFromJson.CreateFromJSON(jsonString);
         // fake init to be deleted
         infoFromJson = new SetUpInformationFromJson();
+        SceneChangerManager.Instance.init();
     }
 
 }

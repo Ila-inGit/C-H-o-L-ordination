@@ -50,7 +50,7 @@ public enum SceneNames
     TRANSITION_SCENE
 }
 
-public struct SceneDifficulty
+public class SceneDifficulty
 {
     public SceneNames name { get; set; }
     public Difficulty difficulty { get; set; }

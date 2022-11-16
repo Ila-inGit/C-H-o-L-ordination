@@ -13,7 +13,7 @@ public class SetUpInformationFromJson
     public int numberTotalAttempts;
     public int numberRightAttempts;
     public bool doTutorial;
-    public List<SceneDifficulty> sceneOrderWithDifficulty;
+    public List<SceneDifficulty> sceneOrderWithDifficulty = new List<SceneDifficulty>();
 
     public static SetUpInformationFromJson CreateFromJSON(string jsonString)
     {
@@ -23,7 +23,7 @@ public class SetUpInformationFromJson
     // fake init if a json is not used (for debug)
     public SetUpInformationFromJson()
     {
-        maxTimeForActivity = 4;
+        maxTimeForActivity = 700;
         numberTotalAttempts = 20;
         numberRightAttempts = 15;
         doTutorial = false;
@@ -31,14 +31,15 @@ public class SetUpInformationFromJson
         scena1.name = SceneNames.ACTIVITY_SCENE_CONSTANT;
         scena1.difficulty = Difficulty.easy;
         SceneDifficulty scena2 = new SceneDifficulty();
-        scena1.name = SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT;
-        scena1.difficulty = Difficulty.medium;
+        scena2.name = SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT;
+        scena2.difficulty = Difficulty.medium;
         SceneDifficulty scena3 = new SceneDifficulty();
-        scena1.name = SceneNames.ACTIVITY_SCENE_HARMONIC;
-        scena1.difficulty = Difficulty.easy;
+        scena3.name = SceneNames.ACTIVITY_SCENE_HARMONIC;
+        scena3.difficulty = Difficulty.easy;
         sceneOrderWithDifficulty.Add(scena1);
         sceneOrderWithDifficulty.Add(scena2);
         sceneOrderWithDifficulty.Add(scena3);
+
     }
 
 }

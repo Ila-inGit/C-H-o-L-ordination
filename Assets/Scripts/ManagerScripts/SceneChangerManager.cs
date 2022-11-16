@@ -4,10 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangerManager : MonoBehaviour
 {
-    Dictionary<SceneNames, string> enumToCurrentScene = new Dictionary<SceneNames, string>();
+    public Dictionary<SceneNames, string> enumToCurrentScene = new Dictionary<SceneNames, string>();
 
-    int currentIndex = 0;
-    List<SceneNames> sceneSequence = new List<SceneNames>();
+    private int currentIndexForScene = 0;
+    private int currentIndexForDifficulty = 0;
+    public List<SceneNames> sceneSequence = new List<SceneNames>();
 
     private static SceneChangerManager instance;
 
@@ -22,7 +23,7 @@ public class SceneChangerManager : MonoBehaviour
 
     private void Start()
     {
-        init();
+        ParseQRInfoManager.Instance.ParseJSON("");
     }
 
     public void init()
@@ -63,21 +64,27 @@ public class SceneChangerManager : MonoBehaviour
 
     public Difficulty getDifficulty()
     {
-        SceneDifficulty sceneDifficulty = ParseQRInfoManager.Instance.infoFromJson.sceneOrderWithDifficulty[currentIndex - 1];
+        SceneDifficulty sceneDifficulty =
+            ParseQRInfoManager.Instance.infoFromJson.sceneOrderWithDifficulty[currentIndexForDifficulty];
+        currentIndexForDifficulty++;
         return sceneDifficulty.difficulty;
     }
 
     public string getNextName()
     {
-        string nextScene = getCurrentName(sceneSequence[currentIndex]);
-        currentIndex++;
+        Debug.Log(currentIndexForScene);
+        Debug.Log("scene sequence:" + sceneSequence[currentIndexForScene]);
+        string nextScene = getCurrentName(sceneSequence[currentIndexForScene]);
+        currentIndexForScene++;
         return nextScene;
     }
 
     public void changeScene(SceneNames sceneName)
     {
         string currentName = getCurrentName(sceneName);
+        Debug.Log("current name:" + currentName);
         string nextSceneName = getNextName();
+        Debug.Log("next name:" + nextSceneName);
         SceneManager.UnloadSceneAsync(currentName);
         SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
     }
@@ -85,6 +92,7 @@ public class SceneChangerManager : MonoBehaviour
     public void goToTransitionScene(SceneNames sceneName)
     {
         string currentName = getCurrentName(sceneName);
+        Debug.Log("current name:" + currentName);
         SceneManager.UnloadSceneAsync(currentName);
         SceneManager.LoadScene(Constants.TRANSITION_SCENE, LoadSceneMode.Additive);
     }
@@ -92,6 +100,7 @@ public class SceneChangerManager : MonoBehaviour
     public void findNextSceneToLoad()
     {
         string nextSceneName = getNextName();
+        Debug.Log("next name:" + nextSceneName);
         SceneManager.UnloadSceneAsync(Constants.TRANSITION_SCENE);
         SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
     }
