@@ -3,7 +3,9 @@ guid: 1d3d3138530ea8448a327e0ece7cb9c4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - qRCodesManager: {instanceID: 0}
+  - statusText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

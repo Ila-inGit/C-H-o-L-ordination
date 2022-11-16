@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 
-public class MyQRCodeManager : MonoBehaviour
+public class QRCodeSetup : MonoBehaviour
 {
     public QRCodesManager qRCodesManager;
     public TextMeshPro statusText;
