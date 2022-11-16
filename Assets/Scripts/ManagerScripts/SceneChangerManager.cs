@@ -40,7 +40,7 @@ public class SceneChangerManager : MonoBehaviour
         enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, Constants.ACTIVITY_SCENE_HARMONIC);
         enumToCurrentScene.Add(SceneNames.TRANSITION_SCENE, Constants.TRANSITION_SCENE);
 
-        if (ParseQRInfoManager.Instance.infoFromJson.doTutorial)
+        if (ParseQRInfoManager.Instance.setUpInfo.doTutorial)
         {
             sceneSequence.Add(SceneNames.TUTORIAL_FIRST_PART);
             sceneSequence.Add(SceneNames.TUTORIAL_SECOND_PART);
@@ -50,7 +50,7 @@ public class SceneChangerManager : MonoBehaviour
         {
             sceneSequence.Add(SceneNames.START_ACTIVITIES_SCENE);
         }
-        foreach (var item in ParseQRInfoManager.Instance.infoFromJson.sceneOrderWithDifficulty)
+        foreach (var item in ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty)
         {
             sceneSequence.Add(item.name);
         }
@@ -65,7 +65,7 @@ public class SceneChangerManager : MonoBehaviour
     public Difficulty getDifficulty()
     {
         SceneDifficulty sceneDifficulty =
-            ParseQRInfoManager.Instance.infoFromJson.sceneOrderWithDifficulty[currentIndexForDifficulty];
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty];
         currentIndexForDifficulty++;
         return sceneDifficulty.difficulty;
     }

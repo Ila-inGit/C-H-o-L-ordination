@@ -16,19 +16,19 @@ public class AutoSceneChanger : MonoBehaviour
         timerBeforeChange += Time.deltaTime;
         if (!changed)
         {
-            if (timerBeforeChange >= ParseQRInfoManager.Instance.infoFromJson.maxTimeForActivity)
+            if (timerBeforeChange >= ParseQRInfoManager.Instance.setUpInfo.maxTimeForActivity)
             {
                 // Debug.Log("4 min expired");
                 changed = true;
                 NeedToChange();
             }
-            else if (totalTouches == ParseQRInfoManager.Instance.infoFromJson.numberRightAttempts)
+            else if (totalTouches == ParseQRInfoManager.Instance.setUpInfo.numberRightAttempts)
             {
                 // Debug.Log("15 total touches done");
                 changed = true;
                 NeedToChange();
             }
-            else if (totalTouches == ParseQRInfoManager.Instance.infoFromJson.numberTotalAttempts)
+            else if (totalTouches == ParseQRInfoManager.Instance.setUpInfo.numberTotalAttempts)
             {
                 // Debug.Log("Max total touches done");
                 changed = true;
