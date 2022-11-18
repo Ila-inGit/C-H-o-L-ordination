@@ -87,7 +87,7 @@ namespace QRTracking
                 lastTimeStamp = qrCode.SystemRelativeLastDetectedTime.Ticks;
                 QRInfo.transform.localScale = new Vector3(PhysicalSize/0.2f, PhysicalSize / 0.2f, PhysicalSize / 0.2f);
 
-                ParseQRInfoManager.Instance.ParseJSON(qrCode.Data); //ADDED 
+                
             }
         }
 

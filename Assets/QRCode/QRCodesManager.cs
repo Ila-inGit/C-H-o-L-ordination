@@ -28,10 +28,10 @@ namespace QRTracking
         }
     }
 
-    public class QRCodesManager : Singleton<QRCodesManager>
+    public class QRCodesManager : MonoBehaviour
     {
         [Tooltip("Determines if the QR codes scanner should be automatically started.")]
-        public bool AutoStartQRTracking = false;
+        public bool AutoStartQRTracking = true;
 
         public bool IsTrackerRunning { get; private set; }
 
@@ -48,6 +48,18 @@ namespace QRTracking
         private bool capabilityInitialized = false;
         private QRCodeWatcherAccessStatus accessStatus;
         private System.Threading.Tasks.Task<QRCodeWatcherAccessStatus> capabilityTask;
+
+        private static QRCodesManager instance;
+
+        public static QRCodesManager Instance
+        {
+            get
+            {
+                if (instance == null) instance = GameObject.FindObjectOfType<QRCodesManager>();
+                return instance;
+            }
+        }
+
 
         public System.Guid GetIdForQRCode(string qrCodeData)
         {
@@ -118,7 +130,7 @@ namespace QRTracking
                     IsTrackerRunning = true;
                     QRCodesTrackingStateChanged?.Invoke(this, true);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Debug.Log("QRCodesManager starting QRCodeWatcher Exception:" + ex.ToString());
                 }
@@ -202,6 +214,8 @@ namespace QRTracking
             if (handlers != null)
             {
                 handlers(this, QRCodeEventArgs.Create(args.Code));
+                // parse data from QR
+                ParseQRInfoManager.Instance.ParseJSON(args.Code.Data);
             }
         }
 
@@ -219,7 +233,7 @@ namespace QRTracking
                     SetupQRTracking();
                 }
                 else
-                {  
+                {
                     Debug.Log("Capability access status : " + accessStatus);
                 }
             }
