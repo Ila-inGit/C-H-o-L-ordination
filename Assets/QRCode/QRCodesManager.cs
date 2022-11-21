@@ -55,7 +55,6 @@ namespace QRTracking
         {
             get
             {
-                if (instance == null) instance = GameObject.FindObjectOfType<QRCodesManager>();
                 return instance;
             }
         }
@@ -91,6 +90,7 @@ namespace QRTracking
         // Use this for initialization
         async protected virtual void Start()
         {
+            if (instance == null) instance = GameObject.FindObjectOfType<QRCodesManager>();
             IsSupported = QRCodeWatcher.IsSupported(); //Gets whether QR code detection is supported on the current device
             capabilityTask = QRCodeWatcher.RequestAccessAsync(); //Request user consent before using QR code detection (permission to use webcam)
             accessStatus = await capabilityTask;
@@ -160,46 +160,30 @@ namespace QRTracking
         {
             Debug.Log("QRCodesManager QRCodeWatcher_Removed");
 
-            bool found = false;
             lock (qrCodesList)
             {
                 if (qrCodesList.ContainsKey(args.Code.Id))
                 {
                     qrCodesList.Remove(args.Code.Id);
-                    found = true;
                 }
             }
-            if (found)
-            {
-                var handlers = QRCodeRemoved;
-                if (handlers != null)
-                {
-                    handlers(this, QRCodeEventArgs.Create(args.Code));
-                }
-            }
+
         }
 
         private void QRCodeWatcher_Updated(object sender, QRCodeUpdatedEventArgs args)
         {
             Debug.Log("QRCodesManager QRCodeWatcher_Updated");
 
-            bool found = false;
             lock (qrCodesList)
             {
                 if (qrCodesList.ContainsKey(args.Code.Id))
                 {
-                    found = true;
                     qrCodesList[args.Code.Id] = args.Code;
                 }
             }
-            if (found)
-            {
-                var handlers = QRCodeUpdated;
-                if (handlers != null)
-                {
-                    handlers(this, QRCodeEventArgs.Create(args.Code));
-                }
-            }
+
+
+
         }
 
         private void QRCodeWatcher_Added(object sender, QRCodeAddedEventArgs args)
@@ -210,13 +194,10 @@ namespace QRTracking
             {
                 qrCodesList[args.Code.Id] = args.Code;
             }
-            var handlers = QRCodeAdded;
-            if (handlers != null)
-            {
-                handlers(this, QRCodeEventArgs.Create(args.Code));
-                // parse data from QR
-                ParseQRInfoManager.Instance.ParseJSON(args.Code.Data);
-            }
+
+            ParseQRInfoManager parseQRInfoManager = ParseQRInfoManager.Instance;
+            parseQRInfoManager.ParseJSON(args.Code.Data);
+
         }
 
         private void QRCodeWatcher_EnumerationCompleted(object sender, object e)

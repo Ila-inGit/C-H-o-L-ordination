@@ -21,16 +21,16 @@ EditorBuildSettings:
     path: Assets/Scenes/5-StartActivitiesScene.unity
     guid: 80bac1325ab80474890a4654db88e852
   - enabled: 1
-    path: Assets/Scenes/5-ActivitySceneConstant.unity
+    path: Assets/Scenes/6-ActivitySceneConstant.unity
     guid: 343e5085f4229c741873e85888542006
   - enabled: 1
-    path: Assets/Scenes/6-ActivitySceneNatural.unity
+    path: Assets/Scenes/7-ActivitySceneNatural.unity
     guid: 611e4dcec050a89418c04f45d27903d3
   - enabled: 1
-    path: Assets/Scenes/7-ActivitySceneFigureEight.unity
+    path: Assets/Scenes/8-ActivitySceneFigureEight.unity
     guid: 1ea00e9727434e14181d88492b80e38d
   - enabled: 1
-    path: Assets/Scenes/8-ActivitySceneHarmonic.unity
+    path: Assets/Scenes/9-ActivitySceneHarmonic.unity
     guid: 5cce244973e009f4491459d7a63cb8c1
   - enabled: 1
     path: Assets/Scenes/TransitionScene.unity

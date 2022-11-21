@@ -16,17 +16,15 @@ public class SceneChangerManager : MonoBehaviour
     {
         get
         {
-            if (instance == null) instance = GameObject.FindObjectOfType<SceneChangerManager>();
             return instance;
         }
     }
-
-    private void Start()
+    private void Awake()
     {
-        ParseQRInfoManager.Instance.ParseJSON("");
+        if (instance == null) instance = GameObject.FindObjectOfType<SceneChangerManager>();
     }
 
-    public void init()
+    public void Init()
     {
         // need to be initilized and modified if some scene is added
         enumToCurrentScene.Add(SceneNames.MY_MANAGER_SCENE, Constants.MY_MANAGER_SCENE);
@@ -39,6 +37,8 @@ public class SceneChangerManager : MonoBehaviour
         enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, Constants.ACTIVITY_SCENE_FIGURE_EIGHT);
         enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, Constants.ACTIVITY_SCENE_HARMONIC);
         enumToCurrentScene.Add(SceneNames.TRANSITION_SCENE, Constants.TRANSITION_SCENE);
+
+        sceneSequence.Clear();
 
         if (ParseQRInfoManager.Instance.setUpInfo.doTutorial)
         {
@@ -59,7 +59,15 @@ public class SceneChangerManager : MonoBehaviour
 
     public string getCurrentName(SceneNames name)
     {
-        return enumToCurrentScene[name];
+        if (enumToCurrentScene.Count != 0)
+        {
+            return enumToCurrentScene[name];
+        }
+        else
+        {
+            return "";
+        }
+
     }
 
     public Difficulty getDifficulty()
@@ -72,36 +80,52 @@ public class SceneChangerManager : MonoBehaviour
 
     public string getNextName()
     {
-        Debug.Log(currentIndexForScene);
-        Debug.Log("scene sequence:" + sceneSequence[currentIndexForScene]);
         string nextScene = getCurrentName(sceneSequence[currentIndexForScene]);
-        currentIndexForScene++;
-        return nextScene;
+        if (nextScene != "")
+        {
+            currentIndexForScene++;
+            return nextScene;
+        }
+        else
+        {
+            return "";
+        }
+
     }
 
     public void changeScene(SceneNames sceneName)
     {
         string currentName = getCurrentName(sceneName);
-        Debug.Log("current name:" + currentName);
-        string nextSceneName = getNextName();
-        Debug.Log("next name:" + nextSceneName);
-        SceneManager.UnloadSceneAsync(currentName);
-        SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
+        if (currentName != "")
+        {
+            string nextSceneName = getNextName();
+            if (nextSceneName != null)
+            {
+                SceneManager.UnloadSceneAsync(currentName);
+                SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
+            }
+        }
     }
 
     public void goToTransitionScene(SceneNames sceneName)
     {
         string currentName = getCurrentName(sceneName);
-        Debug.Log("current name:" + currentName);
-        SceneManager.UnloadSceneAsync(currentName);
-        SceneManager.LoadScene(Constants.TRANSITION_SCENE, LoadSceneMode.Additive);
+        if (currentName != "")
+        {
+            SceneManager.UnloadSceneAsync(currentName);
+            SceneManager.LoadScene(Constants.TRANSITION_SCENE, LoadSceneMode.Additive);
+        }
+
     }
 
     public void findNextSceneToLoad()
     {
         string nextSceneName = getNextName();
-        Debug.Log("next name:" + nextSceneName);
-        SceneManager.UnloadSceneAsync(Constants.TRANSITION_SCENE);
-        SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
+        if (nextSceneName != "")
+        {
+            SceneManager.UnloadSceneAsync(Constants.TRANSITION_SCENE);
+            SceneManager.LoadScene(nextSceneName, LoadSceneMode.Additive);
+        }
+
     }
 }

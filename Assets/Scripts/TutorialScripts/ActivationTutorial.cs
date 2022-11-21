@@ -4,8 +4,6 @@ public class ActivationTutorial : MonoBehaviour
 {
 
     private bool isActive = false;
-
-    public GameObject ContinueButton;
     public GameObject Tutorial;
 
     void FixedUpdate()
@@ -33,8 +31,5 @@ public class ActivationTutorial : MonoBehaviour
     public void Activate()
     {
         Tutorial.GetComponent<Animator>().SetBool("isActive", true);
-
-        if (ContinueButton != null)
-            ContinueButton.SetActive(true);
     }
 }

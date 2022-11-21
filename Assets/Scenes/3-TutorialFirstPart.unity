@@ -883,7 +883,7 @@ MonoBehaviour:
   objsToHide:
   - {fileID: 524028514}
   deactivateSelf: 0
-  hideOnStart: 0
+  hideOnStart: 1
 --- !u!114 &619233598
 MonoBehaviour:
   m_ObjectHideFlags: 0
