@@ -40,6 +40,7 @@ public class AutoSceneChanger : MonoBehaviour
 
     private void NeedToChange()
     {
+        SoundManager.Instance.StopLoop();
         SceneChangerManager.Instance.goToTransitionScene(sceneName);
     }
 

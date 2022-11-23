@@ -6,11 +6,15 @@ public class OrbitNaturalSpeed : MonoBehaviour
 {
 
     public Transform orbitingObject;
+    [SerializeField]
+    AudioClip[] audioClip;
+    private bool isPlayed = false;
     public Ellipse orbitPath;
     [Range(0F, 1F)]
     public float orbitProgress = 0f;
-    private float orbitPeriod;
     public bool orbitActive = true;
+    private float orbitPeriod;
+    private Difficulty difficulty;
     private Vector3 initpos;
 
 
@@ -29,18 +33,25 @@ public class OrbitNaturalSpeed : MonoBehaviour
             orbitingObject.localPosition.z
             );
 
-        Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
-        if (difficulty == Difficulty.easy)
+        if (SceneChangerManager.Instance != null)
         {
-            orbitPeriod = 9.85f;
-        }
-        else if (difficulty == Difficulty.medium)
-        {
-            orbitPeriod = 7.85f;
+            Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
+            if (difficulty == Difficulty.easy)
+            {
+                orbitPeriod = 9.6f;
+            }
+            else if (difficulty == Difficulty.medium)
+            {
+                orbitPeriod = 8f;
+            }
+            else
+            {
+                orbitPeriod = 6.8572f;
+            }
         }
         else
         {
-            orbitPeriod = 5.85f;
+            orbitPeriod = 8f;
         }
 
         SetOrbitingObjectPosition();
@@ -49,6 +60,24 @@ public class OrbitNaturalSpeed : MonoBehaviour
 
     void SetOrbitingObjectPosition()
     {
+        if (!isPlayed)
+        {
+            isPlayed = true;
+
+            if (difficulty == Difficulty.easy)
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[0]);
+            }
+            else if (difficulty == Difficulty.medium)
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[1]);
+            }
+            else
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[2]);
+            }
+
+        }
         Vector2 orbitPos = orbitPath.Evaluate(orbitProgress);
         orbitingObject.localPosition =
             new Vector3(initpos.x + orbitPos.x, initpos.y + orbitPos.y, initpos.z);

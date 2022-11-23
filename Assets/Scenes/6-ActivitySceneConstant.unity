@@ -2457,6 +2457,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetTransform: {fileID: 1608335906}
+  audioClip:
+  - {fileID: 8300000, guid: 10ae2c293db0105468a5399be68ececa, type: 3}
+  - {fileID: 8300000, guid: 689c69f6684ccd94884343938e126c5d, type: 3}
+  - {fileID: 8300000, guid: b7d2bb862dad9ac4f8b17b53275c6c7c, type: 3}
 --- !u!54 &1608335909
 Rigidbody:
   m_ObjectHideFlags: 0

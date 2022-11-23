@@ -7,7 +7,12 @@ using UnityEngine;
 public class FigureEightMovement : MonoBehaviour
 {
     public Transform planetTransform;
+    [SerializeField]
+    AudioClip[] audioClip;
+    private bool isPlayed = false;
     private Vector3 initpos;
+
+    private Difficulty difficulty;
 
     private float speed = 0.0f;
 
@@ -24,18 +29,25 @@ public class FigureEightMovement : MonoBehaviour
             planetTransform.localPosition.z
         );
 
-        Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
-        if (difficulty == Difficulty.easy)
+        if (SceneChangerManager.Instance != null)
         {
-            speed = 0.4f;
-        }
-        else if (difficulty == Difficulty.medium)
-        {
-            speed = 0.5f;
+            difficulty = SceneChangerManager.Instance.getDifficulty();
+            if (difficulty == Difficulty.easy)
+            {
+                speed = 0.3926f;
+            }
+            else if (difficulty == Difficulty.medium)
+            {
+                speed = 0.5236f;
+            }
+            else
+            {
+                speed = 0.6545f;
+            }
         }
         else
         {
-            speed = 0.7f;
+            speed = 0.5236f;
         }
 
 
@@ -43,6 +55,22 @@ public class FigureEightMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            if (difficulty == Difficulty.easy)
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[0]);
+            }
+            else if (difficulty == Difficulty.medium)
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[1]);
+            }
+            else
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[2]);
+            }
+        }
         _deltaSpace += Time.deltaTime * speed;
         _x = A * (Mathf.Cos(_deltaSpace));
         _y = B * (Mathf.Sin(2 * _deltaSpace) / 2);

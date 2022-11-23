@@ -5,7 +5,12 @@ public class OrbitConstantSpeed : MonoBehaviour
 {
 
     public Transform planetTransform;
+    [SerializeField]
+    AudioClip[] audioClip;
+    private bool isPlayed = false;
     private float speed;
+    private Difficulty difficulty;
+
     private const float A = 0.75f;
     private const float B = 0.5f;
     private float _x, _y, _deltaSpace;
@@ -17,23 +22,47 @@ public class OrbitConstantSpeed : MonoBehaviour
             planetTransform.localPosition.y,
             planetTransform.localPosition.z);
 
-        Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
-        if (difficulty == Difficulty.easy)
+        if (SceneChangerManager.Instance != null)
         {
-            speed = 0.6f;
-        }
-        else if (difficulty == Difficulty.medium)
-        {
-            speed = 0.8f;
+            difficulty = SceneChangerManager.Instance.getDifficulty();
+            if (difficulty == Difficulty.easy)
+            {
+                speed = 0.6545f;
+            }
+            else if (difficulty == Difficulty.medium)
+            {
+                speed = 0.7854f;
+            }
+            else
+            {
+                speed = 0.9163f;
+            }
         }
         else
         {
-            speed = 1.0f;
+            speed = 0.7854f;
         }
     }
 
     void FixedUpdate()
     {
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            if (difficulty == Difficulty.easy)
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[0]);
+            }
+            else if (difficulty == Difficulty.medium)
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[1]);
+            }
+            else
+            {
+                SoundManager.Instance.PutOnLoop(audioClip[2]);
+            }
+
+        }
         // the two values can be changed to make the trajectory change
         //constant speed
         _deltaSpace += Time.deltaTime * -speed;
