@@ -45,6 +45,7 @@ namespace QRTracking
         private System.Collections.Generic.SortedDictionary<System.Guid, Microsoft.MixedReality.QR.QRCode> qrCodesList = new SortedDictionary<System.Guid, Microsoft.MixedReality.QR.QRCode>();
 
         private QRCodeWatcher qrTracker;
+        DateTime watcherStart = DateTime.Now;
         private bool capabilityInitialized = false;
         private QRCodeWatcherAccessStatus accessStatus;
         private System.Threading.Tasks.Task<QRCodeWatcherAccessStatus> capabilityTask;
@@ -182,8 +183,6 @@ namespace QRTracking
                 }
             }
 
-
-
         }
 
         private void QRCodeWatcher_Added(object sender, QRCodeAddedEventArgs args)
@@ -192,12 +191,14 @@ namespace QRTracking
 
             lock (qrCodesList)
             {
-                qrCodesList[args.Code.Id] = args.Code;
+                    if (args.Code.LastDetectedTime.DateTime > watcherStart)
+                    {
+                        qrCodesList[args.Code.Id] = args.Code;
+                        ParseQRInfoManager parseQRInfoManager = ParseQRInfoManager.Instance;
+                        parseQRInfoManager.ParseJSON(args.Code.Data);
+                    } 
             }
-
-            ParseQRInfoManager parseQRInfoManager = ParseQRInfoManager.Instance;
-            parseQRInfoManager.ParseJSON(args.Code.Data);
-
+            
         }
 
         private void QRCodeWatcher_EnumerationCompleted(object sender, object e)
