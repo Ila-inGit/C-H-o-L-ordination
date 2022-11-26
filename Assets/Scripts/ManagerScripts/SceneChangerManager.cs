@@ -77,6 +77,18 @@ public class SceneChangerManager : MonoBehaviour
         currentIndexForDifficulty++;
         return sceneDifficulty.difficulty;
     }
+    public bool isMusicActive()
+    {
+        SceneDifficulty sceneDifficulty =
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty];
+        return sceneDifficulty.isMusicActive;
+    }
+    public bool isRhythmActive()
+    {
+        SceneDifficulty sceneDifficulty =
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty];
+        return sceneDifficulty.isRhythmActive;
+    }
 
     public string getNextName()
     {

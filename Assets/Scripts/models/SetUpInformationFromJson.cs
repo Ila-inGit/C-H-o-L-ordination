@@ -14,9 +14,12 @@ public class SetUpInformationFromJson
     public int r;
     // --- doTutorial
     public bool d;
-    // --- sceneOrder
+    // --- sceneOrder 
+    // --- (5- constant, 6- natural, 7- eight, 8- harmonical)
     public List<int> o = new List<int>();
     // --- sceneDifficulty
+    // --- (0- easy no music, 1- medium no music, 2- difficult no music, 3- easy rhythm, 4- medium rhythm, 5- difficult rhythm,
+    // ---   6- easy music, 7- medium music, 8- difficult music)
     public List<int> sd = new List<int>();
 
     public static SetUpInformationFromJson CreateFromJSON(string jsonString)

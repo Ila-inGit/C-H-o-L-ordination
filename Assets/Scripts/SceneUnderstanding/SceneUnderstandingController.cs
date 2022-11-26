@@ -68,7 +68,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                     + "Visit https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/features/spatial-awareness/scene-understanding for more information.");
                 return;
             }
-            InitToggleButtonState();
+
             instantiatedPrefabs = new List<GameObject>();
             observedSceneObjects = new Dictionary<SpatialAwarenessSurfaceTypes, Dictionary<int, SpatialAwarenessSceneObject>>();
         }

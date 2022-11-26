@@ -7,7 +7,9 @@ public class OrbitNaturalSpeed : MonoBehaviour
 
     public Transform orbitingObject;
     [SerializeField]
-    AudioClip[] audioClip;
+    AudioClip[] audioClipMusic;
+    [SerializeField]
+    AudioClip[] audioClipRhythm;
     private bool isPlayed = false;
     public Ellipse orbitPath;
     [Range(0F, 1F)]
@@ -36,11 +38,11 @@ public class OrbitNaturalSpeed : MonoBehaviour
         if (SceneChangerManager.Instance != null)
         {
             Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
-            if (difficulty == Difficulty.easy)
+            if (difficulty == Difficulty.EASY)
             {
                 orbitPeriod = 9.6f;
             }
-            else if (difficulty == Difficulty.medium)
+            else if (difficulty == Difficulty.MEDIUM)
             {
                 orbitPeriod = 8f;
             }
@@ -64,17 +66,26 @@ public class OrbitNaturalSpeed : MonoBehaviour
         {
             isPlayed = true;
 
-            if (difficulty == Difficulty.easy)
+            if (difficulty == Difficulty.EASY)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[0]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[0]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[0]);
             }
-            else if (difficulty == Difficulty.medium)
+            else if (difficulty == Difficulty.MEDIUM)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[1]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[1]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[1]);
             }
-            else
+            else if (difficulty == Difficulty.DIFFICULT)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[2]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[2]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[2]);
             }
 
         }

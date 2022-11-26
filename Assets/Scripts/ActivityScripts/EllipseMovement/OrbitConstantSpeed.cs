@@ -6,7 +6,9 @@ public class OrbitConstantSpeed : MonoBehaviour
 
     public Transform planetTransform;
     [SerializeField]
-    AudioClip[] audioClip;
+    AudioClip[] audioClipRhythm;
+    [SerializeField]
+    AudioClip[] audioClipMusic;
     private bool isPlayed = false;
     private float speed;
     private Difficulty difficulty;
@@ -18,18 +20,18 @@ public class OrbitConstantSpeed : MonoBehaviour
     private void Awake()
     {
         initpos = new Vector3(
-            planetTransform.localPosition.x - 0.75f,
-            planetTransform.localPosition.y,
+            planetTransform.localPosition.x,
+            planetTransform.localPosition.y - 0.5f,
             planetTransform.localPosition.z);
 
         if (SceneChangerManager.Instance != null)
         {
             difficulty = SceneChangerManager.Instance.getDifficulty();
-            if (difficulty == Difficulty.easy)
+            if (difficulty == Difficulty.EASY)
             {
                 speed = 0.6545f;
             }
-            else if (difficulty == Difficulty.medium)
+            else if (difficulty == Difficulty.MEDIUM)
             {
                 speed = 0.7854f;
             }
@@ -49,29 +51,38 @@ public class OrbitConstantSpeed : MonoBehaviour
         if (!isPlayed)
         {
             isPlayed = true;
-            if (difficulty == Difficulty.easy)
+            if (difficulty == Difficulty.EASY)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[0]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[0]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[0]);
             }
-            else if (difficulty == Difficulty.medium)
+            else if (difficulty == Difficulty.MEDIUM)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[1]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[1]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[1]);
             }
-            else
+            else if (difficulty == Difficulty.DIFFICULT)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[2]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[2]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[2]);
             }
 
         }
         // the two values can be changed to make the trajectory change
         //constant speed
-        _deltaSpace += Time.deltaTime * -speed;
-        _x = (A * Mathf.Cos(_deltaSpace));
-        _y = B * Mathf.Sin(_deltaSpace);
+        _deltaSpace += Time.deltaTime * speed;
+        _x = (A * Mathf.Sin(_deltaSpace));
+        _y = B * Mathf.Cos(_deltaSpace);
         planetTransform.localPosition = new Vector3(initpos.x + _x, initpos.y + _y, initpos.z);
 
         //if we want to restrict the area we have increment the value of Sin
-        if (Mathf.Sin(_deltaSpace) <= Mathf.Sin(-0.9f))
+        if (Mathf.Cos(_deltaSpace) <= Mathf.Sin(-0.85f))
         {
             gameObject.GetComponent<Interactable>().enabled = true;
             gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
@@ -79,7 +90,7 @@ public class OrbitConstantSpeed : MonoBehaviour
             if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
                 FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.BOTTOM_ANGLE);
         }
-        else if (Mathf.Sin(_deltaSpace) >= Mathf.Sin(0.9f))
+        else if (Mathf.Cos(_deltaSpace) >= Mathf.Sin(0.85f))
         {
             gameObject.GetComponent<Interactable>().enabled = true;
             gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
@@ -92,7 +103,6 @@ public class OrbitConstantSpeed : MonoBehaviour
             gameObject.GetComponent<Interactable>().enabled = false;
             gameObject.GetComponent<PressableButtonHoloLens2>().enabled = false;
             if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == true)
-                /// sara vero?????
                 FindObjectOfType<TouchesCounter>().SetIsInsideAngle(false, Constants.ANGLE);
         }
 

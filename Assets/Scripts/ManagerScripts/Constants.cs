@@ -34,7 +34,10 @@ class Constants
 
 }
 
-public enum Difficulty { easy, medium, difficult };
+public enum Difficulty
+{
+    EASY, MEDIUM, DIFFICULT
+};
 
 public enum SceneNames
 {
@@ -55,9 +58,14 @@ public class SceneDifficulty
     public SceneNames name { get; set; }
     public Difficulty difficulty { get; set; }
 
-    public SceneDifficulty(SceneNames name, Difficulty difficulty)
+    public bool isMusicActive { get; set; }
+    public bool isRhythmActive { get; set; }
+
+    public SceneDifficulty(SceneNames name, Difficulty difficulty, bool isMusicActive, bool isRhythmActive)
     {
         this.name = name;
         this.difficulty = difficulty;
+        this.isMusicActive = isMusicActive;
+        this.isRhythmActive = isRhythmActive;
     }
 }

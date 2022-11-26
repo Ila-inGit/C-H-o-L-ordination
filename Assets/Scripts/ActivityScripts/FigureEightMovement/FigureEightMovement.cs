@@ -8,7 +8,9 @@ public class FigureEightMovement : MonoBehaviour
 {
     public Transform planetTransform;
     [SerializeField]
-    AudioClip[] audioClip;
+    AudioClip[] audioClipMusic;
+    [SerializeField]
+    AudioClip[] audioClipRhythm;
     private bool isPlayed = false;
     private Vector3 initpos;
 
@@ -32,11 +34,11 @@ public class FigureEightMovement : MonoBehaviour
         if (SceneChangerManager.Instance != null)
         {
             difficulty = SceneChangerManager.Instance.getDifficulty();
-            if (difficulty == Difficulty.easy)
+            if (difficulty == Difficulty.EASY)
             {
                 speed = 0.3926f;
             }
-            else if (difficulty == Difficulty.medium)
+            else if (difficulty == Difficulty.MEDIUM)
             {
                 speed = 0.5236f;
             }
@@ -58,17 +60,26 @@ public class FigureEightMovement : MonoBehaviour
         if (!isPlayed)
         {
             isPlayed = true;
-            if (difficulty == Difficulty.easy)
+            if (difficulty == Difficulty.EASY)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[0]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[0]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[0]);
             }
-            else if (difficulty == Difficulty.medium)
+            else if (difficulty == Difficulty.MEDIUM)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[1]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[1]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[1]);
             }
-            else
+            else if (difficulty == Difficulty.DIFFICULT)
             {
-                SoundManager.Instance.PutOnLoop(audioClip[2]);
+                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
+                    SoundManager.Instance.PutOnLoop(audioClipMusic[2]);
+                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
+                    SoundManager.Instance.PutOnLoop(audioClipRhythm[2]);
             }
         }
         _deltaSpace += Time.deltaTime * speed;

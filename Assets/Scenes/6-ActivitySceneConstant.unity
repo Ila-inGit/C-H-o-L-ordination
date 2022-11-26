@@ -2420,7 +2420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608335898}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0, z: 0.93}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.93}
   m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_Children:
   - {fileID: 2001995918}
@@ -2457,10 +2457,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetTransform: {fileID: 1608335906}
-  audioClip:
+  audioClipRhythm:
   - {fileID: 8300000, guid: 10ae2c293db0105468a5399be68ececa, type: 3}
   - {fileID: 8300000, guid: 689c69f6684ccd94884343938e126c5d, type: 3}
   - {fileID: 8300000, guid: b7d2bb862dad9ac4f8b17b53275c6c7c, type: 3}
+  audioClipMusic:
+  - {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
+  - {fileID: 8300000, guid: dc5dbe042c8c04b41877aaadebf53c0a, type: 3}
+  - {fileID: 8300000, guid: 58e46943f1139ec458ea58e320c115a8, type: 3}
 --- !u!54 &1608335909
 Rigidbody:
   m_ObjectHideFlags: 0
