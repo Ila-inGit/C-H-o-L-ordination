@@ -3,7 +3,7 @@ using UnityEngine;
 public class ParseQRInfoManager : MonoBehaviour
 {
     [SerializeField]
-    AudioClip QRcodeParsedCorrectly;
+    AudioClip[] parseCorectlyAudioList;
     private static ParseQRInfoManager instance;
 
     public SetUpInformation setUpInfo { get; private set; }
@@ -30,7 +30,11 @@ public class ParseQRInfoManager : MonoBehaviour
         setUpInfo = new SetUpInformation(infoFromJson);
         SceneChangerManager sceneChangerManager = SceneChangerManager.Instance;
         sceneChangerManager.Init();
-        SoundManager.Instance.Playsound(QRcodeParsedCorrectly);
+        foreach (var item in parseCorectlyAudioList)
+        {
+            SoundManager.Instance.Playsound(item);
+        }
+
     }
 
 }
