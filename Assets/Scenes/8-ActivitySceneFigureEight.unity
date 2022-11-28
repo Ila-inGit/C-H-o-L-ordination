@@ -2542,9 +2542,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0c6a5ba228580e74d876c485b4da4677, type: 3}
   - {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
   audioClipRhythm:
-  - {fileID: 8300000, guid: d2156da3829764b4f84024661e51a100, type: 3}
-  - {fileID: 8300000, guid: 93a62ead3ffdb9849bc2090a96782c6d, type: 3}
-  - {fileID: 8300000, guid: 10ae2c293db0105468a5399be68ececa, type: 3}
+  - {fileID: 8300000, guid: f394f16210a480a409f2da08df6fe62a, type: 3}
+  - {fileID: 8300000, guid: 7702753e352629d41a6c3b23ff1c2242, type: 3}
+  - {fileID: 8300000, guid: 4a8cdc777ce0d8546b455e004d08c3da, type: 3}
 --- !u!54 &1608335909
 Rigidbody:
   m_ObjectHideFlags: 0
