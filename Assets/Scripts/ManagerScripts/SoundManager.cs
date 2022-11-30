@@ -7,28 +7,31 @@ public class SoundManager : MonoBehaviour
 
     private static SoundManager instance;
 
-    private AudioSource audioSource;
+    [SerializeField]
+    public AudioSource audioSource;
 
     public static SoundManager Instance
     {
         get
         {
-            if (instance == null) instance = GameObject.FindObjectOfType<SoundManager>();
             return instance;
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
+        if (instance == null) instance = GameObject.FindObjectOfType<SoundManager>();
     }
 
     public void Playsound(AudioClip audioToPlay)
     {
-        audioSource.PlayOneShot(audioToPlay);
+        // audioSource.PlayOneShot(audioToPlay);
+        audioSource.clip = audioToPlay;
+        audioSource.Play();
     }
     public void PutOnLoop(AudioClip audioToPlay)
     {
+        audioSource.clip = null;
         audioSource.loop = true;
         audioSource.clip = audioToPlay;
         audioSource.Play();

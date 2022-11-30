@@ -27,16 +27,19 @@ public class SceneChangerManager : MonoBehaviour
     public void Init()
     {
         // need to be initilized and modified if some scene is added
-        enumToCurrentScene.Add(SceneNames.MY_MANAGER_SCENE, Constants.MY_MANAGER_SCENE);
-        enumToCurrentScene.Add(SceneNames.SETTING_SCENE, Constants.SETTING_SCENE);
-        enumToCurrentScene.Add(SceneNames.TUTORIAL_FIRST_PART, Constants.TUTORIAL_FIRST_PART);
-        enumToCurrentScene.Add(SceneNames.TUTORIAL_SECOND_PART, Constants.TUTORIAL_SECOND_PART);
-        enumToCurrentScene.Add(SceneNames.START_ACTIVITIES_SCENE, Constants.START_ACTIVITIES_SCENE);
-        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_CONSTANT, Constants.ACTIVITY_SCENE_CONSTANT);
-        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_NATURAL, Constants.ACTIVITY_SCENE_NATURAL);
-        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, Constants.ACTIVITY_SCENE_FIGURE_EIGHT);
-        enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, Constants.ACTIVITY_SCENE_HARMONIC);
-        enumToCurrentScene.Add(SceneNames.TRANSITION_SCENE, Constants.TRANSITION_SCENE);
+        if (enumToCurrentScene.Count == 0)
+        {
+            enumToCurrentScene.Add(SceneNames.MY_MANAGER_SCENE, Constants.MY_MANAGER_SCENE);
+            enumToCurrentScene.Add(SceneNames.SETTING_SCENE, Constants.SETTING_SCENE);
+            enumToCurrentScene.Add(SceneNames.TUTORIAL_FIRST_PART, Constants.TUTORIAL_FIRST_PART);
+            enumToCurrentScene.Add(SceneNames.TUTORIAL_SECOND_PART, Constants.TUTORIAL_SECOND_PART);
+            enumToCurrentScene.Add(SceneNames.START_ACTIVITIES_SCENE, Constants.START_ACTIVITIES_SCENE);
+            enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_CONSTANT, Constants.ACTIVITY_SCENE_CONSTANT);
+            enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_NATURAL, Constants.ACTIVITY_SCENE_NATURAL);
+            enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, Constants.ACTIVITY_SCENE_FIGURE_EIGHT);
+            enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, Constants.ACTIVITY_SCENE_HARMONIC);
+            enumToCurrentScene.Add(SceneNames.TRANSITION_SCENE, Constants.TRANSITION_SCENE);
+        }
 
         sceneSequence.Clear();
 
@@ -80,13 +83,13 @@ public class SceneChangerManager : MonoBehaviour
     public bool isMusicActive()
     {
         SceneDifficulty sceneDifficulty =
-            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty];
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
         return sceneDifficulty.isMusicActive;
     }
     public bool isRhythmActive()
     {
         SceneDifficulty sceneDifficulty =
-            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty];
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
         return sceneDifficulty.isRhythmActive;
     }
 

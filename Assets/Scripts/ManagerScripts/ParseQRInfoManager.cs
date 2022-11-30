@@ -3,7 +3,7 @@ using UnityEngine;
 public class ParseQRInfoManager : MonoBehaviour
 {
     [SerializeField]
-    AudioClip[] parseCorectlyAudioList;
+    AudioClip parseCorectlyAudioClip;
     private static ParseQRInfoManager instance;
 
     public SetUpInformation setUpInfo { get; private set; }
@@ -25,16 +25,11 @@ public class ParseQRInfoManager : MonoBehaviour
 
     public void ParseJSON(string jsonString)
     {
-        // string s = " {\"p\": 1234,\"m\":1121,\"t\": 20,\"r\": 12, \"d\": false,\"o\": [5,6,7,8,5,6,7,8,5,7,8,5],\"sd\": [0,1,2,0,0,2,1,2,0,1,2,0]}";
+        // string s = " {\"p\": 1234,\"m\":1121,\"t\": 20,\"r\": 12, \"d\": true,\"o\": [5,5,5,6,6,6,7,7,7,8,8,8],\"sd\": [0,1,2,3,4,5,6,7,8,1,7,0]}";
         SetUpInformationFromJson infoFromJson = SetUpInformationFromJson.CreateFromJSON(jsonString);
         setUpInfo = new SetUpInformation(infoFromJson);
         SceneChangerManager sceneChangerManager = SceneChangerManager.Instance;
         sceneChangerManager.Init();
-        foreach (var item in parseCorectlyAudioList)
-        {
-            SoundManager.Instance.Playsound(item);
-        }
-
+        SoundManager.Instance.Playsound(parseCorectlyAudioClip);
     }
-
 }
