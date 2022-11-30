@@ -2458,9 +2458,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetTransform: {fileID: 1608335906}
   audioClipRhythm:
-  - {fileID: 8300000, guid: 10ae2c293db0105468a5399be68ececa, type: 3}
-  - {fileID: 8300000, guid: 689c69f6684ccd94884343938e126c5d, type: 3}
-  - {fileID: 8300000, guid: b7d2bb862dad9ac4f8b17b53275c6c7c, type: 3}
+  - {fileID: 8300000, guid: 4a8cdc777ce0d8546b455e004d08c3da, type: 3}
+  - {fileID: 8300000, guid: 1b41d29e0dc9bee4cb7b631aca5ca313, type: 3}
+  - {fileID: 8300000, guid: d987c7f3d45eb0e42ae631318d89dfee, type: 3}
   audioClipMusic:
   - {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
   - {fileID: 8300000, guid: dc5dbe042c8c04b41877aaadebf53c0a, type: 3}
