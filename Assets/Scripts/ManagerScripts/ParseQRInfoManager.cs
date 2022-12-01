@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ParseQRInfoManager : MonoBehaviour
 {
-    [SerializeField]
-    AudioClip parseCorectlyAudioClip;
+
+    public AudioClip parseCorectlyAudioClip;
     private static ParseQRInfoManager instance;
 
     public SetUpInformation setUpInfo { get; private set; }

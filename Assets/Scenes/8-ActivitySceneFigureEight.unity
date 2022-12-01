@@ -1667,7 +1667,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactablePlanet: {fileID: 1608335898}
   timer: {fileID: 391214345}
-  startedTimer: 0
   time: 0
 --- !u!1 &1473276257
 GameObject:
@@ -2537,14 +2536,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetTransform: {fileID: 1608335906}
-  audioClipMusic:
-  - {fileID: 8300000, guid: cc3a22e33934db84ea49da16f46b535a, type: 3}
-  - {fileID: 8300000, guid: 0c6a5ba228580e74d876c485b4da4677, type: 3}
-  - {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
-  audioClipRhythm:
-  - {fileID: 8300000, guid: f394f16210a480a409f2da08df6fe62a, type: 3}
-  - {fileID: 8300000, guid: 7702753e352629d41a6c3b23ff1c2242, type: 3}
-  - {fileID: 8300000, guid: 4a8cdc777ce0d8546b455e004d08c3da, type: 3}
+  easyRhythm: {fileID: 8300000, guid: f394f16210a480a409f2da08df6fe62a, type: 3}
+  mediumRhythm: {fileID: 8300000, guid: 7702753e352629d41a6c3b23ff1c2242, type: 3}
+  difficultRhythm: {fileID: 8300000, guid: 4a8cdc777ce0d8546b455e004d08c3da, type: 3}
+  easyMusic: {fileID: 8300000, guid: cc3a22e33934db84ea49da16f46b535a, type: 3}
+  mediumMusic: {fileID: 8300000, guid: 0c6a5ba228580e74d876c485b4da4677, type: 3}
+  difficultMusic: {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
 --- !u!54 &1608335909
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2731,7 +2728,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactablePlanet: {fileID: 1608335898}
   timer: {fileID: 391214345}
-  startedTimer: 0
   time: 0
 --- !u!65 &1903581472
 BoxCollider:

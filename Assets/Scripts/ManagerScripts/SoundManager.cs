@@ -26,11 +26,14 @@ public class SoundManager : MonoBehaviour
     public void Playsound(AudioClip audioToPlay)
     {
         // audioSource.PlayOneShot(audioToPlay);
+        if (audioSource == null) audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = null;
         audioSource.clip = audioToPlay;
         audioSource.Play();
     }
     public void PutOnLoop(AudioClip audioToPlay)
     {
+        if (audioSource == null) audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.clip = null;
         audioSource.loop = true;
         audioSource.clip = audioToPlay;

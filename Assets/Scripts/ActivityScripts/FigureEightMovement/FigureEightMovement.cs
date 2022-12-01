@@ -7,11 +7,13 @@ using UnityEngine;
 public class FigureEightMovement : MonoBehaviour
 {
     public Transform planetTransform;
-    [SerializeField]
-    AudioClip[] audioClipMusic;
-    [SerializeField]
-    AudioClip[] audioClipRhythm;
-    private bool isPlayed = false;
+    public AudioClip easyRhythm;
+    public AudioClip mediumRhythm;
+    public AudioClip difficultRhythm;
+    public AudioClip easyMusic;
+    public AudioClip mediumMusic;
+    public AudioClip difficultMusic;
+    private bool canMove = false;
     private Vector3 initpos;
 
     private Difficulty difficulty;
@@ -52,71 +54,84 @@ public class FigureEightMovement : MonoBehaviour
             speed = 0.5236f;
         }
 
+        StartSound();
+    }
 
+    private void StartSound()
+    {
+        if (difficulty == Difficulty.EASY)
+        {
+            if (SceneChangerManager.Instance.isMusicActive() && easyMusic != null)
+                SoundManager.Instance.PutOnLoop(easyMusic);
+            if (SceneChangerManager.Instance.isRhythmActive() && easyRhythm != null)
+                SoundManager.Instance.PutOnLoop(easyRhythm);
+            StartCoroutine(Wait(1f));
+        }
+        else if (difficulty == Difficulty.MEDIUM)
+        {
+            if (SceneChangerManager.Instance.isMusicActive() && mediumMusic != null)
+                SoundManager.Instance.PutOnLoop(mediumMusic);
+            if (SceneChangerManager.Instance.isRhythmActive() && mediumRhythm != null)
+                SoundManager.Instance.PutOnLoop(mediumRhythm);
+            StartCoroutine(Wait(0.9f));
+        }
+        else if (difficulty == Difficulty.DIFFICULT)
+        {
+            if (SceneChangerManager.Instance.isMusicActive() && difficultMusic != null)
+                SoundManager.Instance.PutOnLoop(difficultMusic);
+            if (SceneChangerManager.Instance.isRhythmActive() && difficultRhythm != null)
+                SoundManager.Instance.PutOnLoop(difficultRhythm);
+            StartCoroutine(Wait(0.8f));
+        }
+
+    }
+
+    IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canMove = true;
     }
 
     void FixedUpdate()
     {
-        if (!isPlayed)
+        if (canMove)
         {
-            isPlayed = true;
-            if (difficulty == Difficulty.EASY)
+            _deltaSpace += Time.deltaTime * speed;
+            _x = A * (Mathf.Cos(_deltaSpace));
+            _y = B * (Mathf.Sin(2 * _deltaSpace) / 2);
+            planetTransform.localPosition =
+                new Vector3(initpos.x + _x, initpos.y + _y, initpos.z);
+
+
+            //if we want to restrict the area we have increment the value of Cos
+            if (Mathf.Cos(_deltaSpace) >= Mathf.Cos(5.8f))
             {
-                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
-                    SoundManager.Instance.PutOnLoop(audioClipMusic[0]);
-                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
-                    SoundManager.Instance.PutOnLoop(audioClipRhythm[0]);
+                gameObject.GetComponent<Interactable>().enabled = true;
+                gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
+                if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
+                    FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.RIGHT_ANGLE);
+
+                // Debug.Log("bottom box: "+_rightCounter + "touches");
             }
-            else if (difficulty == Difficulty.MEDIUM)
+            else if (Mathf.Cos(_deltaSpace) <= -Mathf.Cos(5.8f))
             {
-                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
-                    SoundManager.Instance.PutOnLoop(audioClipMusic[1]);
-                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
-                    SoundManager.Instance.PutOnLoop(audioClipRhythm[1]);
+                gameObject.GetComponent<Interactable>().enabled = true;
+                gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
+
+                // Debug.Log("bottom box: "+_leftCounter + "touches");
+
+                if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
+                    FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.LEFT_ANGLE);
             }
-            else if (difficulty == Difficulty.DIFFICULT)
+            else
             {
-                if (SceneChangerManager.Instance.isMusicActive() && audioClipMusic != null)
-                    SoundManager.Instance.PutOnLoop(audioClipMusic[2]);
-                if (SceneChangerManager.Instance.isRhythmActive() && audioClipRhythm != null)
-                    SoundManager.Instance.PutOnLoop(audioClipRhythm[2]);
+                gameObject.GetComponent<Interactable>().enabled = false;
+                gameObject.GetComponent<PressableButtonHoloLens2>().enabled = false;
+                // Debug.Log("not near box");
+
+                if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == true)
+                    FindObjectOfType<TouchesCounter>().SetIsInsideAngle(false, Constants.ANGLE);
             }
-        }
-        _deltaSpace += Time.deltaTime * speed;
-        _x = A * (Mathf.Cos(_deltaSpace));
-        _y = B * (Mathf.Sin(2 * _deltaSpace) / 2);
-        planetTransform.localPosition =
-            new Vector3(initpos.x + _x, initpos.y + _y, initpos.z);
-
-
-        //if we want to restrict the area we have increment the value of Cos
-        if (Mathf.Cos(_deltaSpace) >= Mathf.Cos(5.8f))
-        {
-            gameObject.GetComponent<Interactable>().enabled = true;
-            gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
-            if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
-                FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.RIGHT_ANGLE);
-
-            // Debug.Log("bottom box: "+_rightCounter + "touches");
-        }
-        else if (Mathf.Cos(_deltaSpace) <= -Mathf.Cos(5.8f))
-        {
-            gameObject.GetComponent<Interactable>().enabled = true;
-            gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
-
-            // Debug.Log("bottom box: "+_leftCounter + "touches");
-
-            if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
-                FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.LEFT_ANGLE);
-        }
-        else
-        {
-            gameObject.GetComponent<Interactable>().enabled = false;
-            gameObject.GetComponent<PressableButtonHoloLens2>().enabled = false;
-            // Debug.Log("not near box");
-
-            if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == true)
-                FindObjectOfType<TouchesCounter>().SetIsInsideAngle(false, Constants.ANGLE);
         }
 
     }
