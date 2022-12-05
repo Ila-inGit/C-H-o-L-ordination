@@ -30,6 +30,6 @@ public class ParseQRInfoManager : MonoBehaviour
         setUpInfo = new SetUpInformation(infoFromJson);
         SceneChangerManager sceneChangerManager = SceneChangerManager.Instance;
         sceneChangerManager.Init();
-        SoundManager.Instance.Playsound(parseCorectlyAudioClip);
+        SoundManager.Instance.CanPlay(parseCorectlyAudioClip);
     }
 }

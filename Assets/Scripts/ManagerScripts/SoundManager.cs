@@ -6,9 +6,11 @@ public class SoundManager : MonoBehaviour
 {
 
     private static SoundManager instance;
-
-    [SerializeField]
     public AudioSource audioSource;
+    [HideInInspector]
+    public AudioClip audioToPlay;
+    public bool canPlay { get; set; }
+
 
     public static SoundManager Instance
     {
@@ -21,16 +23,40 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = GameObject.FindObjectOfType<SoundManager>();
+        if (audioSource == null) audioSource = gameObject.GetComponent<AudioSource>();
+        canPlay = false;
+        StartCoroutine(playSoundCorutine());
     }
 
-    public void Playsound(AudioClip audioToPlay)
+    public void CanPlay(AudioClip clip)
     {
-        // audioSource.PlayOneShot(audioToPlay);
+        audioToPlay = clip;
+        canPlay = true;
+    }
+
+    IEnumerator playSoundCorutine()
+    {
+        while (!canPlay)
+        {
+            yield return null;
+        }
+        if (audioToPlay != null)
+        {
+            audioSource.clip = audioToPlay;
+            audioSource.Play();
+            yield return new WaitForSeconds(audioToPlay.length);
+            canPlay = false;
+        }
+        StartCoroutine(playSoundCorutine());
+    }
+
+    public void Playsound(AudioClip clip)
+    {
         if (audioSource == null) audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = null;
-        audioSource.clip = audioToPlay;
+        audioSource.clip = clip;
         audioSource.Play();
     }
+
     public void PutOnLoop(AudioClip audioToPlay)
     {
         if (audioSource == null) audioSource = gameObject.GetComponent<AudioSource>();
@@ -39,6 +65,7 @@ public class SoundManager : MonoBehaviour
         audioSource.clip = audioToPlay;
         audioSource.Play();
     }
+    
     public void StopLoop()
     {
         audioSource.Stop();
