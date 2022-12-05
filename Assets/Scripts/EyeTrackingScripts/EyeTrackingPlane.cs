@@ -49,8 +49,8 @@ public class EyeTrackingPlane : MonoBehaviour
             // Position (point) at which the gaze manager hit an object -> user is looking at it
             eyeHitPos = CoreServices.InputSystem.EyeGazeProvider.HitPosition;
 
-            EyeTrackerDataCollector.Instance.addToFile(new MyEyeTrackerData("timeReset", 1, 
-            "-1", gameObject.scene.name, gazeOrigin, gazeDir, headDir, eyeOrigin, eyeDir, eyeHitPos));
+            EyeTrackerDataCollector.Instance.addToFile(new MyEyeTrackerData(Constants.EYETRACKING_PLANE, ParseQRInfoManager.Instance.setUpInfo.patientID, 
+            "-1", gameObject.scene.name, headOrigin, headDir, gazeOrigin, gazeDir, eyeOrigin, eyeDir, eyeHitPos));
 
         }        
         

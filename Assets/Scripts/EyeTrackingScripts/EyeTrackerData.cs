@@ -11,7 +11,7 @@ public class MyEyeTrackerData
 
     // Cam / Head tracking
     private Vector3 gazeOrigin, gazeDir; 
-    private Vector3 headDir;
+    private Vector3 headOrigin, headDir;
 
     // Smoothed eye gaze tracking 
     private Vector3 eyeOrigin; // (EyeOrigin.x, EyeOrigin.y, EyeOrigin.z)
@@ -21,7 +21,7 @@ public class MyEyeTrackerData
     public string timeStamp;
 
     //public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName, string? boxName, string angleType, Vector3 headOrigin, Vector3 headDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
-    public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 headDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
+    public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName,  Vector3 headOrigin, Vector3 headDir, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
     {
         this.identifier = identifier;
         this.subject = subject;
@@ -29,9 +29,12 @@ public class MyEyeTrackerData
         this.activityType = getActivityType(activityName);
         //this.boxType = getBoxType(boxName);
         //this.angleType = angleType;
+        this.headOrigin = headOrigin;
+        this.headDir = headDir;
+        
         this.gazeOrigin = gazeOrigin;
         this.gazeDir = gazeDir;
-        this.headDir = headDir;
+        
         this.eyeOrigin = eyeOrigin;
         this.eyeDir = eyeDir;
         this.eyeHitPos = eyeHitPos;
