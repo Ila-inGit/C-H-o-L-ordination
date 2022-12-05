@@ -68,7 +68,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                     + "Visit https://docs.microsoft.com/windows/mixed-reality/mrtk-unity/features/spatial-awareness/scene-understanding for more information.");
                 return;
             }
-            InitToggleButtonState();
+
             instantiatedPrefabs = new List<GameObject>();
             observedSceneObjects = new Dictionary<SpatialAwarenessSurfaceTypes, Dictionary<int, SpatialAwarenessSceneObject>>();
         }
@@ -197,8 +197,6 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.SceneUnderstanding
                 // dovrebbe essere meglio per le performances ma vorrei proprio smettere di fare il scene understanding
                 // da capire se una volta instanziato e tolta la scena lui continua
                 ToggleAutoUpdate();
-                // TODO: DELETE LINE AFTER DEBUG FINISH => TO TRY INIT FROM JSON
-                ParseQRInfoManager.Instance.ParseJSON("");
             }
         }
 

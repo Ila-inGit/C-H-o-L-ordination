@@ -9,8 +9,6 @@ public class MakePlanetInteractable : MonoBehaviour
 
     public StartTimer timer;
 
-    public bool startedTimer = false;
-
     public float time = 0f;
     private bool secondaBox = false;
     private bool done = false;
@@ -29,32 +27,20 @@ public class MakePlanetInteractable : MonoBehaviour
 
             if (!secondaBox && !done)
             {
-                startedTimer = !startedTimer;
-
                 secondaBox = true;
             }
             else if (secondaBox && !done)
             {
-                startedTimer = !startedTimer;
                 done = true;
             }
 
         }
     }
-
-    private void Update()
-    {
-        if (startedTimer)
-        {
-            time = time + Time.deltaTime;
-        }
-    }
-
     private void OnTriggerExit(Collider collider)
     {
         if (collider.tag == "Planet")
         {
-            
+
             FindObjectOfType<ChangeSpriteOnTouch>().ResetMesh();
             StartCoroutine(Wait());
             if (FindObjectOfType<TouchesCounter>() != null)

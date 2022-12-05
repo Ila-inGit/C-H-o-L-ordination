@@ -2654,7 +2654,7 @@ MonoBehaviour:
   objsToHide:
   - {fileID: 69495476}
   deactivateSelf: 0
-  hideOnStart: 0
+  hideOnStart: 1
 --- !u!1 &1787345519
 GameObject:
   m_ObjectHideFlags: 0

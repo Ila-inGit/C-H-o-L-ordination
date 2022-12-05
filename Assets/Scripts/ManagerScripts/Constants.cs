@@ -7,10 +7,10 @@ class Constants
     public const string TUTORIAL_FIRST_PART = "3-TutorialFirstPart";
     public const string TUTORIAL_SECOND_PART = "4-TutorialSecondPart";
     public const string START_ACTIVITIES_SCENE = "5-StartActivitiesScene";
-    public const string ACTIVITY_SCENE_CONSTANT = "5-ActivitySceneConstant";
-    public const string ACTIVITY_SCENE_NATURAL = "6-ActivitySceneNatural";
-    public const string ACTIVITY_SCENE_FIGURE_EIGHT = "7-ActivitySceneFigureEight";
-    public const string ACTIVITY_SCENE_HARMONIC = "8-ActivitySceneHarmonic";
+    public const string ACTIVITY_SCENE_CONSTANT = "6-ActivitySceneConstant";
+    public const string ACTIVITY_SCENE_NATURAL = "7-ActivitySceneNatural";
+    public const string ACTIVITY_SCENE_FIGURE_EIGHT = "8-ActivitySceneFigureEight";
+    public const string ACTIVITY_SCENE_HARMONIC = "9-ActivitySceneHarmonic";
     public const string TRANSITION_SCENE = "TransitionScene";
     #endregion Scene Names
 
@@ -34,7 +34,10 @@ class Constants
 
 }
 
-public enum Difficulty { easy, medium, difficult };
+public enum Difficulty
+{
+    EASY, MEDIUM, DIFFICULT
+};
 
 public enum SceneNames
 {
@@ -55,9 +58,14 @@ public class SceneDifficulty
     public SceneNames name { get; set; }
     public Difficulty difficulty { get; set; }
 
-    public SceneDifficulty(SceneNames name, Difficulty difficulty)
+    public bool isMusicActive { get; set; }
+    public bool isRhythmActive { get; set; }
+
+    public SceneDifficulty(SceneNames name, Difficulty difficulty, bool isMusicActive, bool isRhythmActive)
     {
         this.name = name;
         this.difficulty = difficulty;
+        this.isMusicActive = isMusicActive;
+        this.isRhythmActive = isRhythmActive;
     }
 }

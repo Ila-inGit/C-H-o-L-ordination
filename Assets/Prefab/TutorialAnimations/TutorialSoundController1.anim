@@ -31,7 +31,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 40.033333
+    m_StopTime: 30.033333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -54,46 +54,11 @@ AnimationClip:
   - time: 0.16666667
     functionName: PlayAudioClip
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 5420b56f376f25f408a28ec8c21ab206, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: b9a13f433afe3724faf9cb05f5128f79, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.983333
-    functionName: PlayAudioClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: bf8d8f17354bb7e46ab673e920e90a36, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 10
-    functionName: PlayAudioClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 6f5325c899942b949878da0b8d29bc1c, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 15.016666
-    functionName: PlayAudioClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: b43ad1934ef77ec4fa420ae28d43fe7d, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 20.016666
-    functionName: PlayAudioClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 2e64987051c7be644ad7279299ee1f5f, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 25.016666
-    functionName: PlayAudioClip
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f74a3fe8b64a22c469b24a61ef9de24b, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 40.033333
+  - time: 30.033333
     functionName: HideObjectsAfterPress
     data: 
     objectReferenceParameter: {fileID: 0}

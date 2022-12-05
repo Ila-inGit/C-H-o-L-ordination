@@ -6,11 +6,19 @@ public class OrbitNaturalSpeed : MonoBehaviour
 {
 
     public Transform orbitingObject;
+    public AudioClip easyRhythm;
+    public AudioClip mediumRhythm;
+    public AudioClip difficultRhythm;
+    public AudioClip easyMusic;
+    public AudioClip mediumMusic;
+    public AudioClip difficultMusic;
+    private bool canMove = false;
     public Ellipse orbitPath;
     [Range(0F, 1F)]
     public float orbitProgress = 0f;
-    private float orbitPeriod;
     public bool orbitActive = true;
+    private float orbitPeriod;
+    private Difficulty difficulty;
     private Vector3 initpos;
 
 
@@ -29,22 +37,65 @@ public class OrbitNaturalSpeed : MonoBehaviour
             orbitingObject.localPosition.z
             );
 
-        Difficulty difficulty = SceneChangerManager.Instance.getDifficulty();
-        if (difficulty == Difficulty.easy)
+        if (SceneChangerManager.Instance != null)
         {
-            orbitPeriod = 9.85f;
-        }
-        else if (difficulty == Difficulty.medium)
-        {
-            orbitPeriod = 7.85f;
+            difficulty = SceneChangerManager.Instance.getDifficulty();
+            if (difficulty == Difficulty.EASY)
+            {
+                orbitPeriod = 9.6f;
+            }
+            else if (difficulty == Difficulty.MEDIUM)
+            {
+                orbitPeriod = 8f;
+            }
+            else
+            {
+                orbitPeriod = 6.8572f;
+            }
         }
         else
         {
-            orbitPeriod = 5.85f;
+            orbitPeriod = 8f;
         }
 
-        SetOrbitingObjectPosition();
+        StartSound();
+        // SetOrbitingObjectPosition();
         StartCoroutine(AnimateOrbit());
+    }
+
+    private void StartSound()
+    {
+        if (difficulty == Difficulty.EASY)
+        {
+            if (SceneChangerManager.Instance.isMusicActive() && easyMusic != null)
+                SoundManager.Instance.PutOnLoop(easyMusic);
+            if (SceneChangerManager.Instance.isRhythmActive() && easyRhythm != null)
+                SoundManager.Instance.PutOnLoop(easyRhythm);
+            StartCoroutine(Wait(0.6f));
+        }
+        else if (difficulty == Difficulty.MEDIUM)
+        {
+            if (SceneChangerManager.Instance.isMusicActive() && mediumMusic != null)
+                SoundManager.Instance.PutOnLoop(mediumMusic);
+            if (SceneChangerManager.Instance.isRhythmActive() && mediumRhythm != null)
+                SoundManager.Instance.PutOnLoop(mediumRhythm);
+            StartCoroutine(Wait(0.5f));
+        }
+        else if (difficulty == Difficulty.DIFFICULT)
+        {
+            if (SceneChangerManager.Instance.isMusicActive() && difficultMusic != null)
+                SoundManager.Instance.PutOnLoop(difficultMusic);
+            if (SceneChangerManager.Instance.isRhythmActive() && difficultRhythm != null)
+                SoundManager.Instance.PutOnLoop(difficultRhythm);
+            StartCoroutine(Wait(0.4f));
+        }
+
+    }
+
+    IEnumerator Wait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canMove = true;
     }
 
     void SetOrbitingObjectPosition()
@@ -86,6 +137,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
             if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == true)
                 FindObjectOfType<TouchesCounter>().SetIsInsideAngle(false, Constants.ANGLE);
         }
+
     }
 
     IEnumerator AnimateOrbit()
@@ -98,10 +150,12 @@ public class OrbitNaturalSpeed : MonoBehaviour
 
         while (orbitActive)
         {
-
-            orbitProgress += Time.deltaTime * frequence;
-            orbitProgress %= 1f;
-            SetOrbitingObjectPosition();
+            if (canMove)
+            {
+                orbitProgress += Time.deltaTime * frequence;
+                orbitProgress %= 1f;
+                SetOrbitingObjectPosition();
+            }
             yield return null;
         }
     }
