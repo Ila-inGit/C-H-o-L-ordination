@@ -41,7 +41,19 @@ public class PointsCounterForSlotMachine : MonoBehaviour
         {
             await Task.Delay(100 + i * 5);
             int index = Random.Range(0, materials.Count - 1);
-            renderer.material = materials[index];
+
+            if (materials[index] == materials[finalIndex] && finalIndex < materials.Count - 1)
+            {
+                renderer.material = materials[finalIndex + 1];
+            }
+            else if (materials[index] == materials[finalIndex] && finalIndex == materials.Count - 1)
+            {
+                renderer.material = materials[finalIndex - 1];
+            }
+            else
+            {
+                renderer.material = materials[index];
+            }
         }
         if (isStar)
         {
