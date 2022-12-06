@@ -24,6 +24,8 @@ class Constants
     public const string BOTTOM_ANGLE = "BottomAngle";
     public const string LEFT_ANGLE = "LeftAngle";
     public const string RIGHT_ANGLE = "RightAngle";
+    public const string RESET_TIMER = "ResetTimer";
+    public const string TIME_BEFORE_CLICK = "TimeBeforeClick";
     public const string ANGLE = "Angle";
     public const string PLANET = "Planet";
     public const string CONTINUE_BUTTON = "ContinueButton";
@@ -61,11 +63,16 @@ public class SceneDifficulty
     public bool isMusicActive { get; set; }
     public bool isRhythmActive { get; set; }
 
-    public SceneDifficulty(SceneNames name, Difficulty difficulty, bool isMusicActive, bool isRhythmActive)
+    public bool isRhythmNotSynch { get; set; }
+    public bool isMusicNotSynch { get; set; }
+
+    public SceneDifficulty(SceneNames name, Difficulty difficulty, bool isMusicActive, bool isRhythmActive, bool isMusicNotSynch, bool isRhythmNotSynch)
     {
         this.name = name;
         this.difficulty = difficulty;
         this.isMusicActive = isMusicActive;
         this.isRhythmActive = isRhythmActive;
+        this.isRhythmNotSynch = isRhythmNotSynch;
+        this.isMusicNotSynch = isMusicNotSynch;
     }
 }

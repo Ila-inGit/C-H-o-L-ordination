@@ -36,7 +36,8 @@ public class StartTimer : MonoBehaviour
         if (!clicked && currentTag != Constants.TUTORIAL_BOX)
         {
             // Debug.Log("time taken to pass through box: " + timeBeforeClick);
-            DataCollector.Instance.addToFile(new MyData("timeReset", ParseQRInfoManager.Instance.setUpInfo.patientID, "-1", gameObject.scene.name, currentTag, "-1", "_00", -1, timeBeforeClick, "-1", -1));
+            DataCollector.Instance.addToFile(
+                new MyData(Constants.RESET_TIMER, ParseQRInfoManager.Instance.setUpInfo.patientID, "-1", gameObject.scene.name, currentTag, "-1", "_00", -1, timeBeforeClick, "-1", -1, SceneChangerManager.Instance.isMusicActive(), SceneChangerManager.Instance.isRhythmActive()));
         }
 
         timeBeforeClick = 0;
@@ -48,7 +49,8 @@ public class StartTimer : MonoBehaviour
     public void StopTimer()
     {
         // Debug.Log("time taken before click: " + timeBeforeClick);
-        DataCollector.Instance.addToFile(new MyData("timeBeforeClick", ParseQRInfoManager.Instance.setUpInfo.patientID, "-1", gameObject.scene.name, currentTag, "-1", "11", timeBeforeClick, -1, "-1", -1));
+        DataCollector.Instance.addToFile(
+            new MyData(Constants.TIME_BEFORE_CLICK, ParseQRInfoManager.Instance.setUpInfo.patientID, "-1", gameObject.scene.name, currentTag, "-1", "11", timeBeforeClick, -1, "-1", -1, SceneChangerManager.Instance.isMusicActive(), SceneChangerManager.Instance.isRhythmActive()));
         clicked = true;
         start = false;
     }
