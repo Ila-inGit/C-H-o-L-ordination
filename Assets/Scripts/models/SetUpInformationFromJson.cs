@@ -19,8 +19,8 @@ public class SetUpInformationFromJson
     public List<int> o = new List<int>();
     // --- sceneDifficulty
     // --- (0- easy no music, 1- medium no music, 2- difficult no music, 3- easy rhythm, 4- medium rhythm, 5- difficult rhythm,
-    // ---   6- easy music, 7- medium music, 8- difficult music, 9- easy rhythm, 10- medium rhythm, 11- difficult rhythm, 
-    // ---   12- easy music, 13- medium music, 14- difficult music,)
+    // ---   6- easy music, 7- medium music, 8- difficult music, 9- easy rhythm asynch, 10- medium rhythm asynch, 11- difficult rhythm asynch, 
+    // ---   12- easy music asynch, 13- medium music asynch, 14- difficult music asynch)
     public List<int> sd = new List<int>();
 
     public static SetUpInformationFromJson CreateFromJSON(string jsonString)

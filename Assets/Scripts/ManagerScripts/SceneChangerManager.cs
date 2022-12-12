@@ -57,7 +57,7 @@ public class SceneChangerManager : MonoBehaviour
         {
             sceneSequence.Add(item.name);
         }
-        sceneSequence.Add(SceneNames.START_ACTIVITIES_SCENE);
+        sceneSequence.Add(SceneNames.FINAL_SCENE);
     }
 
     public string getCurrentName(SceneNames name)

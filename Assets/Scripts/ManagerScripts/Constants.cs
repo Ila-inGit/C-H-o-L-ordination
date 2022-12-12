@@ -12,6 +12,7 @@ class Constants
     public const string ACTIVITY_SCENE_FIGURE_EIGHT = "8-ActivitySceneFigureEight";
     public const string ACTIVITY_SCENE_HARMONIC = "9-ActivitySceneHarmonic";
     public const string TRANSITION_SCENE = "TransitionScene";
+    public const string FINAL_SCENE = "FinalScene";
     #endregion Scene Names
 
     #region Tag names
@@ -52,7 +53,8 @@ public enum SceneNames
     ACTIVITY_SCENE_NATURAL,
     ACTIVITY_SCENE_FIGURE_EIGHT,
     ACTIVITY_SCENE_HARMONIC,
-    TRANSITION_SCENE
+    TRANSITION_SCENE,
+    FINAL_SCENE
 }
 
 public class SceneDifficulty
