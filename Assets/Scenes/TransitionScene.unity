@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToActive: {fileID: 879564042}
-  numberOfSeconds: 20
+  numberOfSeconds: 15
 --- !u!1001 &407318782
 PrefabInstance:
   m_ObjectHideFlags: 0

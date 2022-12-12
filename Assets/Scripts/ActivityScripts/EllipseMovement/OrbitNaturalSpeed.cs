@@ -71,6 +71,10 @@ public class OrbitNaturalSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(easyMusic);
             if (SceneChangerManager.Instance.isRhythmActive() && easyRhythm != null)
                 SoundManager.Instance.PutOnLoop(easyRhythm);
+            if (SceneChangerManager.Instance.isMusicNotSynch() && mediumMusic != null)
+                SoundManager.Instance.PutOnLoop(mediumMusic);
+            if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
+                SoundManager.Instance.PutOnLoop(mediumRhythm);
             StartCoroutine(Wait(0.6f));
         }
         else if (difficulty == Difficulty.MEDIUM)
@@ -79,6 +83,10 @@ public class OrbitNaturalSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmActive() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
+            if (SceneChangerManager.Instance.isMusicNotSynch() && difficultMusic != null)
+                SoundManager.Instance.PutOnLoop(difficultMusic);
+            if (SceneChangerManager.Instance.isRhythmNotSynch() && difficultRhythm != null)
+                SoundManager.Instance.PutOnLoop(difficultRhythm);
             StartCoroutine(Wait(0.5f));
         }
         else if (difficulty == Difficulty.DIFFICULT)
@@ -87,6 +95,10 @@ public class OrbitNaturalSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(difficultMusic);
             if (SceneChangerManager.Instance.isRhythmActive() && difficultRhythm != null)
                 SoundManager.Instance.PutOnLoop(difficultRhythm);
+            if (SceneChangerManager.Instance.isMusicNotSynch() && mediumMusic != null)
+                SoundManager.Instance.PutOnLoop(mediumMusic);
+            if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
+                SoundManager.Instance.PutOnLoop(mediumRhythm);
             StartCoroutine(Wait(0.4f));
         }
 

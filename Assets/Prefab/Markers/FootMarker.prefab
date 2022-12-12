@@ -236,6 +236,7 @@ MonoBehaviour:
   objsToHide:
   - {fileID: 6049242079961982839}
   deactivateSelf: 1
+  hideOnStart: 0
 --- !u!1 &8807889741267102104
 GameObject:
   m_ObjectHideFlags: 0
@@ -5247,7 +5248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6296070330497543544, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.74
+      value: 1.99
       objectReference: {fileID: 0}
     - target: {fileID: 6296070330497543544, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_LocalRotation.w

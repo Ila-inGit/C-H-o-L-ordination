@@ -28,12 +28,12 @@ public class MyData
     private float counter;
     public string timeStamp;
 
-    public MyData(string identifier, float subject, string timeStamp, string activityName, string boxName, string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter)
+    public MyData(string identifier, float subject, string timeStamp, string activityName, string boxName, string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter, bool isMusicActive, bool isRhythmActive)
     {
         this.identifier = identifier;
         this.subject = subject;
         this.timeStamp = timeStamp;
-        this.activityType = getActivityType(activityName);
+        this.activityType = getActivityType(activityName, isMusicActive, isRhythmActive);
         this.boxType = getBoxType(boxName);
         this.angleType = angleType;
         this.hitType = hitType;
@@ -69,26 +69,75 @@ public class MyData
 
     }
 
-    public string getActivityType(string name)
+    public string getActivityType(string name, bool isMusicActive, bool isRhythmActive)
     {
 
         string returnFloat = "-1";
 
         if (Constants.ACTIVITY_SCENE_CONSTANT == name)
         {
-            returnFloat = "0";
+            if (isMusicActive)
+            {
+                return "_001";
+
+            }
+            else if (isRhythmActive)
+            {
+                return "_010";
+            }
+            else
+            {
+                returnFloat = "_000";
+            }
+
         }
         else if (Constants.ACTIVITY_SCENE_NATURAL == name)
         {
-            returnFloat = "1";
+            if (isMusicActive)
+            {
+                return "101";
+
+            }
+            else if (isRhythmActive)
+            {
+                return "110";
+            }
+            else
+            {
+                returnFloat = "100";
+            }
         }
         else if (Constants.ACTIVITY_SCENE_FIGURE_EIGHT == name)
         {
-            returnFloat = "2";
+            if (isMusicActive)
+            {
+                return "201";
+
+            }
+            else if (isRhythmActive)
+            {
+                return "210";
+            }
+            else
+            {
+                returnFloat = "200";
+            }
         }
         else if (Constants.ACTIVITY_SCENE_HARMONIC == name)
         {
-            returnFloat = "3";
+            if (isMusicActive)
+            {
+                return "301";
+
+            }
+            else if (isRhythmActive)
+            {
+                return "310";
+            }
+            else
+            {
+                returnFloat = "300";
+            }
         }
 
         return returnFloat;

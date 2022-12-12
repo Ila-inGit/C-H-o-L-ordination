@@ -79,6 +79,18 @@ MonoBehaviour:
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 5cce244973e009f4491459d7a63cb8c1, type: 3}
+  - Name: TransitionScene
+    Path: Assets/Scenes/TransitionScene.unity
+    Included: 0
+    BuildIndex: -1
+    Tag: Untagged
+    Asset: {fileID: 102900000, guid: c296eed003a66a94b8cc5523cb72d013, type: 3}
+  - Name: 
+    Path: 
+    Included: 0
+    BuildIndex: 0
+    Tag: 
+    Asset: {fileID: 0}
   permittedLightingSceneComponentTypes:
   - reference: UnityEngine.Transform, UnityEngine.CoreModule
   - reference: UnityEngine.GameObject, UnityEngine.CoreModule

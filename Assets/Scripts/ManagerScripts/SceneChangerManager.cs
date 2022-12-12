@@ -57,7 +57,7 @@ public class SceneChangerManager : MonoBehaviour
         {
             sceneSequence.Add(item.name);
         }
-        sceneSequence.Add(SceneNames.START_ACTIVITIES_SCENE);
+        sceneSequence.Add(SceneNames.FINAL_SCENE);
     }
 
     public string getCurrentName(SceneNames name)
@@ -91,6 +91,18 @@ public class SceneChangerManager : MonoBehaviour
         SceneDifficulty sceneDifficulty =
             ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
         return sceneDifficulty.isRhythmActive;
+    }
+    public bool isMusicNotSynch()
+    {
+        SceneDifficulty sceneDifficulty =
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
+        return sceneDifficulty.isMusicNotSynch;
+    }
+    public bool isRhythmNotSynch()
+    {
+        SceneDifficulty sceneDifficulty =
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
+        return sceneDifficulty.isRhythmNotSynch;
     }
 
     public string getNextName()

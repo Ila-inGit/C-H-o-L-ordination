@@ -12,6 +12,7 @@ class Constants
     public const string ACTIVITY_SCENE_FIGURE_EIGHT = "8-ActivitySceneFigureEight";
     public const string ACTIVITY_SCENE_HARMONIC = "9-ActivitySceneHarmonic";
     public const string TRANSITION_SCENE = "TransitionScene";
+    public const string FINAL_SCENE = "FinalScene";
     #endregion Scene Names
 
     #region Tag names
@@ -24,6 +25,8 @@ class Constants
     public const string BOTTOM_ANGLE = "BottomAngle";
     public const string LEFT_ANGLE = "LeftAngle";
     public const string RIGHT_ANGLE = "RightAngle";
+    public const string RESET_TIMER = "ResetTimer";
+    public const string TIME_BEFORE_CLICK = "TimeBeforeClick";
     public const string ANGLE = "Angle";
     public const string PLANET = "Planet";
     public const string CONTINUE_BUTTON = "ContinueButton";
@@ -50,7 +53,8 @@ public enum SceneNames
     ACTIVITY_SCENE_NATURAL,
     ACTIVITY_SCENE_FIGURE_EIGHT,
     ACTIVITY_SCENE_HARMONIC,
-    TRANSITION_SCENE
+    TRANSITION_SCENE,
+    FINAL_SCENE
 }
 
 public class SceneDifficulty
@@ -61,11 +65,16 @@ public class SceneDifficulty
     public bool isMusicActive { get; set; }
     public bool isRhythmActive { get; set; }
 
-    public SceneDifficulty(SceneNames name, Difficulty difficulty, bool isMusicActive, bool isRhythmActive)
+    public bool isRhythmNotSynch { get; set; }
+    public bool isMusicNotSynch { get; set; }
+
+    public SceneDifficulty(SceneNames name, Difficulty difficulty, bool isMusicActive, bool isRhythmActive, bool isMusicNotSynch, bool isRhythmNotSynch)
     {
         this.name = name;
         this.difficulty = difficulty;
         this.isMusicActive = isMusicActive;
         this.isRhythmActive = isRhythmActive;
+        this.isRhythmNotSynch = isRhythmNotSynch;
+        this.isMusicNotSynch = isMusicNotSynch;
     }
 }

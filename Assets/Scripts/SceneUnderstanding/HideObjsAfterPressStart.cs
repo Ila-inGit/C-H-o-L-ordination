@@ -11,6 +11,8 @@ public class HideObjsAfterPressStart : MonoBehaviour
     bool deactivateSelf;
     [SerializeField]
     bool hideOnStart;
+    [HideInInspector]
+    private bool done = false;
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class HideObjsAfterPressStart : MonoBehaviour
     }
     public void HideObjectsAfterPress()
     {
+        if (deactivateSelf) StartCoroutine(DeactivateCorutine());
         if (objsToHide != null)
         {
             foreach (var obj in objsToHide)
@@ -28,7 +31,16 @@ public class HideObjsAfterPressStart : MonoBehaviour
                 obj.SetActive(false);
             }
         }
-        if (deactivateSelf)
-            gameObject.SetActive(false);
+        done = true;
+    }
+
+    IEnumerator DeactivateCorutine()
+    {
+
+        while (!done)
+        {
+            yield return null;
+        }
+        gameObject.SetActive(false);
     }
 }
