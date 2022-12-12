@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TransitionScene.unity
     guid: c296eed003a66a94b8cc5523cb72d013
+  - enabled: 1
+    path: Assets/Scenes/10-FinalScene.unity
+    guid: bfbc0d0390854004b9837848f93a2962
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: d646b4b163f5d8548a899d093905910c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a92da08454088a41baba062203213bb, type: 2}
