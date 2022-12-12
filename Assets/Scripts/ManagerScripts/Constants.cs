@@ -35,6 +35,11 @@ class Constants
 
     #endregion Tag names
 
+    #region Identifier names
+    public const string EYETRACKING_PLANE = "EyetrackingActivityData";
+    
+    #endregion Identifier names
+
 }
 
 public enum Difficulty
