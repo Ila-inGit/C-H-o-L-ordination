@@ -39,6 +39,7 @@ public class SceneChangerManager : MonoBehaviour
             enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, Constants.ACTIVITY_SCENE_FIGURE_EIGHT);
             enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, Constants.ACTIVITY_SCENE_HARMONIC);
             enumToCurrentScene.Add(SceneNames.TRANSITION_SCENE, Constants.TRANSITION_SCENE);
+            enumToCurrentScene.Add(SceneNames.FINAL_SCENE, Constants.FINAL_SCENE);
         }
 
         sceneSequence.Clear();

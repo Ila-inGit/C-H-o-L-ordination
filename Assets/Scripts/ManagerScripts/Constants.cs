@@ -12,7 +12,7 @@ class Constants
     public const string ACTIVITY_SCENE_FIGURE_EIGHT = "8-ActivitySceneFigureEight";
     public const string ACTIVITY_SCENE_HARMONIC = "9-ActivitySceneHarmonic";
     public const string TRANSITION_SCENE = "TransitionScene";
-    public const string FINAL_SCENE = "FinalScene";
+    public const string FINAL_SCENE = "10-FinalScene";
     #endregion Scene Names
 
     #region Tag names
