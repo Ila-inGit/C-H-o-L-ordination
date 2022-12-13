@@ -67,9 +67,9 @@ public class OrbitNaturalSpeed : MonoBehaviour
     {
         if (difficulty == Difficulty.EASY)
         {
-            if (SceneChangerManager.Instance.isMusicActive() && easyMusic != null)
+            if (SceneChangerManager.Instance.isMusicSynch() && easyMusic != null)
                 SoundManager.Instance.PutOnLoop(easyMusic);
-            if (SceneChangerManager.Instance.isRhythmActive() && easyRhythm != null)
+            if (SceneChangerManager.Instance.isRhythmSynch() && easyRhythm != null)
                 SoundManager.Instance.PutOnLoop(easyRhythm);
             if (SceneChangerManager.Instance.isMusicNotSynch() && mediumMusic != null)
                 SoundManager.Instance.PutOnLoop(mediumMusic);
@@ -79,9 +79,9 @@ public class OrbitNaturalSpeed : MonoBehaviour
         }
         else if (difficulty == Difficulty.MEDIUM)
         {
-            if (SceneChangerManager.Instance.isMusicActive() && mediumMusic != null)
+            if (SceneChangerManager.Instance.isMusicSynch() && mediumMusic != null)
                 SoundManager.Instance.PutOnLoop(mediumMusic);
-            if (SceneChangerManager.Instance.isRhythmActive() && mediumRhythm != null)
+            if (SceneChangerManager.Instance.isRhythmSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
             if (SceneChangerManager.Instance.isMusicNotSynch() && difficultMusic != null)
                 SoundManager.Instance.PutOnLoop(difficultMusic);
@@ -91,9 +91,9 @@ public class OrbitNaturalSpeed : MonoBehaviour
         }
         else if (difficulty == Difficulty.DIFFICULT)
         {
-            if (SceneChangerManager.Instance.isMusicActive() && difficultMusic != null)
+            if (SceneChangerManager.Instance.isMusicSynch() && difficultMusic != null)
                 SoundManager.Instance.PutOnLoop(difficultMusic);
-            if (SceneChangerManager.Instance.isRhythmActive() && difficultRhythm != null)
+            if (SceneChangerManager.Instance.isRhythmSynch() && difficultRhythm != null)
                 SoundManager.Instance.PutOnLoop(difficultRhythm);
             if (SceneChangerManager.Instance.isMusicNotSynch() && mediumMusic != null)
                 SoundManager.Instance.PutOnLoop(mediumMusic);

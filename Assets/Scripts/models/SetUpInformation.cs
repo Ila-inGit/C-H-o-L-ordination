@@ -27,15 +27,15 @@ public class SetUpInformation
         for (int i = 0; i < infoFromJson.o.Count; i++)
         {
             int difficulty = infoFromJson.sd[i];
-            bool isMusicActive = false, isRhythmActive = false, isMusicNotSynch = false, isRhythmNotSynch = false;
+            bool isMusicSynch = false, isRhythmSynch = false, isMusicNotSynch = false, isRhythmNotSynch = false;
             Difficulty diffEnum;
             if (difficulty == 3 || difficulty == 4 || difficulty == 5)
             {
-                isRhythmActive = true;
+                isRhythmSynch = true;
             }
             if (difficulty == 6 || difficulty == 7 || difficulty == 8)
             {
-                isMusicActive = true;
+                isMusicSynch = true;
             }
             if (difficulty == 9 || difficulty == 10 || difficulty == 11)
             {
@@ -58,7 +58,7 @@ public class SetUpInformation
                 diffEnum = Difficulty.EASY;
             }
 
-            sceneOrderWithDifficulty.Add(new SceneDifficulty((SceneNames)infoFromJson.o[i], diffEnum, isMusicActive, isRhythmActive, isMusicNotSynch, isRhythmNotSynch));
+            sceneOrderWithDifficulty.Add(new SceneDifficulty((SceneNames)infoFromJson.o[i], diffEnum, isMusicSynch, isRhythmSynch, isMusicNotSynch, isRhythmNotSynch));
         }
 
     }

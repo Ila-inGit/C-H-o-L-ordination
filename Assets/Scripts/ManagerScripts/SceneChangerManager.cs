@@ -81,17 +81,17 @@ public class SceneChangerManager : MonoBehaviour
         currentIndexForDifficulty++;
         return sceneDifficulty.difficulty;
     }
-    public bool isMusicActive()
+    public bool isMusicSynch()
     {
         SceneDifficulty sceneDifficulty =
             ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
-        return sceneDifficulty.isMusicActive;
+        return sceneDifficulty.isMusicSynch;
     }
-    public bool isRhythmActive()
+    public bool isRhythmSynch()
     {
         SceneDifficulty sceneDifficulty =
             ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
-        return sceneDifficulty.isRhythmActive;
+        return sceneDifficulty.isRhythmSynch;
     }
     public bool isMusicNotSynch()
     {

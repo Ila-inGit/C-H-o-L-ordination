@@ -37,7 +37,7 @@ class Constants
 
     #region Identifier names
     public const string EYETRACKING_PLANE = "EyetrackingActivityData";
-    
+
     #endregion Identifier names
 
 }
@@ -67,18 +67,18 @@ public class SceneDifficulty
     public SceneNames name { get; set; }
     public Difficulty difficulty { get; set; }
 
-    public bool isMusicActive { get; set; }
-    public bool isRhythmActive { get; set; }
+    public bool isMusicSynch { get; set; }
+    public bool isRhythmSynch { get; set; }
 
     public bool isRhythmNotSynch { get; set; }
     public bool isMusicNotSynch { get; set; }
 
-    public SceneDifficulty(SceneNames name, Difficulty difficulty, bool isMusicActive, bool isRhythmActive, bool isMusicNotSynch, bool isRhythmNotSynch)
+    public SceneDifficulty(SceneNames name, Difficulty difficulty, bool isMusicSynch, bool isRhythmSynch, bool isMusicNotSynch, bool isRhythmNotSynch)
     {
         this.name = name;
         this.difficulty = difficulty;
-        this.isMusicActive = isMusicActive;
-        this.isRhythmActive = isRhythmActive;
+        this.isMusicSynch = isMusicSynch;
+        this.isRhythmSynch = isRhythmSynch;
         this.isRhythmNotSynch = isRhythmNotSynch;
         this.isMusicNotSynch = isMusicNotSynch;
     }

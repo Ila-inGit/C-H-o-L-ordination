@@ -28,12 +28,14 @@ public class MyData
     private float counter;
     public string timeStamp;
 
-    public MyData(string identifier, float subject, string timeStamp, string activityName, string boxName, string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter, bool isMusicActive, bool isRhythmActive)
+    public MyData(string identifier, float subject, string timeStamp, string activityName, string boxName,
+        string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter,
+        bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch)
     {
         this.identifier = identifier;
         this.subject = subject;
         this.timeStamp = timeStamp;
-        this.activityType = getActivityType(activityName, isMusicActive, isRhythmActive);
+        this.activityType = getActivityType(activityName, isMusicSynch, isRhythmSynch, isRhythmNotSynch, isMusicNotSynch);
         this.boxType = getBoxType(boxName);
         this.angleType = angleType;
         this.hitType = hitType;
@@ -69,74 +71,102 @@ public class MyData
 
     }
 
-    public string getActivityType(string name, bool isMusicActive, bool isRhythmActive)
+    public string getActivityType(string name, bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch)
     {
 
         string returnFloat = "-1";
 
         if (Constants.ACTIVITY_SCENE_CONSTANT == name)
         {
-            if (isMusicActive)
+            if (isRhythmSynch)
             {
-                return "_001";
-
+                returnFloat = "_01000";
             }
-            else if (isRhythmActive)
+            else if (isMusicSynch)
             {
-                return "_010";
+                returnFloat = "_00100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "_00010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "_00001";
             }
             else
             {
-                returnFloat = "_000";
+                returnFloat = "_00000";
             }
 
         }
         else if (Constants.ACTIVITY_SCENE_NATURAL == name)
         {
-            if (isMusicActive)
+            if (isRhythmSynch)
             {
-                return "101";
-
+                returnFloat = "10000";
             }
-            else if (isRhythmActive)
+            else if (isMusicSynch)
             {
-                return "110";
+                returnFloat = "10100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "10010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "10001";
             }
             else
             {
-                returnFloat = "100";
+                returnFloat = "10000";
             }
         }
         else if (Constants.ACTIVITY_SCENE_FIGURE_EIGHT == name)
         {
-            if (isMusicActive)
+            if (isRhythmSynch)
             {
-                return "201";
-
+                returnFloat = "21000";
             }
-            else if (isRhythmActive)
+            else if (isMusicSynch)
             {
-                return "210";
+                returnFloat = "20100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "20010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "20001";
             }
             else
             {
-                returnFloat = "200";
+                returnFloat = "20000";
             }
         }
         else if (Constants.ACTIVITY_SCENE_HARMONIC == name)
         {
-            if (isMusicActive)
+            if (isRhythmSynch)
             {
-                return "301";
-
+                returnFloat = "31000";
             }
-            else if (isRhythmActive)
+            else if (isMusicSynch)
             {
-                return "310";
+                returnFloat = "30100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "30010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "30001";
             }
             else
             {
-                returnFloat = "300";
+                returnFloat = "30000";
             }
         }
 
