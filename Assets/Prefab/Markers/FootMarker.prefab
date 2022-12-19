@@ -191,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButton: {fileID: 5022945124633106403}
   particles: {fileID: 8755920402275218742}
+  startClip: {fileID: 8300000, guid: ea9bb867daff3a54c929bb48ce2ca197, type: 3}
+  retryClip: {fileID: 8300000, guid: 56191fa12ec935349a60067fc35c4c4a, type: 3}
 --- !u!54 &1247903191164977671
 Rigidbody:
   m_ObjectHideFlags: 0

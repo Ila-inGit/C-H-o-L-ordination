@@ -27,7 +27,7 @@ public class SceneChangerManager : MonoBehaviour
     public void Init()
     {
         // need to be initilized and modified if some scene is added
-        if (enumToCurrentScene.Count == 0)
+        if (!isInitialized())
         {
             enumToCurrentScene.Add(SceneNames.MY_MANAGER_SCENE, Constants.MY_MANAGER_SCENE);
             enumToCurrentScene.Add(SceneNames.SETTING_SCENE, Constants.SETTING_SCENE);
@@ -59,6 +59,11 @@ public class SceneChangerManager : MonoBehaviour
             sceneSequence.Add(item.name);
         }
         sceneSequence.Add(SceneNames.FINAL_SCENE);
+    }
+
+    public bool isInitialized()
+    {
+        return enumToCurrentScene.Count != 0;
     }
 
     public string getCurrentName(SceneNames name)
