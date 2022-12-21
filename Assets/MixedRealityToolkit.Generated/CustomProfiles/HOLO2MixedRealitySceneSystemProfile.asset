@@ -88,8 +88,8 @@ MonoBehaviour:
   - Name: 
     Path: 
     Included: 0
-    BuildIndex: 0
-    Tag: 
+    BuildIndex: -1
+    Tag: Untagged
     Asset: {fileID: 0}
   permittedLightingSceneComponentTypes:
   - reference: UnityEngine.Transform, UnityEngine.CoreModule
