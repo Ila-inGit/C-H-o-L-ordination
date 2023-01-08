@@ -2483,8 +2483,16 @@ MonoBehaviour:
   orbitPath:
     xAxis: 0.75
     yAxis: 0.5
+    increment: 0
+    increment_inverted: 0.4
+    fromInverted: 0
+    fromNotInverted: 1
+    isInvertedPart: 0
+    firstLap: 1
+    thirdSector: 0
   orbitProgress: 0
   orbitActive: 1
+  orbitPeriod: 0
 --- !u!114 &1758051808
 MonoBehaviour:
   m_ObjectHideFlags: 0

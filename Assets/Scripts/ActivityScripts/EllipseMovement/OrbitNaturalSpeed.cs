@@ -12,11 +12,12 @@ public class OrbitNaturalSpeed : MonoBehaviour
     public AudioClip easyMusic;
     public AudioClip mediumMusic;
     public AudioClip difficultMusic;
-    private bool canMove = false;
+    private bool canMove = true;
     public Ellipse orbitPath;
     [Range(0F, 1F)]
     public float orbitProgress = 0f;
     public bool orbitActive = true;
+    [SerializeField]
     private float orbitPeriod;
     private Difficulty difficulty;
     private Vector3 initpos;
@@ -58,7 +59,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
             orbitPeriod = 8f;
         }
 
-        StartSound();
+        //StartSound();
         // SetOrbitingObjectPosition();
         StartCoroutine(AnimateOrbit());
     }
@@ -154,14 +155,19 @@ public class OrbitNaturalSpeed : MonoBehaviour
 
     IEnumerator AnimateOrbit()
     {
-        if (orbitPeriod < 0.1f)
-        {
-            orbitPeriod = 0.1f;
-        }
-        float frequence = 1f / orbitPeriod;
+        // if (orbitPeriod < 0.1f)
+        // {
+        //     orbitPeriod = 0.1f;
+        // }
+        // float frequence = 1f / orbitPeriod;
 
         while (orbitActive)
         {
+            if (orbitPeriod < 0.1f)
+            {
+                orbitPeriod = 0.1f;
+            }
+            float frequence = 1f / orbitPeriod;
             if (canMove)
             {
                 orbitProgress += Time.deltaTime * frequence;

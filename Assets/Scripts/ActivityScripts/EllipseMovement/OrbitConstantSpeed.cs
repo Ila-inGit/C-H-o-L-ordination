@@ -12,7 +12,8 @@ public class OrbitConstantSpeed : MonoBehaviour
     public AudioClip easyMusic;
     public AudioClip mediumMusic;
     public AudioClip difficultMusic;
-    private bool canMove = false;
+    private bool canMove = true;
+    [SerializeField]
     private float speed;
     private Difficulty difficulty;
 
@@ -47,7 +48,7 @@ public class OrbitConstantSpeed : MonoBehaviour
         {
             speed = 0.7854f;
         }
-        StartSound();
+        //StartSound();
     }
 
     private void StartSound()
@@ -102,9 +103,10 @@ public class OrbitConstantSpeed : MonoBehaviour
         {
             // the two values can be changed to make the trajectory change
             //constant speed
-            _deltaSpace += Time.deltaTime * speed;
-            _x = (A * Mathf.Sin(_deltaSpace));
-            _y = B * Mathf.Cos(_deltaSpace);
+            _deltaSpace += Time.deltaTime * speed; // beta
+            // Debug.Log(_deltaSpace);
+            _x = A * Mathf.Sin(_deltaSpace / 2);
+            _y = B * Mathf.Cos(_deltaSpace / 2);
             planetTransform.localPosition = new Vector3(initpos.x + _x, initpos.y + _y, initpos.z);
 
             //if we want to restrict the area we have increment the value of Sin
