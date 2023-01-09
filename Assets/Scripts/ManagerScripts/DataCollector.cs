@@ -55,6 +55,13 @@ public class DataCollector : MonoBehaviour
         }
     }
 
+    public string retriveContentFromFile()
+    {
+        string strFilePath = string.Format("{0}/{1}.csv", Application.persistentDataPath, DATATORETRIVE);
+        string fileContent = File.ReadAllText(strFilePath);
+        return fileContent;
+    }
+
     public void addCameraPositionToFile(Vector3 dataToWrite)
     {
 
