@@ -31,8 +31,8 @@ public class WebRequestsController : MonoBehaviour
         RestClient.DefaultRequestParams["param1"] = "token";
         // RestClient.DefaultRequestParams["param2"] = "My other param";
         // retrive the csv as string and pass in the body of the POST request
-        //string fileContent = GetFileContent();
-        string fileContent = "ciao, ciao;";
+        string fileContent = GetFileContent();
+        // string fileContent = "ciao, ciao;";
 
         currentRequest = new RequestHelper
         {
