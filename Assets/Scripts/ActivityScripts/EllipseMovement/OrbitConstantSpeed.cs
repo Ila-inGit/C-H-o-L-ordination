@@ -105,8 +105,8 @@ public class OrbitConstantSpeed : MonoBehaviour
             //constant speed
             _deltaSpace += Time.deltaTime * speed; // beta
             // Debug.Log(_deltaSpace);
-            _x = A * Mathf.Sin(_deltaSpace / 2);
-            _y = B * Mathf.Cos(_deltaSpace / 2);
+            _x = A * Mathf.Sin(_deltaSpace);
+            _y = B * Mathf.Cos(_deltaSpace);
             planetTransform.localPosition = new Vector3(initpos.x + _x, initpos.y + _y, initpos.z);
 
             //if we want to restrict the area we have increment the value of Sin
