@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SetUpInformationFromJson
 {
-    // --- patientID
+    // --- sessionID
     public int p;
     // --- maxTimeForActivity
     public int m;

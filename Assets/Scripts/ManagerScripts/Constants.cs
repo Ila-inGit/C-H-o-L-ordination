@@ -40,6 +40,11 @@ class Constants
 
     #endregion Identifier names
 
+    #region http consts
+    public const string BASEURL = "https://jupiterserver.onrender.com";
+    public const string UPLOADFILE = "/uploadFile";
+    #endregion http consts
+
 }
 
 public enum Difficulty

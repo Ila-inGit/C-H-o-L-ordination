@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SetUpInformation
 {
-    public int patientID;
+    public int sessionID;
     public int maxTimeForActivity;
     public int numberTotalAttempts;
     public int numberRightAttempts;
@@ -18,7 +18,7 @@ public class SetUpInformation
 
     public SetUpInformation(SetUpInformationFromJson infoFromJson)
     {
-        patientID = infoFromJson.p;
+        sessionID = infoFromJson.p;
         maxTimeForActivity = infoFromJson.m;
         numberTotalAttempts = infoFromJson.t;
         numberRightAttempts = infoFromJson.r;
