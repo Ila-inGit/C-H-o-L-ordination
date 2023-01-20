@@ -29,8 +29,7 @@ public class TouchesCounter : MonoBehaviour
             {
                 case Constants.TOP_BOX:
                     {
-                        _topCounter++;
-                        //da vedere come gestire valori subject, timestamp, 
+                        _topCounter++; 
                         // Debug.Log("top: " + _topCounter + "by " + boxTag);
                         DataCollector.Instance.addToFile(
                             new MyData(Constants.TOP_BOX, ParseQRInfoManager.Instance.setUpInfo.sessionID, "-1", gameObject.scene.name,

@@ -17,7 +17,7 @@ public class MyData
 
 
     public string identifier;
-    private float subject;
+    private string sessionID;
     private string activityType;
     private string boxType;
     private string angleType;
@@ -28,12 +28,12 @@ public class MyData
     private float counter;
     public string timeStamp;
 
-    public MyData(string identifier, float subject, string timeStamp, string activityName, string boxName,
+    public MyData(string identifier, string sessionID, string timeStamp, string activityName, string boxName,
         string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter,
         bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch)
     {
         this.identifier = identifier;
-        this.subject = subject;
+        this.sessionID = sessionID;
         this.timeStamp = timeStamp;
         this.activityType = getActivityType(activityName, isMusicSynch, isRhythmSynch, isRhythmNotSynch, isMusicNotSynch);
         this.boxType = getBoxType(boxName);
@@ -196,7 +196,7 @@ public class MyData
     {
         return new string[]
         {
-            "Subject","Timestamp","Activity type","Box type","Angle type","Hit type","Time hit","Timer non-hit","Counter Type","Counter"
+            "SessionID","Timestamp","Activity type","Box type","Angle type","Hit type","Time hit","Timer non-hit","Counter Type","Counter"
         };
     }
 
@@ -204,7 +204,7 @@ public class MyData
     {
         return new string[]
         {
-            subject.ToString(), timeStamp, activityType.ToString(), boxType.ToString(), angleType.ToString(), hitType.ToString(), hitTime.ToString(),nonHitTime.ToString(),counterType.ToString(), counter.ToString()
+            sessionID, timeStamp, activityType.ToString(), boxType.ToString(), angleType.ToString(), hitType.ToString(), hitTime.ToString(),nonHitTime.ToString(),counterType.ToString(), counter.ToString()
         };
     }
 

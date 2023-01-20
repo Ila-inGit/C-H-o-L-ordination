@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SetUpInformation
 {
-    public int sessionID;
+    public string sessionID;
     public int maxTimeForActivity;
     public int numberTotalAttempts;
     public int numberRightAttempts;

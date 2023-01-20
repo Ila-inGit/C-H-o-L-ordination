@@ -4,13 +4,13 @@ public class MyEyeTrackerData
 {
     private string scene;
     public string identifier;
-    private float subject;
+    private string sessionID;
     private string activityType;
     //private string boxType;
     //private string angleType;
 
     // Cam / Head tracking
-    private Vector3 gazeOrigin, gazeDir; 
+    private Vector3 gazeOrigin, gazeDir;
     private Vector3 headOrigin, headDir;
 
     // Smoothed eye gaze tracking 
@@ -20,21 +20,21 @@ public class MyEyeTrackerData
 
     public string timeStamp;
 
-    //public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName, string? boxName, string angleType, Vector3 headOrigin, Vector3 headDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
-    public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName,  Vector3 headOrigin, Vector3 headDir, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
+    //public MyEyeTrackerData(string identifier, float sessionID, string timeStamp, string activityName, string? boxName, string angleType, Vector3 headOrigin, Vector3 headDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
+    public MyEyeTrackerData(string identifier, string sessionID, string timeStamp, string activityName, Vector3 headOrigin, Vector3 headDir, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
     {
         this.identifier = identifier;
-        this.subject = subject;
+        this.sessionID = sessionID;
         this.timeStamp = timeStamp;
         this.activityType = getActivityType(activityName);
         //this.boxType = getBoxType(boxName);
         //this.angleType = angleType;
         this.headOrigin = headOrigin;
         this.headDir = headDir;
-        
+
         this.gazeOrigin = gazeOrigin;
         this.gazeDir = gazeDir;
-        
+
         this.eyeOrigin = eyeOrigin;
         this.eyeDir = eyeDir;
         this.eyeHitPos = eyeHitPos;
@@ -115,7 +115,7 @@ public class MyEyeTrackerData
         return new string[]
         {
             //TODO adapted for eyetracking
-            "Subject","Timestamp","Activity type","Head origin","Head direction","Eye origin","Eye direction","Eye hit position"
+            "SessionID","Timestamp","Activity type","Head origin","Head direction","Eye origin","Eye direction","Eye hit position"
         };
     }
 
@@ -123,10 +123,7 @@ public class MyEyeTrackerData
     {
         return new string[]
         {
-            //TODO adapt it for eyetracking
-            /*subject.ToString(), timeStamp, activityType.ToString(), boxType.ToString(), angleType.ToString(), headOrigin.ToString(), headDir.ToString(), 
-            eyeOrigin.ToString(), eyeDir.ToString(), eyeHitPos.ToString()*/
-            subject.ToString(), timeStamp, activityType.ToString(), gazeOrigin.ToString(), gazeDir.ToString(), headDir.ToString(), 
+            sessionID.ToString(), timeStamp, activityType.ToString(), gazeOrigin.ToString(), gazeDir.ToString(), headDir.ToString(),
             eyeOrigin.ToString(), eyeDir.ToString(), eyeHitPos.ToString()
             //ToString("F3") in order to show 3 decimale
         };

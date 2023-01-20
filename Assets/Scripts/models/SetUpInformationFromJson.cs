@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SetUpInformationFromJson
 {
     // --- sessionID
-    public int p;
+    public string p;
     // --- maxTimeForActivity
     public int m;
     // --- numberTotalAttempts
