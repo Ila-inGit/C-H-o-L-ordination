@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTransform: {fileID: 3165406766995266471}
-  offsetCamera: 0
+  offsetCamera: -0.05
 --- !u!114 &7328597567186788899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5250,7 +5250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6296070330497543544, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.99
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6296070330497543544, guid: 17bcc7ae7adb20e42840944569785d32, type: 3}
       propertyPath: m_LocalRotation.w

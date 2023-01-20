@@ -18,6 +18,11 @@ public class WebRequestsController : MonoBehaviour
 #endif
     }
 
+    private void Start()
+    {
+        Post();
+    }
+
     public string GetFileContent()
     {
         return DataCollector.Instance.retriveContentFromFile();
@@ -35,7 +40,7 @@ public class WebRequestsController : MonoBehaviour
         {
             Uri = Constants.BASEURL + Constants.UPLOADFILE,
             Params = new Dictionary<string, string>{
-                {"sessionToken",ParseQRInfoManager.Instance.setUpInfo.sessionID.ToString()}// "abd-kur09-76859-hejd-poi" }
+                {"sessionToken", ParseQRInfoManager.Instance.setUpInfo.sessionID}// "abd-kur09-76859-hejd-poi" }
             },
             Body = new DataToTranfer
             {

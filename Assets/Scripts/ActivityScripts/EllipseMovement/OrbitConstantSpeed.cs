@@ -33,20 +33,20 @@ public class OrbitConstantSpeed : MonoBehaviour
             difficulty = SceneChangerManager.Instance.getDifficulty();
             if (difficulty == Difficulty.EASY)
             {
-                speed = 0.6545f;
+                speed = 0.5236f;
             }
             else if (difficulty == Difficulty.MEDIUM)
             {
-                speed = 0.7854f;
+                speed = 0.6545f;
             }
             else
             {
-                speed = 0.9163f;
+                speed = 0.5236f;
             }
         }
         else
         {
-            speed = 0.7854f;
+            speed = 0.6545f;
         }
         //StartSound();
     }

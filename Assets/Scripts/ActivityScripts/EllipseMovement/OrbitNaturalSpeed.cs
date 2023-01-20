@@ -43,20 +43,20 @@ public class OrbitNaturalSpeed : MonoBehaviour
             difficulty = SceneChangerManager.Instance.getDifficulty();
             if (difficulty == Difficulty.EASY)
             {
-                orbitPeriod = 9.6f;
+                orbitPeriod = 12f;
             }
             else if (difficulty == Difficulty.MEDIUM)
             {
-                orbitPeriod = 8f;
+                orbitPeriod = 9.6f;
             }
             else
             {
-                orbitPeriod = 6.8572f;
+                orbitPeriod = 8f;
             }
         }
         else
         {
-            orbitPeriod = 8f;
+            orbitPeriod = 12f;
         }
 
         //StartSound();

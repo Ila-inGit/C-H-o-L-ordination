@@ -2474,22 +2474,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitingObject: {fileID: 1608335906}
-  easyRhythm: {fileID: 8300000, guid: 4a8cdc777ce0d8546b455e004d08c3da, type: 3}
-  mediumRhythm: {fileID: 8300000, guid: 1b41d29e0dc9bee4cb7b631aca5ca313, type: 3}
-  difficultRhythm: {fileID: 8300000, guid: d987c7f3d45eb0e42ae631318d89dfee, type: 3}
-  easyMusic: {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
-  mediumMusic: {fileID: 8300000, guid: dc5dbe042c8c04b41877aaadebf53c0a, type: 3}
-  difficultMusic: {fileID: 8300000, guid: 58e46943f1139ec458ea58e320c115a8, type: 3}
+  easyRhythm: {fileID: 8300000, guid: 7702753e352629d41a6c3b23ff1c2242, type: 3}
+  mediumRhythm: {fileID: 8300000, guid: 4a8cdc777ce0d8546b455e004d08c3da, type: 3}
+  difficultRhythm: {fileID: 8300000, guid: 1b41d29e0dc9bee4cb7b631aca5ca313, type: 3}
+  easyMusic: {fileID: 8300000, guid: 0c6a5ba228580e74d876c485b4da4677, type: 3}
+  mediumMusic: {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
+  difficultMusic: {fileID: 8300000, guid: dc5dbe042c8c04b41877aaadebf53c0a, type: 3}
   orbitPath:
     xAxis: 0.75
     yAxis: 0.5
     increment: 0
     increment_inverted: 0.4
-    fromInverted: 0
-    fromNotInverted: 1
     isInvertedPart: 0
-    firstLap: 1
-    thirdSector: 0
   orbitProgress: 0
   orbitActive: 1
   orbitPeriod: 0
