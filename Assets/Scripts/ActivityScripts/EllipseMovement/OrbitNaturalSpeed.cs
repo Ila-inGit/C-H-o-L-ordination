@@ -43,23 +43,23 @@ public class OrbitNaturalSpeed : MonoBehaviour
             difficulty = SceneChangerManager.Instance.getDifficulty();
             if (difficulty == Difficulty.EASY)
             {
-                orbitPeriod = 12f;
+                orbitPeriod = 8.7267f;
             }
             else if (difficulty == Difficulty.MEDIUM)
             {
-                orbitPeriod = 9.6f;
+                orbitPeriod = 8f;
             }
             else
             {
-                orbitPeriod = 8f;
+                orbitPeriod = 7.3846f;
             }
         }
         else
         {
-            orbitPeriod = 12f;
+            orbitPeriod = 8.7267f;
         }
 
-        //StartSound();
+        StartSound();
         // SetOrbitingObjectPosition();
         StartCoroutine(AnimateOrbit());
     }
@@ -76,7 +76,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.6f));
+            StartCoroutine(Wait(0.2f));
         }
         else if (difficulty == Difficulty.MEDIUM)
         {
@@ -88,7 +88,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(difficultMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && difficultRhythm != null)
                 SoundManager.Instance.PutOnLoop(difficultRhythm);
-            StartCoroutine(Wait(0.5f));
+            StartCoroutine(Wait(0.15f));
         }
         else if (difficulty == Difficulty.DIFFICULT)
         {
@@ -100,7 +100,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.4f));
+            StartCoroutine(Wait(0.1f));
         }
 
     }

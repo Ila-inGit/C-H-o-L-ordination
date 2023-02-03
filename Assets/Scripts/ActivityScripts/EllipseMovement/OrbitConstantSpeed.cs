@@ -41,14 +41,14 @@ public class OrbitConstantSpeed : MonoBehaviour
             }
             else
             {
-                speed = 0.5236f;
+                speed = 0.78934f;
             }
         }
         else
         {
-            speed = 0.6545f;
+            speed = 0.5236f;
         }
-        //StartSound();
+        StartSound();
     }
 
     private void StartSound()
@@ -63,7 +63,7 @@ public class OrbitConstantSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.6f));
+            StartCoroutine(Wait(0.3f));
         }
         else if (difficulty == Difficulty.MEDIUM)
         {
@@ -75,7 +75,7 @@ public class OrbitConstantSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(difficultMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && difficultRhythm != null)
                 SoundManager.Instance.PutOnLoop(difficultRhythm);
-            StartCoroutine(Wait(0.5f));
+            StartCoroutine(Wait(0.2f));
         }
         else if (difficulty == Difficulty.DIFFICULT)
         {
@@ -87,7 +87,7 @@ public class OrbitConstantSpeed : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.4f));
+            StartCoroutine(Wait(0.1f));
         }
     }
 
