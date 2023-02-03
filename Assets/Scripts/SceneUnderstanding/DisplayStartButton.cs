@@ -23,20 +23,20 @@ public class DisplayStartButton : MonoBehaviour
         if (isInside)
         {
             // magari da spostare sul scene manager controller
-            Vector3 cameraPos = DataCollector.Instance.retriveCameraPositionFromFile();
-            float cameraHeight = Camera.main.transform.position.y;
-            cameraPos.y = cameraHeight;
-            DataCollector.Instance.addCameraPositionToFile(cameraPos);
-            Quaternion cameraAngle = DataCollector.Instance.retriveCameraAngleFromFile();
+            // Vector3 cameraPos = DataCollector.Instance.retriveCameraPositionFromFile();
+            // float cameraHeight = Camera.main.transform.position.y;
+            // cameraPos.y = cameraHeight;
+            // DataCollector.Instance.addCameraPositionToFile(cameraPos);
+            // Quaternion cameraAngle = DataCollector.Instance.retriveCameraAngleFromFile();
 
-            startButton.transform.SetPositionAndRotation(cameraPos, cameraAngle);
+            // startButton.transform.SetPositionAndRotation(cameraPos, cameraAngle);
 
-            yield return new WaitForSeconds(2);
+            // yield return new WaitForSeconds(2);
 
-            startButton.transform.position = new Vector3(
-                startButton.transform.position.x,
-                startButton.transform.position.y,
-                startButton.transform.position.z);
+            // startButton.transform.position = new Vector3(
+            //     startButton.transform.position.x,
+            //     startButton.transform.position.y,
+            //     startButton.transform.position.z);
 
             startButton.SetActive(true);
             instantiated = true;
