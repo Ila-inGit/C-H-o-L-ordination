@@ -12,7 +12,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
     public AudioClip easyMusic;
     public AudioClip mediumMusic;
     public AudioClip difficultMusic;
-    private bool canMove = true;
+    private bool canMove = false;
     public Ellipse orbitPath;
     [Range(0F, 1F)]
     public float orbitProgress = 0f;
@@ -43,15 +43,15 @@ public class OrbitNaturalSpeed : MonoBehaviour
             difficulty = SceneChangerManager.Instance.getDifficulty();
             if (difficulty == Difficulty.EASY)
             {
-                orbitPeriod = 8.7267f;
+                orbitPeriod = 23.5f;
             }
             else if (difficulty == Difficulty.MEDIUM)
             {
-                orbitPeriod = 8f;
+                orbitPeriod = 21.5f;
             }
             else
             {
-                orbitPeriod = 7.3846f;
+                orbitPeriod = 19.8f;
             }
         }
         else
@@ -119,9 +119,9 @@ public class OrbitNaturalSpeed : MonoBehaviour
 
         //Debug.Log("y neg"+orbitPos.y + "delta space " + orbitProgress);
         //Debug.Log("y pos"+orbitPos.y + "delta space " + orbitProgress);
-
         //if we want to restrict the area we have decrement the value of Sin
-        if (Mathf.Cos(Mathf.Deg2Rad * 360f * orbitProgress) <= Mathf.Sin(-0.85f))
+        Debug.Log(orbitPos.y);
+        if (orbitPos.y <= -0.4f)
         {
             orbitingObject.gameObject.GetComponent<Interactable>().enabled = true;
             orbitingObject.gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
@@ -132,7 +132,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
                 FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.BOTTOM_ANGLE);
 
         }
-        else if (Mathf.Cos(Mathf.Deg2Rad * 360f * orbitProgress) >= Mathf.Sin(0.85f))
+        else if (orbitPos.y >= 0.4f)
         {
             orbitingObject.gameObject.GetComponent<Interactable>().enabled = true;
             orbitingObject.gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;

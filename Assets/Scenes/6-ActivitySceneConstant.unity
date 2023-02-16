@@ -2571,9 +2571,9 @@ MonoBehaviour:
   easyRhythm: {fileID: 8300000, guid: 7702753e352629d41a6c3b23ff1c2242, type: 3}
   mediumRhythm: {fileID: 8300000, guid: 4a8cdc777ce0d8546b455e004d08c3da, type: 3}
   difficultRhythm: {fileID: 8300000, guid: 1b41d29e0dc9bee4cb7b631aca5ca313, type: 3}
-  easyMusic: {fileID: 8300000, guid: 0c6a5ba228580e74d876c485b4da4677, type: 3}
-  mediumMusic: {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
-  difficultMusic: {fileID: 8300000, guid: dc5dbe042c8c04b41877aaadebf53c0a, type: 3}
+  easyMusic: {fileID: 8300000, guid: 8f8fb8731d1e5364e8d15919a04d05dd, type: 3}
+  mediumMusic: {fileID: 8300000, guid: ad853409a90382847ae607753fe99deb, type: 3}
+  difficultMusic: {fileID: 8300000, guid: 586f495f2cddcaf49a50812d8af5d2c8, type: 3}
   speed: 0
 --- !u!54 &1608335909
 Rigidbody:

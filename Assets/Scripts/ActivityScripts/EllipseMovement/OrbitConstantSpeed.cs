@@ -12,7 +12,7 @@ public class OrbitConstantSpeed : MonoBehaviour
     public AudioClip easyMusic;
     public AudioClip mediumMusic;
     public AudioClip difficultMusic;
-    private bool canMove = true;
+    private bool canMove = false;
     [SerializeField]
     private float speed;
     private Difficulty difficulty;
@@ -101,33 +101,33 @@ public class OrbitConstantSpeed : MonoBehaviour
     {
         if (canMove)
         {
-            // the two values can be changed to make the trajectory change
-            //constant speed
+            // the two values can be changed to make the trajectory change constant speed
             _deltaSpace += Time.deltaTime * speed; // beta
-            // Debug.Log(_deltaSpace);
+
             _x = A * Mathf.Sin(_deltaSpace);
             _y = B * Mathf.Cos(_deltaSpace);
             planetTransform.localPosition = new Vector3(initpos.x + _x, initpos.y + _y, initpos.z);
 
-            //if we want to restrict the area we have increment the value of Sin
-            if (Mathf.Cos(_deltaSpace) <= Mathf.Sin(-0.85f))
+            // if we want to restrict the area we have increment the value of the 0.4f
+            if (_y <= -0.4f)
             {
                 gameObject.GetComponent<Interactable>().enabled = true;
                 gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
-
+                // Debug.Log("Bottom box");
                 if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
                     FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.BOTTOM_ANGLE);
             }
-            else if (Mathf.Cos(_deltaSpace) >= Mathf.Sin(0.85f))
+            else if (_y >= 0.4f)
             {
                 gameObject.GetComponent<Interactable>().enabled = true;
                 gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
-
+                // Debug.Log("Top box");
                 if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
                     FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.TOP_ANGLE);
             }
             else
             {
+                // Debug.Log("not near box");
                 gameObject.GetComponent<Interactable>().enabled = false;
                 gameObject.GetComponent<PressableButtonHoloLens2>().enabled = false;
                 if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == true)

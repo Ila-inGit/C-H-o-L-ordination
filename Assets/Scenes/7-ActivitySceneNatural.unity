@@ -2477,9 +2477,9 @@ MonoBehaviour:
   easyRhythm: {fileID: 8300000, guid: 627ebe99eb2934d4580ba9c4a7034fae, type: 3}
   mediumRhythm: {fileID: 8300000, guid: 1b41d29e0dc9bee4cb7b631aca5ca313, type: 3}
   difficultRhythm: {fileID: 8300000, guid: 8de855db33b90b1449e2c9e14338f21e, type: 3}
-  easyMusic: {fileID: 8300000, guid: b0b0eaf335f8c9247bc089e55e582ac0, type: 3}
-  mediumMusic: {fileID: 8300000, guid: dc5dbe042c8c04b41877aaadebf53c0a, type: 3}
-  difficultMusic: {fileID: 8300000, guid: cbf91324fa8147149b70c1c7afd56576, type: 3}
+  easyMusic: {fileID: 8300000, guid: 3696ef0f081e3f14ca01fcc083fbe275, type: 3}
+  mediumMusic: {fileID: 8300000, guid: 586f495f2cddcaf49a50812d8af5d2c8, type: 3}
+  difficultMusic: {fileID: 8300000, guid: df664ab2d4956ea41ae695097d390cbe, type: 3}
   orbitPath:
     xAxis: 0.75
     yAxis: 0.5
