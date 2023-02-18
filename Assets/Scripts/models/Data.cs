@@ -27,10 +27,11 @@ public class MyData
     private string counterType;
     private float counter;
     public string timeStamp;
+    public Difficulty difficulty;
 
     public MyData(string identifier, string sessionID, string timeStamp, string activityName, string boxName,
         string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter,
-        bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch)
+        bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch, Difficulty difficulty)
     {
         this.identifier = identifier;
         this.sessionID = sessionID;
@@ -43,6 +44,7 @@ public class MyData
         this.nonHitTime = nonHitTime;
         this.counterType = counterType;
         this.counter = counter;
+        this.difficulty = difficulty;
     }
 
     public string getBoxType(string name)
@@ -56,11 +58,11 @@ public class MyData
         }
         else if (Constants.BOTTOM_BOX == name)
         {
-            returnFloat = "_00";
+            returnFloat = "\"00\"";
         }
         else if (Constants.RIGHT_BOX == name)
         {
-            returnFloat = "_01";
+            returnFloat = "\"01\"";
         }
         else if (Constants.LEFT_BOX == name)
         {
@@ -80,23 +82,23 @@ public class MyData
         {
             if (isRhythmSynch)
             {
-                returnFloat = "_01000";
+                returnFloat = "\"01000\"";
             }
             else if (isMusicSynch)
             {
-                returnFloat = "_00100";
+                returnFloat = "\"00100\"";
             }
             else if (isRhythmNotSynch)
             {
-                returnFloat = "_00010";
+                returnFloat = "\"00010\"";
             }
             else if (isMusicNotSynch)
             {
-                returnFloat = "_00001";
+                returnFloat = "\"00001\"";
             }
             else
             {
-                returnFloat = "_00000";
+                returnFloat = "\"00000\"";
             }
 
         }
@@ -196,7 +198,7 @@ public class MyData
     {
         return new string[]
         {
-            "SessionID","Timestamp","Activity type","Box type","Angle type","Hit type","Time hit","Timer non-hit","Counter Type","Counter"
+            "SessionID","Timestamp","Activity type","Difficulty","Box type","Angle type","Hit type","Time hit","Timer non-hit","Counter Type","Counter"
         };
     }
 
@@ -204,7 +206,7 @@ public class MyData
     {
         return new string[]
         {
-            sessionID, timeStamp, activityType.ToString(), boxType.ToString(), angleType.ToString(), hitType.ToString(), hitTime.ToString(),nonHitTime.ToString(),counterType.ToString(), counter.ToString()
+            sessionID, timeStamp, activityType.ToString(), difficulty.ToString(), boxType.ToString(), angleType.ToString(), hitType.ToString(), hitTime.ToString(),nonHitTime.ToString(),counterType.ToString(), counter.ToString()
         };
     }
 

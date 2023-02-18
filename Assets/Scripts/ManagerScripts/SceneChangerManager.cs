@@ -86,6 +86,12 @@ public class SceneChangerManager : MonoBehaviour
         currentIndexForDifficulty++;
         return sceneDifficulty.difficulty;
     }
+    public Difficulty getDifficultyForFile()
+    {
+        SceneDifficulty sceneDifficulty =
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty];
+        return sceneDifficulty.difficulty;
+    }
     public bool isMusicSynch()
     {
         SceneDifficulty sceneDifficulty =

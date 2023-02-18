@@ -51,11 +51,11 @@ public class MyEyeTrackerData
         }
         else if (Constants.BOTTOM_BOX == name)
         {
-            returnFloat = "_00";
+            returnFloat = "\"00\"";
         }
         else if (Constants.RIGHT_BOX == name)
         {
-            returnFloat = "_01";
+            returnFloat = "\"01\"";
         }
         else if (Constants.LEFT_BOX == name)
         {
@@ -114,7 +114,6 @@ public class MyEyeTrackerData
     {
         return new string[]
         {
-            //TODO adapted for eyetracking
             "SessionID","Timestamp","Activity type","Head origin","Head direction","Eye origin","Eye direction","Eye hit position"
         };
     }
