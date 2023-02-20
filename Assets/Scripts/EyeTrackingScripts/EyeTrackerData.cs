@@ -18,8 +18,8 @@ public class MyEyeTrackerData
     private Vector3 eyeOrigin, eyeDir, eyeHitPos;
 
     public MyEyeTrackerData(string identifier, string sessionID, string timeStamp, string activityName, Vector3 headOrigin,
-     Vector3 headDir, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos, 
-     bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch, Difficulty difficulty)
+     Vector3 headDir, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 eyeHitPos, bool isMusicSynch, bool isRhythmSynch, 
+     bool isRhythmNotSynch, bool isMusicNotSynch, Difficulty difficulty)
     {
         this.identifier = identifier;
         this.sessionID = sessionID;
@@ -32,8 +32,6 @@ public class MyEyeTrackerData
         this.gazeOrigin = gazeOrigin;
         this.gazeDir = gazeDir;
 
-        this.eyeOrigin = eyeOrigin;
-        this.eyeDir = eyeDir;
         this.eyeHitPos = eyeHitPos;
     }
 
@@ -163,7 +161,7 @@ public class MyEyeTrackerData
     {
         return new string[]
         {
-            "SessionID","Timestamp","Activity type","Difficulty","Gaze origin","Gaze direction", "Head origin", "Head direction","Eye origin","Eye direction","Eye hit position"
+            "SessionID","Timestamp","Activity type","Difficulty","Gaze origin","Gaze direction", "Head origin", "Head direction","Eye hit position"
         };
     }
 
@@ -172,7 +170,7 @@ public class MyEyeTrackerData
         return new string[]
         {
             sessionID.ToString(), timeStamp, activityType.ToString(), difficulty.ToString(), gazeOrigin.ToString(), gazeDir.ToString(), headOrigin.ToString(), headDir.ToString(),
-            eyeOrigin.ToString(), eyeDir.ToString(), eyeHitPos.ToString()
+            eyeHitPos.ToString()
         };
     }
 
