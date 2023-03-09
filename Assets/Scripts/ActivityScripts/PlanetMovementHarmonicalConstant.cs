@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 
 
-public class PlanetMovementHarmonical : MonoBehaviour
+public class PlanetMovementHarmonicalConstant : MonoBehaviour
 {
     public Transform planetTransform;
     public AudioClip easyRhythm;
@@ -12,7 +12,7 @@ public class PlanetMovementHarmonical : MonoBehaviour
     public AudioClip easyMusic;
     public AudioClip mediumMusic;
     public AudioClip difficultMusic;
-    private bool canMove = false;
+    private bool canMove = true;
     private Vector3 initpos;
     private Difficulty difficulty;
     private float _deltaSpace;
@@ -62,7 +62,7 @@ public class PlanetMovementHarmonical : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.9f));
+            StartCoroutine(Wait(1f));
         }
         else if (difficulty == Difficulty.MEDIUM)
         {
@@ -74,7 +74,7 @@ public class PlanetMovementHarmonical : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(difficultMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && difficultRhythm != null)
                 SoundManager.Instance.PutOnLoop(difficultRhythm);
-            StartCoroutine(Wait(0.8f));
+            StartCoroutine(Wait(0.9f));
         }
         else if (difficulty == Difficulty.DIFFICULT)
         {
@@ -86,7 +86,7 @@ public class PlanetMovementHarmonical : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.7f));
+            StartCoroutine(Wait(0.8f));
         }
 
     }
@@ -102,9 +102,12 @@ public class PlanetMovementHarmonical : MonoBehaviour
 
         if (canMove)
         {
-            // the two values can be changed to make the trajectory change
             _deltaSpace += Time.deltaTime * speed;
-            float x = 0.75f * Mathf.Cos(_deltaSpace);
+            // the two values can be changed to make the trajectory change
+            float x = -Mathf.PingPong(_deltaSpace, 1.5f) + 0.75f;
+            planetTransform.localPosition =
+                new Vector3(initpos.x + x, initpos.y, initpos.z);
+
 
             if (Mathf.Cos(_deltaSpace) <= -Mathf.Cos(5.5f))
             {
@@ -130,8 +133,6 @@ public class PlanetMovementHarmonical : MonoBehaviour
                 if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == true)
                     FindObjectOfType<TouchesCounter>().SetIsInsideAngle(false, Constants.ANGLE);
             }
-
-            planetTransform.localPosition = new Vector3(initpos.x + x, initpos.y, initpos.z);
         }
 
     }

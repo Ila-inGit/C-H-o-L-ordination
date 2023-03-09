@@ -17,7 +17,7 @@ public class MyData
 
 
     public string identifier;
-    private float subject;
+    private string sessionID;
     private string activityType;
     private string boxType;
     private string angleType;
@@ -27,13 +27,16 @@ public class MyData
     private string counterType;
     private float counter;
     public string timeStamp;
+    public Difficulty difficulty;
 
-    public MyData(string identifier, float subject, string timeStamp, string activityName, string boxName, string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter, bool isMusicActive, bool isRhythmActive)
+    public MyData(string identifier, string sessionID, string timeStamp, string activityName, string boxName,
+        string angleType, string hitType, float hitTime, float nonHitTime, string counterType, float counter,
+        bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch, Difficulty difficulty)
     {
         this.identifier = identifier;
-        this.subject = subject;
+        this.sessionID = sessionID;
         this.timeStamp = timeStamp;
-        this.activityType = getActivityType(activityName, isMusicActive, isRhythmActive);
+        this.activityType = getActivityType(activityName, isMusicSynch, isRhythmSynch, isRhythmNotSynch, isMusicNotSynch);
         this.boxType = getBoxType(boxName);
         this.angleType = angleType;
         this.hitType = hitType;
@@ -41,6 +44,7 @@ public class MyData
         this.nonHitTime = nonHitTime;
         this.counterType = counterType;
         this.counter = counter;
+        this.difficulty = difficulty;
     }
 
     public string getBoxType(string name)
@@ -54,11 +58,11 @@ public class MyData
         }
         else if (Constants.BOTTOM_BOX == name)
         {
-            returnFloat = "_00";
+            returnFloat = "\"00\"";
         }
         else if (Constants.RIGHT_BOX == name)
         {
-            returnFloat = "_01";
+            returnFloat = "\"01\"";
         }
         else if (Constants.LEFT_BOX == name)
         {
@@ -69,74 +73,125 @@ public class MyData
 
     }
 
-    public string getActivityType(string name, bool isMusicActive, bool isRhythmActive)
+    public string getActivityType(string name, bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch)
     {
 
         string returnFloat = "-1";
 
         if (Constants.ACTIVITY_SCENE_CONSTANT == name)
         {
-            if (isMusicActive)
+            if (isRhythmSynch)
             {
-                return "_001";
-
+                returnFloat = "\"01000\"";
             }
-            else if (isRhythmActive)
+            else if (isMusicSynch)
             {
-                return "_010";
+                returnFloat = "\"00100\"";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "\"00010\"";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "\"00001\"";
             }
             else
             {
-                returnFloat = "_000";
+                returnFloat = "\"00000\"";
             }
 
         }
         else if (Constants.ACTIVITY_SCENE_NATURAL == name)
         {
-            if (isMusicActive)
+            if (isRhythmSynch)
             {
-                return "101";
-
+                returnFloat = "10000";
             }
-            else if (isRhythmActive)
+            else if (isMusicSynch)
             {
-                return "110";
+                returnFloat = "10100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "10010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "10001";
             }
             else
             {
-                returnFloat = "100";
+                returnFloat = "10000";
             }
         }
         else if (Constants.ACTIVITY_SCENE_FIGURE_EIGHT == name)
         {
-            if (isMusicActive)
+            if (isRhythmSynch)
             {
-                return "201";
-
+                returnFloat = "21000";
             }
-            else if (isRhythmActive)
+            else if (isMusicSynch)
             {
-                return "210";
+                returnFloat = "20100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "20010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "20001";
             }
             else
             {
-                returnFloat = "200";
+                returnFloat = "20000";
             }
         }
         else if (Constants.ACTIVITY_SCENE_HARMONIC == name)
         {
-            if (isMusicActive)
+            if (isRhythmSynch)
             {
-                return "301";
-
+                returnFloat = "31000";
             }
-            else if (isRhythmActive)
+            else if (isMusicSynch)
             {
-                return "310";
+                returnFloat = "30100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "30010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "30001";
             }
             else
             {
-                returnFloat = "300";
+                returnFloat = "30000";
+            }
+        }
+        else if (Constants.ACTIVITY_SCENE_HARMONIC_CONSTANT == name)
+        {
+            if (isRhythmSynch)
+            {
+                returnFloat = "41000";
+            }
+            else if (isMusicSynch)
+            {
+                returnFloat = "40100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "40010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "40001";
+            }
+            else
+            {
+                returnFloat = "40000";
             }
         }
 
@@ -166,7 +221,7 @@ public class MyData
     {
         return new string[]
         {
-            "Subject","Timestamp","Activity type","Box type","Angle type","Hit type","Time hit","Timer non-hit","Counter Type","Counter"
+            "SessionID","Timestamp","Activity type","Difficulty","Box type","Angle type","Hit type","Time hit","Timer non-hit","Counter Type","Counter"
         };
     }
 
@@ -174,7 +229,7 @@ public class MyData
     {
         return new string[]
         {
-            subject.ToString(), timeStamp, activityType.ToString(), boxType.ToString(), angleType.ToString(), hitType.ToString(), hitTime.ToString(),nonHitTime.ToString(),counterType.ToString(), counter.ToString()
+            sessionID, timeStamp, activityType.ToString(), difficulty.ToString(), boxType.ToString(), angleType.ToString(), hitType.ToString(), hitTime.ToString(),nonHitTime.ToString(),counterType.ToString(), counter.ToString()
         };
     }
 

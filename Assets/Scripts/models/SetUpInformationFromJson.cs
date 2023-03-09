@@ -4,8 +4,8 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SetUpInformationFromJson
 {
-    // --- patientID
-    public int p;
+    // --- sessionID
+    public string p;
     // --- maxTimeForActivity
     public int m;
     // --- numberTotalAttempts
@@ -15,7 +15,7 @@ public class SetUpInformationFromJson
     // --- doTutorial
     public bool d;
     // --- sceneOrder 
-    // --- (5- constant, 6- natural, 7- eight, 8- harmonical)
+    // --- (5- constant, 6- natural, 7- eight, 8- harmonical, 9- harmonical constant)
     public List<int> o = new List<int>();
     // --- sceneDifficulty
     // --- (0- easy no music, 1- medium no music, 2- difficult no music, 3- easy rhythm, 4- medium rhythm, 5- difficult rhythm,

@@ -27,7 +27,7 @@ public class SceneChangerManager : MonoBehaviour
     public void Init()
     {
         // need to be initilized and modified if some scene is added
-        if (enumToCurrentScene.Count == 0)
+        if (!isInitialized())
         {
             enumToCurrentScene.Add(SceneNames.MY_MANAGER_SCENE, Constants.MY_MANAGER_SCENE);
             enumToCurrentScene.Add(SceneNames.SETTING_SCENE, Constants.SETTING_SCENE);
@@ -38,7 +38,9 @@ public class SceneChangerManager : MonoBehaviour
             enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_NATURAL, Constants.ACTIVITY_SCENE_NATURAL);
             enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_FIGURE_EIGHT, Constants.ACTIVITY_SCENE_FIGURE_EIGHT);
             enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC, Constants.ACTIVITY_SCENE_HARMONIC);
+            enumToCurrentScene.Add(SceneNames.ACTIVITY_SCENE_HARMONIC_CONSTANT, Constants.ACTIVITY_SCENE_HARMONIC_CONSTANT);
             enumToCurrentScene.Add(SceneNames.TRANSITION_SCENE, Constants.TRANSITION_SCENE);
+            enumToCurrentScene.Add(SceneNames.FINAL_SCENE, Constants.FINAL_SCENE);
         }
 
         sceneSequence.Clear();
@@ -58,6 +60,11 @@ public class SceneChangerManager : MonoBehaviour
             sceneSequence.Add(item.name);
         }
         sceneSequence.Add(SceneNames.FINAL_SCENE);
+    }
+
+    public bool isInitialized()
+    {
+        return enumToCurrentScene.Count != 0;
     }
 
     public string getCurrentName(SceneNames name)
@@ -80,17 +87,23 @@ public class SceneChangerManager : MonoBehaviour
         currentIndexForDifficulty++;
         return sceneDifficulty.difficulty;
     }
-    public bool isMusicActive()
+    public Difficulty getDifficultyForFile()
     {
         SceneDifficulty sceneDifficulty =
             ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
-        return sceneDifficulty.isMusicActive;
+        return sceneDifficulty.difficulty;
     }
-    public bool isRhythmActive()
+    public bool isMusicSynch()
     {
         SceneDifficulty sceneDifficulty =
             ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
-        return sceneDifficulty.isRhythmActive;
+        return sceneDifficulty.isMusicSynch;
+    }
+    public bool isRhythmSynch()
+    {
+        SceneDifficulty sceneDifficulty =
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
+        return sceneDifficulty.isRhythmSynch;
     }
     public bool isMusicNotSynch()
     {

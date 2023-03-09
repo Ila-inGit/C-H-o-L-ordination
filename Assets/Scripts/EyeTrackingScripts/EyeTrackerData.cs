@@ -1,88 +1,142 @@
 using System;
 using UnityEngine;
+
 public class MyEyeTrackerData
 {
-    private string scene;
     public string identifier;
-    private float subject;
+    private string sessionID;
+    public string timeStamp;
     private string activityType;
-    //private string boxType;
-    //private string angleType;
+
+    public Difficulty difficulty;
 
     // Cam / Head tracking
-    private Vector3 gazeOrigin, gazeDir; 
-    private Vector3 headDir;
+    private Vector3 gazeOrigin, gazeDir;
+    private Vector3 headOrigin, headDir;
 
     // Smoothed eye gaze tracking 
-    private Vector3 eyeOrigin; // (EyeOrigin.x, EyeOrigin.y, EyeOrigin.z)
-    private Vector3 eyeDir; // (EyeDir.x, EyeDir.y, EyeDir.z)   
-    private Vector3 eyeHitPos; // (EyeHitPos.x, EyeHitPos.y, EyeHitPos.z)            
+    private Vector3 eyeOrigin, eyeDir, eyeHitPos;
 
-    public string timeStamp;
-
-    //public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName, string? boxName, string angleType, Vector3 headOrigin, Vector3 headDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
-    public MyEyeTrackerData(string identifier, float subject, string timeStamp, string activityName, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 headDir, Vector3 eyeOrigin, Vector3 eyeDir, Vector3 eyeHitPos)
+    public MyEyeTrackerData(string identifier, string sessionID, string timeStamp, string activityName, Vector3 headOrigin,
+     Vector3 headDir, Vector3 gazeOrigin, Vector3 gazeDir, Vector3 eyeHitPos, bool isMusicSynch, bool isRhythmSynch, 
+     bool isRhythmNotSynch, bool isMusicNotSynch, Difficulty difficulty)
     {
         this.identifier = identifier;
-        this.subject = subject;
+        this.sessionID = sessionID;
         this.timeStamp = timeStamp;
-        this.activityType = getActivityType(activityName);
-        //this.boxType = getBoxType(boxName);
-        //this.angleType = angleType;
+        this.activityType = getActivityType(activityName, isMusicSynch, isRhythmSynch, isRhythmNotSynch, isMusicNotSynch);
+        this.difficulty = difficulty;
+        //this.headOrigin = headOrigin;
+        this.headDir = headDir;
+
         this.gazeOrigin = gazeOrigin;
         this.gazeDir = gazeDir;
-        this.headDir = headDir;
-        this.eyeOrigin = eyeOrigin;
-        this.eyeDir = eyeDir;
+
         this.eyeHitPos = eyeHitPos;
     }
 
-    public string getBoxType(string name)
-    {
 
-        string returnFloat = name;
-
-        if (Constants.TOP_BOX == name)
-        {
-            returnFloat = "11";
-        }
-        else if (Constants.BOTTOM_BOX == name)
-        {
-            returnFloat = "_00";
-        }
-        else if (Constants.RIGHT_BOX == name)
-        {
-            returnFloat = "_01";
-        }
-        else if (Constants.LEFT_BOX == name)
-        {
-            returnFloat = "10";
-        }
-
-        return returnFloat;
-
-    }
-
-    public string getActivityType(string name)
+    public string getActivityType(string name, bool isMusicSynch, bool isRhythmSynch, bool isRhythmNotSynch, bool isMusicNotSynch)
     {
 
         string returnFloat = "-1";
 
         if (Constants.ACTIVITY_SCENE_CONSTANT == name)
         {
-            returnFloat = "0";
+            if (isRhythmSynch)
+            {
+                returnFloat = "\"01000\"";
+            }
+            else if (isMusicSynch)
+            {
+                returnFloat = "\"00100\"";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "\"00010\"";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "\"00001\"";
+            }
+            else
+            {
+                returnFloat = "\"00000\"";
+            }
+
         }
         else if (Constants.ACTIVITY_SCENE_NATURAL == name)
         {
-            returnFloat = "1";
+            if (isRhythmSynch)
+            {
+                returnFloat = "10000";
+            }
+            else if (isMusicSynch)
+            {
+                returnFloat = "10100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "10010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "10001";
+            }
+            else
+            {
+                returnFloat = "10000";
+            }
         }
         else if (Constants.ACTIVITY_SCENE_FIGURE_EIGHT == name)
         {
-            returnFloat = "2";
+            if (isRhythmSynch)
+            {
+                returnFloat = "21000";
+            }
+            else if (isMusicSynch)
+            {
+                returnFloat = "20100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "20010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "20001";
+            }
+            else
+            {
+                returnFloat = "20000";
+            }
         }
         else if (Constants.ACTIVITY_SCENE_HARMONIC == name)
         {
-            returnFloat = "3";
+            if (isRhythmSynch)
+            {
+                returnFloat = "31000";
+            }
+            else if (isMusicSynch)
+            {
+                returnFloat = "30100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "30010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "30001";
+            }
+            else
+            {
+                returnFloat = "30000";
+            }
+        }
+        else if (Constants.ACTIVITY_SCENE_HARMONIC_CONSTANT == name)
+        {
+            returnFloat = "4";
         }
 
         return returnFloat;
@@ -111,8 +165,7 @@ public class MyEyeTrackerData
     {
         return new string[]
         {
-            //TODO adapted for eyetracking
-            "Subject","Timestamp","Activity type","Head origin","Head direction","Eye origin","Eye direction","Eye hit position"
+            "SessionID","Timestamp","Activity type","Difficulty","Gaze origin","Gaze direction", "Head origin", "Head direction","Eye hit position"
         };
     }
 
@@ -120,12 +173,8 @@ public class MyEyeTrackerData
     {
         return new string[]
         {
-            //TODO adapt it for eyetracking
-            /*subject.ToString(), timeStamp, activityType.ToString(), boxType.ToString(), angleType.ToString(), headOrigin.ToString(), headDir.ToString(), 
-            eyeOrigin.ToString(), eyeDir.ToString(), eyeHitPos.ToString()*/
-            subject.ToString(), timeStamp, activityType.ToString(), gazeOrigin.ToString(), gazeDir.ToString(), headDir.ToString(), 
-            eyeOrigin.ToString(), eyeDir.ToString(), eyeHitPos.ToString()
-            //ToString("F3") in order to show 3 decimale
+            sessionID.ToString(), timeStamp, activityType.ToString(), difficulty.ToString(), gazeOrigin.ToString(), gazeDir.ToString(), headOrigin.ToString(), headDir.ToString(),
+            eyeHitPos.ToString()
         };
     }
 

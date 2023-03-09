@@ -17,6 +17,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
     [Range(0F, 1F)]
     public float orbitProgress = 0f;
     public bool orbitActive = true;
+    [SerializeField]
     private float orbitPeriod;
     private Difficulty difficulty;
     private Vector3 initpos;
@@ -42,20 +43,20 @@ public class OrbitNaturalSpeed : MonoBehaviour
             difficulty = SceneChangerManager.Instance.getDifficulty();
             if (difficulty == Difficulty.EASY)
             {
-                orbitPeriod = 9.6f;
+                orbitPeriod = 23.5f;
             }
             else if (difficulty == Difficulty.MEDIUM)
             {
-                orbitPeriod = 8f;
+                orbitPeriod = 21.5f;
             }
             else
             {
-                orbitPeriod = 6.8572f;
+                orbitPeriod = 19.8f;
             }
         }
         else
         {
-            orbitPeriod = 8f;
+            orbitPeriod = 8.7267f;
         }
 
         StartSound();
@@ -67,39 +68,39 @@ public class OrbitNaturalSpeed : MonoBehaviour
     {
         if (difficulty == Difficulty.EASY)
         {
-            if (SceneChangerManager.Instance.isMusicActive() && easyMusic != null)
+            if (SceneChangerManager.Instance.isMusicSynch() && easyMusic != null)
                 SoundManager.Instance.PutOnLoop(easyMusic);
-            if (SceneChangerManager.Instance.isRhythmActive() && easyRhythm != null)
+            if (SceneChangerManager.Instance.isRhythmSynch() && easyRhythm != null)
                 SoundManager.Instance.PutOnLoop(easyRhythm);
             if (SceneChangerManager.Instance.isMusicNotSynch() && mediumMusic != null)
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.6f));
+            StartCoroutine(Wait(0.2f));
         }
         else if (difficulty == Difficulty.MEDIUM)
         {
-            if (SceneChangerManager.Instance.isMusicActive() && mediumMusic != null)
+            if (SceneChangerManager.Instance.isMusicSynch() && mediumMusic != null)
                 SoundManager.Instance.PutOnLoop(mediumMusic);
-            if (SceneChangerManager.Instance.isRhythmActive() && mediumRhythm != null)
+            if (SceneChangerManager.Instance.isRhythmSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
             if (SceneChangerManager.Instance.isMusicNotSynch() && difficultMusic != null)
                 SoundManager.Instance.PutOnLoop(difficultMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && difficultRhythm != null)
                 SoundManager.Instance.PutOnLoop(difficultRhythm);
-            StartCoroutine(Wait(0.5f));
+            StartCoroutine(Wait(0.15f));
         }
         else if (difficulty == Difficulty.DIFFICULT)
         {
-            if (SceneChangerManager.Instance.isMusicActive() && difficultMusic != null)
+            if (SceneChangerManager.Instance.isMusicSynch() && difficultMusic != null)
                 SoundManager.Instance.PutOnLoop(difficultMusic);
-            if (SceneChangerManager.Instance.isRhythmActive() && difficultRhythm != null)
+            if (SceneChangerManager.Instance.isRhythmSynch() && difficultRhythm != null)
                 SoundManager.Instance.PutOnLoop(difficultRhythm);
             if (SceneChangerManager.Instance.isMusicNotSynch() && mediumMusic != null)
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.4f));
+            StartCoroutine(Wait(0.1f));
         }
 
     }
@@ -118,9 +119,9 @@ public class OrbitNaturalSpeed : MonoBehaviour
 
         //Debug.Log("y neg"+orbitPos.y + "delta space " + orbitProgress);
         //Debug.Log("y pos"+orbitPos.y + "delta space " + orbitProgress);
-
         //if we want to restrict the area we have decrement the value of Sin
-        if (Mathf.Cos(Mathf.Deg2Rad * 360f * orbitProgress) <= Mathf.Sin(-0.85f))
+        Debug.Log(orbitPos.y);
+        if (orbitPos.y <= -0.4f)
         {
             orbitingObject.gameObject.GetComponent<Interactable>().enabled = true;
             orbitingObject.gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
@@ -131,7 +132,7 @@ public class OrbitNaturalSpeed : MonoBehaviour
                 FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.BOTTOM_ANGLE);
 
         }
-        else if (Mathf.Cos(Mathf.Deg2Rad * 360f * orbitProgress) >= Mathf.Sin(0.85f))
+        else if (orbitPos.y >= 0.4f)
         {
             orbitingObject.gameObject.GetComponent<Interactable>().enabled = true;
             orbitingObject.gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
@@ -154,14 +155,19 @@ public class OrbitNaturalSpeed : MonoBehaviour
 
     IEnumerator AnimateOrbit()
     {
-        if (orbitPeriod < 0.1f)
-        {
-            orbitPeriod = 0.1f;
-        }
-        float frequence = 1f / orbitPeriod;
+        // if (orbitPeriod < 0.1f)
+        // {
+        //     orbitPeriod = 0.1f;
+        // }
+        // float frequence = 1f / orbitPeriod;
 
         while (orbitActive)
         {
+            if (orbitPeriod < 0.1f)
+            {
+                orbitPeriod = 0.1f;
+            }
+            float frequence = 1f / orbitPeriod;
             if (canMove)
             {
                 orbitProgress += Time.deltaTime * frequence;

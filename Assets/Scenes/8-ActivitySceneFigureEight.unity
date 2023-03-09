@@ -123,6 +123,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &244997045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 244997046}
+  - component: {fileID: 244997047}
+  m_Layer: 0
+  m_Name: EyeTrackerDataCollector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &244997046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244997045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1607148476}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &244997047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244997045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169ed1d746734fb4b8b57725f6e38388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &253748572
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +611,7 @@ Transform:
   - {fileID: 1903581470}
   - {fileID: 1473276262}
   - {fileID: 1833156777}
+  - {fileID: 1607148476}
   m_Father: {fileID: 425449131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1959,6 +2003,74 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!1 &1607148475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1607148476}
+  - component: {fileID: 1607148479}
+  - component: {fileID: 1607148478}
+  - component: {fileID: 1607148477}
+  m_Layer: 0
+  m_Name: EyePlane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1607148476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607148475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.9539}
+  m_LocalScale: {x: 2, y: 1.5, z: 1.5}
+  m_Children:
+  - {fileID: 244997046}
+  m_Father: {fileID: 427422825}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1607148477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607148475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0273376f8ec8144827e3c4d33d4d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &1607148478
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607148475}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &1607148479
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607148475}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1608335898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,9 +2651,9 @@ MonoBehaviour:
   easyRhythm: {fileID: 8300000, guid: f394f16210a480a409f2da08df6fe62a, type: 3}
   mediumRhythm: {fileID: 8300000, guid: 7702753e352629d41a6c3b23ff1c2242, type: 3}
   difficultRhythm: {fileID: 8300000, guid: 4a8cdc777ce0d8546b455e004d08c3da, type: 3}
-  easyMusic: {fileID: 8300000, guid: cc3a22e33934db84ea49da16f46b535a, type: 3}
-  mediumMusic: {fileID: 8300000, guid: 0c6a5ba228580e74d876c485b4da4677, type: 3}
-  difficultMusic: {fileID: 8300000, guid: 93e8d478f57ecda4faaf5494fa09462d, type: 3}
+  easyMusic: {fileID: 8300000, guid: 9232b65442765b6408b0894dcc6a2732, type: 3}
+  mediumMusic: {fileID: 8300000, guid: 8f8fb8731d1e5364e8d15919a04d05dd, type: 3}
+  difficultMusic: {fileID: 8300000, guid: ad853409a90382847ae607753fe99deb, type: 3}
 --- !u!54 &1608335909
 Rigidbody:
   m_ObjectHideFlags: 0

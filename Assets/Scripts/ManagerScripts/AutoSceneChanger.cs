@@ -14,7 +14,7 @@ public class AutoSceneChanger : MonoBehaviour
         totalTouches = touchesCounter.totalTouches;
 
         timerBeforeChange += Time.deltaTime;
-        if (!changed)
+        if (!changed && ParseQRInfoManager.Instance != null)
         {
             if (timerBeforeChange >= ParseQRInfoManager.Instance.setUpInfo.maxTimeForActivity)
             {

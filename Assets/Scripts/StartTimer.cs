@@ -37,7 +37,10 @@ public class StartTimer : MonoBehaviour
         {
             // Debug.Log("time taken to pass through box: " + timeBeforeClick);
             DataCollector.Instance.addToFile(
-                new MyData(Constants.RESET_TIMER, ParseQRInfoManager.Instance.setUpInfo.patientID, "-1", gameObject.scene.name, currentTag, "-1", "_00", -1, timeBeforeClick, "-1", -1, SceneChangerManager.Instance.isMusicActive(), SceneChangerManager.Instance.isRhythmActive()));
+                new MyData(Constants.RESET_TIMER, ParseQRInfoManager.Instance.setUpInfo.sessionID,
+                "-1", gameObject.scene.name, currentTag, "-1", "\"00\"", -1, timeBeforeClick, "-1", -1,
+                SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(),
+                SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
         }
 
         timeBeforeClick = 0;
@@ -50,7 +53,10 @@ public class StartTimer : MonoBehaviour
     {
         // Debug.Log("time taken before click: " + timeBeforeClick);
         DataCollector.Instance.addToFile(
-            new MyData(Constants.TIME_BEFORE_CLICK, ParseQRInfoManager.Instance.setUpInfo.patientID, "-1", gameObject.scene.name, currentTag, "-1", "11", timeBeforeClick, -1, "-1", -1, SceneChangerManager.Instance.isMusicActive(), SceneChangerManager.Instance.isRhythmActive()));
+            new MyData(Constants.TIME_BEFORE_CLICK, ParseQRInfoManager.Instance.setUpInfo.sessionID,
+            "-1", gameObject.scene.name, currentTag, "-1", "11", timeBeforeClick, -1, "-1", -1,
+            SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(),
+            SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
         clicked = true;
         start = false;
     }

@@ -10,6 +10,10 @@ public class DisplayStartButton : MonoBehaviour
     GameObject startButton;
     [SerializeField]
     ParticleSystem particles;
+    [SerializeField]
+    AudioClip startClip;
+    [SerializeField]
+    AudioClip retryClip;
 
     IEnumerator startCountdown()
     {
@@ -20,6 +24,9 @@ public class DisplayStartButton : MonoBehaviour
         {
             // magari da spostare sul scene manager controller
             Vector3 cameraPos = DataCollector.Instance.retriveCameraPositionFromFile();
+            float cameraHeight = Camera.main.transform.position.y;
+            cameraPos.y = cameraHeight;
+            DataCollector.Instance.addCameraPositionToFile(cameraPos);
             Quaternion cameraAngle = DataCollector.Instance.retriveCameraAngleFromFile();
 
             startButton.transform.SetPositionAndRotation(cameraPos, cameraAngle);
@@ -28,25 +35,41 @@ public class DisplayStartButton : MonoBehaviour
 
             startButton.transform.position = new Vector3(
                 startButton.transform.position.x,
-                startButton.transform.position.y,
-                startButton.transform.position.z);
+                startButton.transform.position.y -0.05f,
+                startButton.transform.position.z + 0.3f);
 
             startButton.SetActive(true);
             instantiated = true;
             particles.Stop();
+            if (startClip != null)
+            {
+                SoundManager.Instance.Playsound(startClip);
+            }
+
 
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!instantiated)
+        if (SceneChangerManager.Instance.isInitialized())
         {
-            if (other.gameObject.tag == Constants.MAIN_CAMERA_TAG)
+            if (!instantiated)
             {
-                isInside = true;
-                StartCoroutine(startCountdown());
+                if (other.gameObject.tag == Constants.MAIN_CAMERA_TAG)
+                {
+                    isInside = true;
+                    StartCoroutine(startCountdown());
+                }
             }
+        }
+        else
+        {
+            if (retryClip != null)
+            {
+                SoundManager.Instance.Playsound(retryClip);
+            }
+
         }
     }
     private void OnTriggerExit(Collider other)
