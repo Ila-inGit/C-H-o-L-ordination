@@ -90,7 +90,7 @@ public class SceneChangerManager : MonoBehaviour
     public Difficulty getDifficultyForFile()
     {
         SceneDifficulty sceneDifficulty =
-            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty];
+            ParseQRInfoManager.Instance.setUpInfo.sceneOrderWithDifficulty[currentIndexForDifficulty - 1];
         return sceneDifficulty.difficulty;
     }
     public bool isMusicSynch()

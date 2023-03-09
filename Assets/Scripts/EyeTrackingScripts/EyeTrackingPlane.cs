@@ -52,7 +52,8 @@ public class EyeTrackingPlane : MonoBehaviour
             eyeHitPos = CoreServices.InputSystem.EyeGazeProvider.HitPosition;
 
             EyeTrackerDataCollector.Instance.addToFile(new MyEyeTrackerData(Constants.EYETRACKING_PLANE, ParseQRInfoManager.Instance.setUpInfo.sessionID,
-            "-1", gameObject.scene.name, headOrigin, headDir, gazeOrigin, gazeDir, eyeOrigin, eyeDir, eyeHitPos));
+            "-1", gameObject.scene.name, headOrigin, headDir, gazeOrigin, gazeDir, eyeHitPos, SceneChangerManager.Instance.isMusicSynch(),
+            SceneChangerManager.Instance.isRhythmSynch(), SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
 
         }
 
