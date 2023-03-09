@@ -171,6 +171,29 @@ public class MyData
                 returnFloat = "30000";
             }
         }
+        else if (Constants.ACTIVITY_SCENE_HARMONIC_CONSTANT == name)
+        {
+            if (isRhythmSynch)
+            {
+                returnFloat = "41000";
+            }
+            else if (isMusicSynch)
+            {
+                returnFloat = "40100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "40010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "40001";
+            }
+            else
+            {
+                returnFloat = "40000";
+            }
+        }
 
         return returnFloat;
 

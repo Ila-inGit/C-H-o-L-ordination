@@ -85,12 +85,18 @@ MonoBehaviour:
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: c296eed003a66a94b8cc5523cb72d013, type: 3}
-  - Name: 
-    Path: 
+  - Name: 10-ActivitySceneHarmonicConstant
+    Path: Assets/Scenes/10-ActivitySceneHarmonicConstant.unity
     Included: 0
     BuildIndex: -1
     Tag: Untagged
-    Asset: {fileID: 0}
+    Asset: {fileID: 102900000, guid: 12ed30672f61d0340ade6bea99e8aece, type: 3}
+  - Name: 11-FinalScene
+    Path: Assets/Scenes/11-FinalScene.unity
+    Included: 0
+    BuildIndex: -1
+    Tag: Untagged
+    Asset: {fileID: 102900000, guid: bfbc0d0390854004b9837848f93a2962, type: 3}
   permittedLightingSceneComponentTypes:
   - reference: UnityEngine.Transform, UnityEngine.CoreModule
   - reference: UnityEngine.GameObject, UnityEngine.CoreModule

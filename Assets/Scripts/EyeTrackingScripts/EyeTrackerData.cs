@@ -87,6 +87,10 @@ public class MyEyeTrackerData
         {
             returnFloat = "3";
         }
+        else if (Constants.ACTIVITY_SCENE_HARMONIC_CONSTANT == name)
+        {
+            returnFloat = "4";
+        }
 
         return returnFloat;
 

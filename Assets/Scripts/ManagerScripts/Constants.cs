@@ -11,8 +11,9 @@ class Constants
     public const string ACTIVITY_SCENE_NATURAL = "7-ActivitySceneNatural";
     public const string ACTIVITY_SCENE_FIGURE_EIGHT = "8-ActivitySceneFigureEight";
     public const string ACTIVITY_SCENE_HARMONIC = "9-ActivitySceneHarmonic";
+    public const string ACTIVITY_SCENE_HARMONIC_CONSTANT = "10-ActivitySceneHarmonic";
     public const string TRANSITION_SCENE = "TransitionScene";
-    public const string FINAL_SCENE = "10-FinalScene";
+    public const string FINAL_SCENE = "11-FinalScene";
     #endregion Scene Names
 
     #region Tag names
@@ -63,6 +64,7 @@ public enum SceneNames
     ACTIVITY_SCENE_NATURAL,
     ACTIVITY_SCENE_FIGURE_EIGHT,
     ACTIVITY_SCENE_HARMONIC,
+    ACTIVITY_SCENE_HARMONIC_CONSTANT,
     TRANSITION_SCENE,
     FINAL_SCENE
 }
