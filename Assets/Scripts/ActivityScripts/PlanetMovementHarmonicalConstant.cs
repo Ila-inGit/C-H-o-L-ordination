@@ -12,7 +12,7 @@ public class PlanetMovementHarmonicalConstant : MonoBehaviour
     public AudioClip easyMusic;
     public AudioClip mediumMusic;
     public AudioClip difficultMusic;
-    private bool canMove = true;
+    private bool canMove = false;
     private Vector3 initpos;
     private Difficulty difficulty;
     private float _deltaSpace;
