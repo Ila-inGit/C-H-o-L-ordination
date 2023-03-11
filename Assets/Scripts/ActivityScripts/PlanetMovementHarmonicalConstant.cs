@@ -31,20 +31,20 @@ public class PlanetMovementHarmonicalConstant : MonoBehaviour
             difficulty = SceneChangerManager.Instance.getDifficulty();
             if (difficulty == Difficulty.EASY)
             {
-                speed = 0.589f;
+                speed = 0.2813f;
             }
             else if (difficulty == Difficulty.MEDIUM)
             {
-                speed = 0.72f;
+                speed = 0.3437f;
             }
             else
             {
-                speed = 0.851f;
+                speed = 0.4063f;
             }
         }
         else
         {
-            speed = 0.72f;
+            speed = 0.3437f;
         }
 
         StartSound();
@@ -62,7 +62,7 @@ public class PlanetMovementHarmonicalConstant : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(1f));
+            StartCoroutine(Wait(0.31f));
         }
         else if (difficulty == Difficulty.MEDIUM)
         {
@@ -74,7 +74,7 @@ public class PlanetMovementHarmonicalConstant : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(difficultMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && difficultRhythm != null)
                 SoundManager.Instance.PutOnLoop(difficultRhythm);
-            StartCoroutine(Wait(0.9f));
+            StartCoroutine(Wait(0.23f));
         }
         else if (difficulty == Difficulty.DIFFICULT)
         {
@@ -86,7 +86,7 @@ public class PlanetMovementHarmonicalConstant : MonoBehaviour
                 SoundManager.Instance.PutOnLoop(mediumMusic);
             if (SceneChangerManager.Instance.isRhythmNotSynch() && mediumRhythm != null)
                 SoundManager.Instance.PutOnLoop(mediumRhythm);
-            StartCoroutine(Wait(0.8f));
+            StartCoroutine(Wait(0.15f));
         }
 
     }
