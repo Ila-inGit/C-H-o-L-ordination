@@ -108,17 +108,19 @@ public class PlanetMovementHarmonicalConstant : MonoBehaviour
             planetTransform.localPosition =
                 new Vector3(initpos.x + x, initpos.y, initpos.z);
 
-
-            if (Mathf.Cos(_deltaSpace) <= -Mathf.Cos(5.5f))
+     
+            if(x <= -0.54f)   // (Mathf.Cos(_deltaSpace) <= -Mathf.Cos(5.5f))
             {
+
                 gameObject.GetComponent<Interactable>().enabled = true;
                 gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
 
                 if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
                     FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.LEFT_ANGLE);
             }
-            else if (Mathf.Cos(_deltaSpace) >= Mathf.Cos(5.5f))
+            else if(x >= 0.54) // (Mathf.Cos(_deltaSpace) >= Mathf.Cos(5.5f))
             {
+
                 gameObject.GetComponent<Interactable>().enabled = true;
                 gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
 

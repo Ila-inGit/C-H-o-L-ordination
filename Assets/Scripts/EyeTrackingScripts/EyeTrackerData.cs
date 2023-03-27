@@ -45,23 +45,23 @@ public class MyEyeTrackerData
         {
             if (isRhythmSynch)
             {
-                returnFloat = "\"01000\"";
+                returnFloat = "01000";
             }
             else if (isMusicSynch)
             {
-                returnFloat = "\"00100\"";
+                returnFloat = "00100";
             }
             else if (isRhythmNotSynch)
             {
-                returnFloat = "\"00010\"";
+                returnFloat = "00010";
             }
             else if (isMusicNotSynch)
             {
-                returnFloat = "\"00001\"";
+                returnFloat = "00001";
             }
             else
             {
-                returnFloat = "\"00000\"";
+                returnFloat = "00000";
             }
 
         }
@@ -136,7 +136,26 @@ public class MyEyeTrackerData
         }
         else if (Constants.ACTIVITY_SCENE_HARMONIC_CONSTANT == name)
         {
-            returnFloat = "4";
+            if (isRhythmSynch)
+            {
+                returnFloat = "41000";
+            }
+            else if (isMusicSynch)
+            {
+                returnFloat = "40100";
+            }
+            else if (isRhythmNotSynch)
+            {
+                returnFloat = "40010";
+            }
+            else if (isMusicNotSynch)
+            {
+                returnFloat = "40001";
+            }
+            else
+            {
+                returnFloat = "40000";
+            }
         }
 
         return returnFloat;

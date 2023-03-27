@@ -15,7 +15,7 @@ public class SetUpInformationFromJson
     // --- doTutorial
     public bool d;
     // --- sceneOrder 
-    // --- (5- constant, 6- natural, 7- eight, 8- harmonical, 9- harmonical constant)
+    // --- (5 - elliptic constant, 6 - elliptic natural, 7 - lemniscate, 8 - harmonical natural, 9 - harmonical constant)
     public List<int> o = new List<int>();
     // --- sceneDifficulty
     // --- (0- easy no music, 1- medium no music, 2- difficult no music, 3- easy rhythm, 4- medium rhythm, 5- difficult rhythm,

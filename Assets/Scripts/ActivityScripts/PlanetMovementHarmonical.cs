@@ -106,6 +106,7 @@ public class PlanetMovementHarmonical : MonoBehaviour
             _deltaSpace += Time.deltaTime * speed;
             float x = 0.75f * Mathf.Cos(_deltaSpace);
 
+            
             if (Mathf.Cos(_deltaSpace) <= -Mathf.Cos(5.5f))
             {
                 gameObject.GetComponent<Interactable>().enabled = true;

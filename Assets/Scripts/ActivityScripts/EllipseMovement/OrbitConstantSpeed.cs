@@ -113,7 +113,7 @@ public class OrbitConstantSpeed : MonoBehaviour
             {
                 gameObject.GetComponent<Interactable>().enabled = true;
                 gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
-                // Debug.Log("Bottom box");
+
                 if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
                     FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.BOTTOM_ANGLE);
             }
@@ -121,13 +121,13 @@ public class OrbitConstantSpeed : MonoBehaviour
             {
                 gameObject.GetComponent<Interactable>().enabled = true;
                 gameObject.GetComponent<PressableButtonHoloLens2>().enabled = true;
-                // Debug.Log("Top box");
+
                 if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == false)
                     FindObjectOfType<TouchesCounter>().SetIsInsideAngle(true, Constants.TOP_ANGLE);
             }
             else
             {
-                // Debug.Log("not near box");
+
                 gameObject.GetComponent<Interactable>().enabled = false;
                 gameObject.GetComponent<PressableButtonHoloLens2>().enabled = false;
                 if (FindObjectOfType<TouchesCounter>() != null && FindObjectOfType<TouchesCounter>().isInsideAngle == true)

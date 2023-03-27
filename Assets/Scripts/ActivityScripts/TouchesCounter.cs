@@ -44,7 +44,7 @@ public class TouchesCounter : MonoBehaviour
                         // Debug.Log("bottom: " + _bottomCounter + "by " + boxTag);
                         DataCollector.Instance.addToFile(
                             new MyData(Constants.BOTTOM_BOX, ParseQRInfoManager.Instance.setUpInfo.sessionID, "-1", gameObject.scene.name,
-                             "\"00\"", "-1", "11", -1, -1, "100", _bottomCounter,
+                             "00", "-1", "11", -1, -1, "100", _bottomCounter,
                               SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(),
                                SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
                     }
@@ -67,7 +67,7 @@ public class TouchesCounter : MonoBehaviour
 
                         DataCollector.Instance.addToFile(
                             new MyData(Constants.RIGHT_BOX, ParseQRInfoManager.Instance.setUpInfo.sessionID, "-1", gameObject.scene.name,
-                             "\"01\"", "-1", "11", -1, -1, "101", _rightCounter,
+                             "01", "-1", "11", -1, -1, "101", _rightCounter,
                             SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(),
                             SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
                     }
@@ -86,7 +86,7 @@ public class TouchesCounter : MonoBehaviour
                         //Debug.Log("top: " + _topCounterOutside + "by " + angleTag);
                         DataCollector.Instance.addToFile(
                             new MyData(Constants.TOP_ANGLE, ParseQRInfoManager.Instance.setUpInfo.sessionID, "-1", gameObject.scene.name,
-                            "-1", "11", "\"01\"", -1, -1, "\"011\"", _topCounterOutside,
+                            "-1", "11", "01", -1, -1, "011", _topCounterOutside,
                             SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(), 
                             SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
                     }
@@ -97,7 +97,7 @@ public class TouchesCounter : MonoBehaviour
                         //Debug.Log("bottom: " + _bottomCounterOutside + "by " + angleTag);
                         DataCollector.Instance.addToFile(
                             new MyData(Constants.BOTTOM_ANGLE, ParseQRInfoManager.Instance.setUpInfo.sessionID, "-1", gameObject.scene.name,
-                            "-1", "\"00\"", "\"01\"", -1, -1, "\"000\"", _bottomCounterOutside,
+                            "-1", "00", "01", -1, -1, "000", _bottomCounterOutside,
                             SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(),
                             SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
                     }
@@ -108,7 +108,7 @@ public class TouchesCounter : MonoBehaviour
                         //Debug.Log("left: " + _leftCounterOutside + "by " + angleTag);
                         DataCollector.Instance.addToFile(
                             new MyData(Constants.LEFT_ANGLE, ParseQRInfoManager.Instance.setUpInfo.sessionID, "-1", gameObject.scene.name,
-                            "-1", "10", "\"01\"", -1, -1, "\"010\"", _leftCounterOutside,
+                            "-1", "10", "01", -1, -1, "010", _leftCounterOutside,
                             SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(), 
                             SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
                     }
@@ -119,7 +119,7 @@ public class TouchesCounter : MonoBehaviour
                         //Debug.Log("right: " + _rightCounterOutside + "by " + angleTag);
                         DataCollector.Instance.addToFile(
                             new MyData(Constants.RIGHT_ANGLE, ParseQRInfoManager.Instance.setUpInfo.sessionID, "-1", gameObject.scene.name,
-                             "-1", "\"01\"", "\"01\"", -1, -1, "\"001\"", _rightCounterOutside,
+                             "-1", "01", "01", -1, -1, "001", _rightCounterOutside,
                               SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(), 
                               SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
                     }

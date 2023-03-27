@@ -38,7 +38,7 @@ public class StartTimer : MonoBehaviour
             // Debug.Log("time taken to pass through box: " + timeBeforeClick);
             DataCollector.Instance.addToFile(
                 new MyData(Constants.RESET_TIMER, ParseQRInfoManager.Instance.setUpInfo.sessionID,
-                "-1", gameObject.scene.name, currentTag, "-1", "\"00\"", -1, timeBeforeClick, "-1", -1,
+                "-1", gameObject.scene.name, currentTag, "-1", "00", -1, timeBeforeClick, "-1", -1,
                 SceneChangerManager.Instance.isMusicSynch(), SceneChangerManager.Instance.isRhythmSynch(),
                 SceneChangerManager.Instance.isRhythmNotSynch(), SceneChangerManager.Instance.isMusicNotSynch(), SceneChangerManager.Instance.getDifficultyForFile()));
         }

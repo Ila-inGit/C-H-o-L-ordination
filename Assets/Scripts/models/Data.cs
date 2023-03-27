@@ -58,11 +58,11 @@ public class MyData
         }
         else if (Constants.BOTTOM_BOX == name)
         {
-            returnFloat = "\"00\"";
+            returnFloat = "00";
         }
         else if (Constants.RIGHT_BOX == name)
         {
-            returnFloat = "\"01\"";
+            returnFloat = "01";
         }
         else if (Constants.LEFT_BOX == name)
         {
@@ -82,23 +82,23 @@ public class MyData
         {
             if (isRhythmSynch)
             {
-                returnFloat = "\"01000\"";
+                returnFloat = "01000";
             }
             else if (isMusicSynch)
             {
-                returnFloat = "\"00100\"";
+                returnFloat = "00100";
             }
             else if (isRhythmNotSynch)
             {
-                returnFloat = "\"00010\"";
+                returnFloat = "00010";
             }
             else if (isMusicNotSynch)
             {
-                returnFloat = "\"00001\"";
+                returnFloat = "00001";
             }
             else
             {
-                returnFloat = "\"00000\"";
+                returnFloat = "00000";
             }
 
         }

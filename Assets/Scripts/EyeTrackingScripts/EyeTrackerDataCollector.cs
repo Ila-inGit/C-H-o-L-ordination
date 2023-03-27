@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using System.IO;
 using System.Text;
 using System.Runtime.Serialization;
@@ -26,8 +25,7 @@ public class EyeTrackerDataCollector : MonoBehaviour
     //private string saved line;
     private static MyEyeTrackerData saveInformation;
 
-    // private static string timeStamp = System.DateTime.Now.ToString();
-    private string EYEDATATORETRIVE = "EYEDATATORETRIVE" /*+ ".csv"*/;
+    private string EYEDATATORETRIVE = "EYEDATATORETRIVE" ;
 
 
     //private save counter
@@ -35,7 +33,6 @@ public class EyeTrackerDataCollector : MonoBehaviour
 
     //Hashtable declaration
     private static Dictionary<string, MyEyeTrackerData> dataCollection = new Dictionary<string, MyEyeTrackerData>();
-    
 
     public void addToFile(MyEyeTrackerData dataToWrite)
     {

@@ -21,9 +21,10 @@ public class DataCollector : MonoBehaviour
 
     //private string saved line;
     private static MyData saveInformation;
-    private string DATATORETRIVE = "DATATORETRIVE" /*+ ".csv"*/;
+    private string DATATORETRIVE = "DATATORETRIVE";
     private string CAMERAPOSITION = "CAMERAPOSITION";
     private string CAMERAANGLE = "CAMERAANGLE";
+    private string randomNumber = "";
 
     // private save counter
     private bool firstSave = true;
@@ -31,6 +32,15 @@ public class DataCollector : MonoBehaviour
 
     //Hashtable declaration
     private Dictionary<string, MyData> dataCollection = new Dictionary<string, MyData>();
+    private void Start()
+    {
+        randomNumber = generateRandomString();
+    }
+
+    public string generateRandomString()
+    {
+        return Random.Range(1, 1000).ToString();
+    }
 
     public void addToFile(MyData dataToWrite)
     {
@@ -38,7 +48,7 @@ public class DataCollector : MonoBehaviour
         saveInformation = dataCollection[dataToWrite.identifier];
         saveInformation.setTimeStamp();
 
-        string strFilePath = string.Format("{0}/{1}.csv", Application.persistentDataPath, DATATORETRIVE);
+        string strFilePath = string.Format("{0}/{1}.csv", Application.persistentDataPath, DATATORETRIVE+ randomNumber);
 
         // ----------------------- for windows -----------------------
         if (firstSave)
@@ -57,7 +67,7 @@ public class DataCollector : MonoBehaviour
 
     public string retriveContentFromFile()
     {
-        string strFilePath = string.Format("{0}/{1}.csv", Application.persistentDataPath, DATATORETRIVE);
+        string strFilePath = string.Format("{0}/{1}.csv", Application.persistentDataPath, DATATORETRIVE+ randomNumber);
         string fileContent = File.ReadAllText(strFilePath);
         return fileContent;
     }
